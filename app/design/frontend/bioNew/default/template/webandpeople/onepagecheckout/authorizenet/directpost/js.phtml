@@ -1,0 +1,165 @@
+<?php
+    if (!Mage::helper('onepagecheckout')->hasAuthorizenetDirectpost()) return;
+    $_method        = Mage::getSingleton('authorizenet/directpost');
+    $_code          = $_method->getCode();
+    $_controller    = $this->helper('authorizenet')->getControllerName();
+    $_orderUrl      = $this->helper('authorizenet')->getPlaceOrderFrontUrl();
+?>
+<script type="text/javascript">
+//<![CDATA[
+function toggleCvvToolTip(event){
+    if($('directpost-tool-tip')){
+        $('directpost-tool-tip').setStyle({
+            top: (Event.pointerY(event)-800)+'px'
+        })
+        $('directpost-tool-tip').toggle();
+    }
+    Event.stop(event);
+}
+
+Event.observe(document, 'dom:loaded', function(){
+    wpInitAuthorizenetDirectpostForm();
+});
+
+Ajax.Responders.register({
+    onComplete: function() {
+        wpInitAuthorizenetDirectpostForm();
+    }
+});
+
+function wpInitAuthorizenetDirectpostForm()
+{
+    if ($('directpost-cvv-what-is-this')) {
+        $('directpost-cvv-what-is-this').observe('click', toggleCvvToolTip);
+    }
+
+    new Validation('co-directpost-form');
+
+    if($('directpost-tool-tip-close')){
+        Event.observe($('directpost-tool-tip-close'), 'click', toggleCvvToolTip);
+    }
+
+    // --- start: !!!! ---
+    directPost.addMethods({
+        preparePayment : function() {
+            this.changeInputOptions('autocomplete', 'off');
+            if ($(this.iframeId)) {
+                switch (this.controller) {
+                    case 'onepage':
+                        var button = $('review-buttons-container').down('button');
+                        button.writeAttribute('onclick', '');
+                        button.stopObserving('click');
+                        button.observe('click', function() {
+                            if ($(this.iframeId)) {
+                                if (this.validate()) {
+                                    this.saveOnepageOrder();
+                                }
+                            } else {
+                                review.save();
+                            }
+                        }.bind(this));
+                        break;
+                    case 'sales_order_create':
+                    case 'sales_order_edit':
+                        var buttons = document.getElementsByClassName('scalable save');
+                        for ( var i = 0; i < buttons.length; i++) {
+                            buttons[i].writeAttribute('onclick', '');
+                            buttons[i].observe('click', this.onSubmitAdminOrder);
+                        }
+                        $('order-' + this.iframeId).observe('load', this.onLoadOrderIframe);
+                        break;
+                }
+
+                $(this.iframeId).observe('load', this.onLoadIframe);
+            }
+        },
+
+        validate : function() {
+            this.isValid = true;
+            this.inputs.each(function(elemIndex) {
+                if ($(this.code + '_' + elemIndex)) {
+                    if (!Validation.validate($(this.code + '_' + elemIndex))) {
+                        this.isValid = false;
+                    }
+                }
+            }, this);
+            checkout.saveNextStep = true;
+            if (!review.validateAll() || !checkout.saveNextStep) this.isValid = false;
+            return this.isValid;
+        },
+
+        saveOnepageOrder : function() {
+            this.hasError = false;
+            this.setLoadWaiting();
+            var params = Form.serialize('checkoutSteps');
+            params += '&controller=' + this.controller;
+            new Ajax.Request(this.orderSaveUrl, {
+                method : 'post',
+                parameters : params,
+                onComplete : this.onSaveOnepageOrderSuccess,
+                onFailure : function(transport) {
+                    this.resetLoadWaiting();
+                    if (transport.status == 403) {
+                        checkout.ajaxFailure();
+                    }
+                }
+            });
+        },
+
+        saveOnepageOrderSuccess : function(transport) {
+
+            if (transport.status == 403) {
+                checkout.ajaxFailure();
+            }
+            try {
+                response = eval('(' + transport.responseText + ')');
+            } catch (e) {
+                response = {};
+            }
+
+            if (response.success && response.directpost) {
+                this.orderIncrementId = response.directpost.fields.x_invoice_num;
+                var paymentData = {};
+                for ( var key in response.directpost.fields) {
+                    paymentData[key] = response.directpost.fields[key];
+                }
+                var preparedData = this.preparePaymentRequest(paymentData);
+                this.sendPaymentRequest(preparedData);
+            } else {
+                var msg = response.error_messages;
+                if (typeof(msg)=='object') msg = msg.join("\n");
+                if (msg)
+                {
+                    checkout.showErrorMessage(msg);
+                    checkout.setLoadWaiting(false);
+                    return;
+                }
+            }
+
+            if (response.error)
+            {
+                if ((typeof response.message) == 'string')
+                {
+                    checkout.showErrorMessage(response.message);
+                }
+                else
+                {
+                    checkout.showErrorMessage(response.message.join("\n"));
+                }
+                checkout.setLoadWaiting(false);
+                return;
+            }
+        }
+
+    });
+    // --- end: !!!! ---
+
+    directPostModel = new directPost(
+        '<?php echo $_code ?>',
+        'directpost-iframe',
+        '<?php echo $_controller ?>',
+        '<?php echo $_orderUrl ?>',
+        '<?php echo $_method->getCgiUrl() ?>',
+        '<?php echo $this->getUrl('checkout/onepage/saveOrder', array('_secure' => $this->getRequest()->isSecure())) ?>');
+}
+//]]></script>

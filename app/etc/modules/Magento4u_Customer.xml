@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Magento4u_Customer>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Magento4u_Customer>
+    </modules>
+</config>

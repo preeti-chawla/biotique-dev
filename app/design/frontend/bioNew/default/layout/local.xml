@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+   <default translate="label" module="page">
+      <reference name="root">
+         <action method="setTemplate">
+            <template>page/1column.phtml</template>
+         </action>
+      </reference>
+      <!--custom added by priyanka start -->
+      <reference name="left"> <!-- find left column block -->
+			<remove name="catalog.leftnav"/> <!-- remove standard layered navigation -->
+            <remove name="enterprisecatalog.leftnav"/> <!-- remove enterprise layered navigation -->
+            <block type="mana_filters/view" name="mana.catalog.leftnav" before="-" template="catalog/layer/view.phtml"/>
+		</reference>		
+		<reference name="head">
+			<action method="addCss"><stylesheet>css/mana_filters.css</stylesheet></action>
+		</reference>
+		
+        <reference name="mana.catalog.leftnav">
+            <action method="setTemplate" ifconfig="mana_filters/advanced/enabled"><template>manapro/filteradvanced/view.phtml</template></action>
+        </reference>       
+         <!--custom added by priyanka end-->
+      <reference name="head">
+         <!-- css -->
+         <action method="removeItem">
+            <type>skin_css</type>
+            <name>css/styles.css</name>
+         </action>
+         <action method="removeItem">
+            <type>skin_css</type>
+            <name>css/print.css</name>
+         </action>
+         <action method="addCss">
+            <stylesheet>css/common.css</stylesheet>
+         </action>
+		 <action method="addCss">
+            <stylesheet>css/about.css</stylesheet>
+         </action>
+         <action method="addCss">
+            <stylesheet>css/default_skin.css</stylesheet>
+         </action>
+         <action method="addCss">
+            <stylesheet>css/font-awesome.css</stylesheet>
+         </action>
+         <action method="addCss">
+            <stylesheet>css/stylish-select.css</stylesheet>
+         </action>
+         <action method="addCss">
+            <stylesheet>css/owl.carousel.css</stylesheet>
+         </action>
+         <action method="addCss">
+            <stylesheet>css/style.css</stylesheet>
+         </action>
+         <!-- js -->
+		 <action method="addItem">
+            <type>skin_js</type>
+            <name>js/jquery.js</name>
+         </action>
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/html5shiv.js</name>
+         </action>
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/respond.js</name>
+         </action>
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/jquery.bxslider.js</name>
+         </action>
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/owl.carousel.js</name>
+         </action>
+		  
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/carousel.js</name>
+         </action>
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/custom-form-elements.js</name>
+         </action>
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/cluster.js</name>
+         </action>
+        <action method="addItem">
+            <type>skin_js</type>
+            <name>js/jquery.validate.min.js</name>
+         </action>
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/stylish-select.js</name>
+         </action>
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/multizoom.js</name>
+         </action>
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/browser-detect.js</name>
+         </action>
+         <action method="addItem">
+            <type>skin_js</type>
+            <name>js/common.js</name>
+         </action>		 
+		 
+      </reference>
+      <reference name="header">
+         <block type="core/template" name="top.search" as="topSearch" template="catalogsearch/form.mini.phtml" />
+		 <!--<block type="directory/currency" name="custom_currency_selector" template="currency/currency.phtml"/>-->
+      </reference>
+      <reference name="left">
+         <remove name="left.newsletter" />
+         <remove name="left.permanent.callout" />
+         <remove name="tags_popular" />
+         <remove name="left.permanent.callout" />
+      </reference>
+      <!-- product listing -->
+      <reference name="footer">
+         
+         <block type="cms/block" name="footer_toplinks" as="footer_toplinks">
+            <action method="setBlockId">
+               <block_id>footer_toplinks</block_id>
+            </action>
+         </block>
+         <block type="cms/block" name="footer_about_us" as="footer_about_us">
+            <action method="setBlockId">
+               <block_id>footer_about_us</block_id>
+            </action>
+         </block>
+         <block type="cms/block" name="footer_customer" as="footer_customer">
+            <action method="setBlockId">
+               <block_id>footer_customer</block_id>
+            </action>
+         </block>
+         <block type="core/template" name="footer_account" template="page/html/footer_account.phtml" />
+         <!-- <block type="cms/block" name="footer_account" as="footer_account">
+				<action method="setBlockId">
+					<block_id>footer_account</block_id>
+				</action>
+			</block> -->
+         <block type="cms/block" name="footer_products" as="footer_products">
+            <action method="setBlockId">
+               <block_id>footer_products</block_id>
+            </action>
+         </block>
+         <block type="cms/block" name="footer_corporate" as="footer_corporate">
+            <action method="setBlockId">
+               <block_id>footer_corporate</block_id>
+            </action>
+         </block>
+         <block type="cms/block" name="footer_social" as="footer_social">
+            <action method="setBlockId">
+               <block_id>footer_social</block_id>
+            </action>
+         </block>
+         <block type="cms/block" name="footer_products_info" as="footer_products_info">
+            <action method="setBlockId">
+               <block_id>footer_products_info</block_id>
+            </action>
+         </block>
+      </reference>
+
+      
+      <reference name="before_body_end">
+	  <block type="newsletter/subscribe" name="newsletter" as="newsletter" template="newsletter/subscribe.phtml" before="-" />
+	           <block type="core/template" name="footerstrip" template="page/html/footer_strip.phtml" />
+   <!-- <block type="core/template" name="product_recently_viewed" as="product_recently_viewed" template="reports/recently_viewed.phtml"/>  -->
+         <block type="core/template" name="popups" template="parts/popups.phtml">
+            <block type="customer/form_register" name="customer_form_register2" template="customer/form/register2.phtml">
+                <block type="page/html_wrapper" name="customer.form.register.fields.before" as="form_fields_before" translate="label">
+                    <label>Form Fields Before</label>
+                </block>
+            </block>
+            <block type="customer/form_forgotpassword" name="customer_form_forgotpassword2" template="customer/form/forgotpassword2.phtml">
+                <block type="page/html_wrapper" name="customer.form.forgotpassword.fields.before" as="form_fields_before" translate="label">
+                    <label>Form Fields Before</label>
+                </block>
+            </block>
+			<block type="customer/form_login" name="customer_form_login3" template="customer/form/login3.phtml" >
+			
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>inchoo_socialconnect/css/styles.css</name>
+            </action>
+        </reference>
+        <reference name="customer_form_login3">
+            <block type="inchoo_socialconnect/login" name="inchoo_socialconnect_login">
+                <block type="inchoo_socialconnect/google_button" name="inchoo_socialconnect_google_login_button" />
+                <block type="inchoo_socialconnect/facebook_button" name="inchoo_socialconnect_facebook_login_button" />
+                <block type="inchoo_socialconnect/twitter_button" name="inchoo_socialconnect_twitter_login_button" />
+            </block>
+        </reference>
+			</block>
+         </block>
+      </reference>
+   </default>
+
+   <catalog_category_default>
+      <reference name="root">
+         <action method="setTemplate">
+            <template>page/2columns-left.phtml</template>
+         </action>
+         <block type="core/template" name="innerbanner" template="parts/innerbanner.phtml" />
+      </reference>
+      <reference name="left">
+         <block type="catalog/navigation" before="-" name="leftNav" as="leftNav" template="catalog/navigation/leftnav.phtml" />
+      </reference>
+   </catalog_category_default>
+   <catalog_category_layered>
+      <reference name="root">
+         <action method="setTemplate">
+            <template>page/2columns-left.phtml</template>
+         </action>
+         <block type="core/template" name="innerbanner" template="parts/innerbanner.phtml" />
+      </reference>
+      <reference name="left">
+         <block type="catalog/navigation" before="-" name="leftNav" as="leftNav" template="catalog/navigation/leftnav.phtml" />
+      </reference>
+   </catalog_category_layered>
+
+   <checkout_cart_index translate="label">
+      <reference name="content">
+         <block type="core/template" name="shoppingbagcontainer" template="checkout/shoppingbagcontainer.phtml" before="-" />
+      </reference>
+      <block type="core/template" name="sampleship" template="checkout/sampleship.phtml" after="shoppingbagcontainer" />
+   </checkout_cart_index>
+ 
+
+</layout>

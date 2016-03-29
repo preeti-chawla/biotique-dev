@@ -1,0 +1,13 @@
+<?php $category_id = Mage::registry('current_category')->getId();?>	
+
+	<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+		<ul class="slider3item">
+		<?php foreach ($_products as $_item): ?>
+          <li>
+            <div <?php if($category_id == 116 || $category_id == 141){?> class="collectBox_purple" <?php } else { ?> class="collectBox" <?php }?>>
+              <figure><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(84, 150) ?>" alt=""></figure>
+              <strong><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></strong> <span class="green">INR <?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getPrice() , 'price') ?></span> <a href="<?php echo $this->getProductUrl($_item) ?>" class="ctnBtn">Shop Now</a> </div>
+          </li>
+         <?php endforeach; ?> 
+        </ul>
+      <?php endif; ?>                     

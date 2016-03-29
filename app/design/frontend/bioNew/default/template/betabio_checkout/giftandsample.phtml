@@ -1,0 +1,147 @@
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/custom.js'); ?>" ></script>
+<?php 
+    if(!Mage::getSingleton('customer/session')->isLoggedIn()){
+        $login = 'guest';
+    }else{
+        $login = 'login';
+    }
+?>
+<input type="hidden" id="userCheck" value="<?php echo $login; ?>" />
+<div class="layout"> 
+      <span class="shadow"></span>
+      <div class="shoppingbagContainer">
+        <ul class="shoppingBag">
+          <li><span class="sCircle">1</span><span class="shoppingText">Shopping Bag</span></li>
+          <li><span class="sCircle active">2</span><span class="shoppingText activeText">Gift and sample</span></li>
+          <li><span class="sCircle">3</span><span class="shoppingText">Shipping and Payment</span></li>
+          <li><span class="sCircle">4</span><span class="shoppingText">Order review</span></li>
+        </ul>
+         <span class="shoppingShadow"></span>
+      </div>
+   <div class="shoppingdetailsArea samplingWrap">
+    <div class="shoppingareaLeft">
+          <div class="shadowtop">
+            <div class="shadowBottom">              
+              <div class="sapmlingLine">
+                <p class="smaplingText">Congratulations!! You have been entitiled to choose 2 Samples from the below collection Shop for INR 500 amount more and get TWO FREE Sample</p>
+              </div> 
+              <div class="samplingProduct">
+                <ul class="giftProduct">
+                  <li>
+                    <div class="giftproductList">
+                      <figure>
+                        <img src="<?php echo $this->getSkinUrl('images/gift-pro1.png'); ?>"/>
+                      </figure>
+                      <div class="giftDetails">
+                        <input type="checkbox" class="styled" name="" value="" >
+                        <span class="giftHeading">Bio Apricot</span>
+                        <span class="giftText">Refershing </span>
+                        <span class="giftText">Body Wash</span>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="giftproductList">
+                      <figure>
+                        <img src="<?php echo $this->getSkinUrl('images/gift-pro1.png'); ?>"/>
+                      </figure>
+                      <div class="giftDetails">
+                        <input type="checkbox" class="styled" name="" value="" >
+                        <span class="giftHeading">Bio GReen Apple</span>
+                        <span class="giftText">Fresh Daily Purifying </span>
+                        <span class="giftText">Shampoo</span>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="giftproductList">
+                      <figure>
+                        <img src="<?php echo $this->getSkinUrl("images/gift-pro1.png"); ?>"/>
+                      </figure>
+                      <div class="giftDetails">
+                        <input type="checkbox" class="styled" name="" value="" >
+                        <span class="giftHeading">Bio Watercress</span>
+                        <span class="giftText">Fresh Nourishing </span>
+                        <span class="giftText">Conditioner</span>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="giftproductList">
+                      <figure>
+                        <img src="<?php echo $this->getSkinUrl("images/gift-pro1.png"); ?>"/>
+                      </figure>
+                      <div class="giftDetails">
+                        <input type="checkbox" class="styled" name="" value="" >
+                        <span class="giftHeading">Bio Morining Nector</span>
+                        <span class="giftText">Flawless Skin</span>
+                        <span class="giftText">Lotion</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>               
+              </div>              
+              <a href="#" class="continueShopping"><i class="fa fa-backward"></i>Continue Shopping</a>              
+            </div>
+          </div>
+        </div>
+   <div class="shoppingareaRight">
+		 <?php  
+			$count = $this->helper('checkout/cart')->getSummaryCount();  //get total items in cart
+			$total = $this->helper('checkout/cart')->getQuote()->getGrandTotal();
+			$subtotal = Mage::helper('checkout/cart')->getQuote()->getSubtotal();
+			$shippingCharge = Mage::getSingleton('checkout/cart')->getQuote()->getGroupedAllShippingRates();
+			$countryCode = Mage::app()->getStore()->getCurrentCurrencyCode();
+		 ?>
+          <div class="chooseMethodHd">
+            <h3>order summAry</h3>
+          </div>
+          <h5><?php echo $count; ?> Item</h5>
+          <!-- <h3>order summAry</h3> -->
+          <!-- <div class="bagSummary">
+            1 Item
+          </div> -->            
+          <div class="sINR">
+            <ul class="payable">
+              <li>
+                <span class="titleDetails">Sub Total before Shipping</span> 
+                <span class="inr"><?php echo $countryCode; ?></span> 
+                <span class="mrp"><?php echo number_format($subtotal,'2','.',','); ?></span>
+              </li>
+              <li>
+                <span class="titleDetails">Including Tax</span> 
+                <span class="inr"><?php echo $countryCode; ?></span> 
+                <span class="mrp"><?php echo number_format($subtotal,'2','.',','); ?></span>
+              </li>
+              <li class="pAmount">
+                <span class="titleDetails">Payable Amount</span> 
+                <span class="inr"><?php echo $countryCode; ?></span> 
+                <span class="mrp"><?php echo number_format($total,'2','.',','); ?></span>
+              </li>
+            </ul> 
+            <a href="<?php echo Mage::getBaseUrl(); ?>checkout/onepage" class="checkout"><i class="fa fa-chevron-right"></i>Continue checkout</a> 
+          </div>
+          <div class="secure">
+            <ul class="risk">
+              <li class="riskIcon">                
+                <span class="shop">Zero</span>
+                <span class="buy">Risk Buy</span>
+              </li>
+              <li class="shopIcon">                
+                <span class="shop">Shop</span>
+                <span class="buy">Safe & Secure</span>
+              </li>
+              <li class="shopwithIcon">                
+                <span class="shop">Shop with</span>
+                <span class="buy">confidence</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+ 
+ 
+</div>
+</div>

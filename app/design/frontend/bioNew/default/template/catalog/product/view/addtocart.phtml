@@ -1,0 +1,36 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>      
+	  <?php if(!$_product->isGrouped()): ?>
+<?php //$category_id = Mage::registry('current_category')->getId();
+$category_id = Mage::getModel('catalog/layer')->getCurrentCategory()->getId();
+?>
+<ul class="cartSec">
+		<li>
+			<strong>Size</strong>
+			<strong class="wid80">Price</strong>
+			<strong class="last">Qty</strong>
+		</li>
+		<li>
+		<?php if($_product->isSaleable()): ?>
+		<span><?php echo number_format($_product->getResource()->getAttribute('weight')->getFrontend()->getValue($_product),0)." ".$_product->getResource()->getAttribute('unit')->getFrontend()->getValue($_product); ?></span>
+		<span class="wid80"><?php echo $this->getPriceHtml($_product, true) ?></span>
+		<div class="qty">
+		<input type="text" name="" value="<?php echo $this->getProductDefaultQty() * 1 ?>">
+		<a href="#" class="increase-ctn"><i class="fa fa-caret-up"></i></a>
+		<a href="#" class="decrease-ctn"><i class="fa fa-caret-down"></i></a>
+		</div> 
+		<?php else: ?>
+		<span class="sold-out"></span>
+		<?php endif; ?>
+		</li>
+		<li>
+		<a class="add-to-bag" href="#" onclick="productAddToCartForm.submit(this)" id="product-addtocart-button"><i class="fa fa-lock"></i>add to bag</a>
+		</li>
+
+		<li>
+	<!--	<a class="notify" href="#">*Notify me when available</a>-->
+		</li>
+		
+		 <?php echo $this->getChildHtml('', true, true) ?>
+        </ul>
+		<?php endif; ?>

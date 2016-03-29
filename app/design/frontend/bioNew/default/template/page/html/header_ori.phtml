@@ -1,0 +1,118 @@
+<?php 
+
+
+$ip = $_SERVER['REMOTE_ADDR'];
+$details = @json_decode(file_get_contents("http://ipinfo.io/{$ip}/json")); ?>
+<input type="hidden" id="countryIp" value="<?php echo $details->country; ?>" />
+<?php if (!isset($_COOKIE['firsttime']))
+{
+setcookie("firsttime", "no"); 
+
+?>
+
+<script>
+jQuery(document).ready(function(){
+var ip = jQuery('#countryIp').val();
+
+if(ip != 'IN'){
+window.location.href=jQuery("#custom-currency-selector option:contains(USD)").val();
+}else{
+window.location.href=jQuery("#custom-currency-selector option:contains(INR)").val();
+
+}
+
+
+})
+</script>
+<?php }else{ 
+
+} ?>
+  <?php $qty=$this->helper('checkout/cart')->getSummaryCount(); ?>    
+  <div class="cd-panel from-left">
+    <div class="cd-panel-header">
+      <figure><a href="#"><img src="<?php echo $this->getSkinUrl('images/logo.png') ?>" alt="" /></a></figure>
+      <a href="#0" class="cd-panel-close"><i class="fa fa-times"></i></a>
+    </div>
+    <div class="cd-panel-container">
+      <div class="cd-panel-content">
+          <div class="shopbysection">
+            <h3>Shop by section</h3>
+            <div id="mobileNav"></div>
+            <h3>Quick links</h3>
+            <ul class="mobileQuickLink">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">My Account</a></li>
+              <li><a href="#">Find A store</a></li>
+              <li><a href="#">My Wishlist</a></li>
+              <li><a href="#">Track Order</a></li>
+              <li><a href="#">Videos</a></li>
+              <li><a href="#">Be in touch</a></li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <header id="header">
+    <div class="layout">      
+      <div class="logoBlock">
+        <figure><a href="<?php echo $this->getUrl('') ?>"><img src="<?php echo $this->getSkinUrl('images/logo.png') ?>" alt="" /></a></figure>
+      </div>
+      <div class="topRight">
+        <ul class="toplinks">
+          <li><a href="#" id="e-signup"><i class="fa fa-plus"></i> Free Shipping and Samples*</a></li>
+          <li><?php // echo $this->getChildHtml('customer_form_login2'); ?></li>
+        <?php if(Mage::getSingleton('customer/session')->isLoggedIn()): 
+                $customer = Mage::getSingleton('customer/session')->getCustomer();
+        ?>
+          <li><a href="#" id="account"><i class="fa fa-plus"></i><?php echo "Welcome, ".$customer->getFirstname(); ?></a>
+            <div class="accountWrap">
+              <ul class="accountList">
+                <li><a href="#">My Account</a></li>
+                <li><a href="<?php echo $this->getUrl('') ?>wishlist">My Wishlist</a></li>
+                <li><a href="<?php echo $this->getUrl('checkout/cart') ?>">My Cart</a></li>
+              <!--   <li><a href="#">Checkout</a></li> 
+                <li><a href="#">Register</a></li>
+                <li><a href="#">Log In</a></li> -->
+              </ul>
+            </div>
+          </li>
+        <?php else: ?>
+            <li><a href="#" id="e-login2"><i class="fa fa-plus"></i> LOGIN</a></li>
+            <li><a href="#" class="e-account" id="account"><i class="fa fa-plus"></i> Register</a></li>
+        <?php endif; ?>   
+          <li class="fb"><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li class="blog"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+        </ul>
+      </div>      
+    </div>
+  </header>
+
+  <div id="navbar">
+    <div class="layout">
+      <div class="hamburgMenu">
+          <button type="button" class="cd-btn">            
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>              
+      </div>
+      <?php echo $this->getChildHtml('topMenu') ?>
+      <ul class="rightIcon">
+        <li id="m-offer"><a href="#"></a></li>
+        <li id="m-chat"><a href="#"></a></li>
+        <li><a href="#" id="fa-search"><i class="fa fa-search"></i></a>
+          <?php echo $this->getChildHtml('topSearch') ?>
+        </li>
+        <li><a href="#" id="faLock"><i class="fa fa-lock"></i></a>
+          <div class="cartBlock">
+            <a href="#" class="cartCtn"><i class="fa fa-times"></i></a>
+            <h5><a href="#">RECENTLY ADDED ITEM(S)</a></h5>
+            <span>You have <?php echo ($qty > '0' ) ? $qty :'no' ?>  items in your shopping cart.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+   <?php echo $this->getChildHtml('custom_currency_selector') ?>

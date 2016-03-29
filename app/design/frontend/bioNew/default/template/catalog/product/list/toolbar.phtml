@@ -1,0 +1,49 @@
+<?php if($this->getCollection()->getSize()): ?>
+<div class="showingProduct">
+    <?php echo $this->getPagerHtml() ?>
+    
+  <span><?php if(!$this->getRequest()->getParam('item_ingregident')) echo $this->__('Showing %s Product(s)', $this->getTotalNum()) ?></span>
+  <?php  
+  $ingredient_id = $this->getRequest()->getParam('item_ingregident');
+$cat= $this->getRequest()->getParam('cat');
+$item_concern= $this->getRequest()->getParam('item_concern');
+$item_collection= $this->getRequest()->getParam('item_collection');
+if($ingredient_id && !$cat && !$item_collection && !$item_concern && Mage::getSingleton('core/session')->gettotalpage()>1) {
+  $currentUrl = Mage::helper('core/url')->getCurrentUrl();
+	if (strpos($currentUrl,'&p='.$this->getRequest()->getParam('p')) !== false) 
+$currentUrl=str_replace('&p='.$this->getRequest()->getParam('p'),'',$currentUrl);
+  $page='1';   
+$page=$this->getRequest()->getParam('p');
+    ?>
+  <div class="paginationWrap">
+    <ul class="pagination">
+        <?php for($i=1;$i<=(Mage::getSingleton('core/session')->gettotalpage());$i++){
+        
+         ?>                              
+                                <li <?php if($page==$i) echo'select'; ?>><a href="<?php echo $currentUrl; ?>&p=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+            
+                  <?php } if(Mage::getSingleton('core/session')->gettotalpage()>$page) { ?>     
+                  <li>
+            <a title="Next" href="<?php echo $currentUrl; ?>&p=<?php echo ($page+1); ?>" class="next i-next">
+                <i class="fa fa-chevron-right"></i>
+            </a>
+        </li> <?php } ?>  </ul>
+  </div>
+  <?php } ?>
+   <?php if( $this->isExpanded() ): ?>
+  <div class="shortWrap"> 
+    <small><?php echo $this->__('Sort By') ?></small>
+    <div class="drop">
+        <select class="stylish-drop" onchange="setLocation(this.value)">
+        <?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
+            <option value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php if($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
+                <?php echo $this->__($_order) ?>
+            </option>
+        <?php endforeach; ?>
+        </select>
+    </div>
+    <a class="dwn-up" href="<?php echo $this->getCurrentDirection() == 'desc'? $this->getOrderUrl(null, 'asc'):$this->getOrderUrl(null, 'desc'); ?>"><i class="fa fa-long-arrow-<?php echo $this->getCurrentDirection() == 'desc'? 'down':'up'; ?>"></i></a>
+  </div>
+  <?php endif; ?>
+</div>
+<?php endif ?>

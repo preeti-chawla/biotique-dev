@@ -1,0 +1,89 @@
+<?php
+   /**
+    * Magento
+    *
+    * NOTICE OF LICENSE
+    *
+    * This source file is subject to the Academic Free License (AFL 3.0)
+    * that is bundled with this package in the file LICENSE_AFL.txt.
+    * It is also available through the world-wide-web at this URL:
+    * http://opensource.org/licenses/afl-3.0.php
+    * If you did not receive a copy of the license and are unable to
+    * obtain it through the world-wide-web, please send an email
+    * to license@magento.com so we can send you a copy immediately.
+    *
+    * DISCLAIMER
+    *
+    * Do not edit or add to this file if you wish to upgrade Magento to newer
+    * versions in the future. If you wish to customize Magento for your
+    * needs please refer to http://www.magento.com for more information.
+    *
+    * @category    design
+    * @package     base_default
+    * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+    * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+    */
+   ?>
+<?php
+   /**
+    * Customer login form template
+    *
+    * @see Mage_Customer_Block_Form_Login
+    */
+   ?>
+<?php echo $this->getChildHtml('customer_form_register2'); ?>
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+<?php /* Extensions placeholder */ ?>
+<?php //echo $this->getChildHtml('customer.form.login.extra');
+   $isLoggedIn='';
+   $isLoggedIn = $this->helper('customer')->isLoggedIn(); //To check if user is logged in or not
+   ?>
+<?php if(!isset($isLoggedIn) || $isLoggedIn== ''){ ?>
+<a href="#" id="loginctn"><i class="fa fa-plus"></i> Email Signup</a>
+<div class="signupWrap">
+   <h5>Login</h5>
+   <ul class="signupRow">
+      <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
+         <?php echo $this->getBlockHtml('formkey'); ?>
+         <li>
+            <label> <span>Enter your email:</span>		
+            <input type="text" name="login[username]" value="<?php echo $this->escapeHtml($this->getUsername()) ?>" id="email" class="required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+            </label>                   
+         </li>
+         <li>
+            <label> <span>Password</span>
+            <input type="password" name="login[password]" class="required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
+            </label>
+         </li>
+         <?php echo $this->getChildHtml('form.additional.info'); ?>
+         <li> 
+            <input type="submit" class="ctn-fb" title="<?php echo $this->__('SIGN IN') ?>" name="send" id="send2" value="SIGN IN"><span></span>
+            <input type="submit" class="ctn-fb" title="<?php echo $this->__('SIGN UP') ?>" name="send" id="send2" value="SIGN UP"><span></span>
+         </li>
+   </ul>
+   <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+   <p><a href="#">Forgot Your Password?</a></p>
+   <a href="https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=http%3A%2F%2Fbiotique.prodigi%2Findex.php%2Fsocialconnect%2Fgoogle%2Fconnect%2F&client_id=706326522822-f0g4rs1puavgreneejqv05ejekt726f7%40developer.gserviceaccount.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&state=b482c339f72a316346ffa8d6a91b5d47&access_type=offline&approval_prompt=auto" class="ctn-fb"><i class="fa fa-google-plus-square"></i><span>Log in with google</span></a>
+   <a href="https://graph.facebook.com/oauth/authorize?client_id=839702299405903&redirect_uri=http%3A%2F%2Fbiotique2.pro-digi.co.in%2Findex.php%2Fsocialconnect%2Ffacebook%2Fconnect%2F&state=46b29f67613269683467bf662abe223e&scope=email%2Cuser_birthday" class="ctn-fb"><i class="fa fa-facebook-official"></i><span>Log in with Facebook</span></a>
+   </form>
+</div>
+<?php }
+   else {
+   ?>
+<a href="#" id="account"><i class="fa fa-plus"></i> My Account/Register</a>
+<div class="accountWrap">
+   <ul class="accountList">
+      <li><a href="<?php echo $this->getUrl('') ?>customer/account">My Account</a></li>
+      <li><a href="<?php echo $this->getUrl('') ?>wishlist">My Wishlist</a></li>
+      <li><a href="<?php echo $this->getUrl('') ?>checkout/cart">My Cart</a></li>
+      <li><a href="<?php echo $this->getUrl('') ?>checkout">Checkout</a></li>
+      <li><a href="<?php echo $this->getUrl('') ?>customer/account/logout/">Log Out</a></li>
+   </ul>
+</div>
+<?php
+   } ?>
+<script type="text/javascript">
+   //<![CDATA[
+       var dataForm = new VarienForm('login-form', true);
+   //]]>
+</script>

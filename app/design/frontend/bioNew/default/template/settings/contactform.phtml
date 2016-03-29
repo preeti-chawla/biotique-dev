@@ -1,0 +1,155 @@
+
+<div class="contactblock1" > 
+    <div class="contactColm">
+        <h3>For any Query</h3>
+        <p>Please submit your question below and Biotique will respond within 48 hours during the business week.</p>
+        <div id="messages_product_view"></div>
+        <ul class="contactQueryrow">
+            <form method="post" id="contactForm" action="<?php echo $this->getUrl('settings/index/cform') ?>index/sendemailone">
+                <li><input type="text" class="input-text required-entry" value="" title="Name" id="name_block1" placeholder="Name" name="name_block" dval="2"></li>
+                <li><input type="text" class="input-text required-entry validate-email" value="" title="Email" id="email_block1" placeholder="Email" name="email_block" dval="3"></li>
+                <li><input type="text" class="input-text validate-length maximum-length-10 minimum-length-10 validate-digits" value="" title="Telephone" id="telephone_block1" placeholder="Mobile No." name="telephone_block" dval="4"></li>
+                <li><textarea rows="3" cols="5" class="required-entry input-text" title="Comment" id="comment_block1" placeholder="Query*" name="comment_block" dval="5"></textarea></li>
+                <input type="hidden" name="type" value="c1" />
+                <li>
+                    <button class="button" title="Submit" type="submit"><span><span>Submit</span></span></button>
+                </li>
+              </form>
+        </ul>
+        <script type="text/javascript">
+        //< ![CDATA[
+                var customForm = new VarienForm('contactForm');
+            //]]>
+        </script>
+    </div>
+
+    <div class="contactColm">
+        <h3>For any Query</h3>
+        <p>Please submit your question below and Biotique will respond within 48 hours during the business week.</p>
+        <div id="messages_product_view"></div>
+        <ul class="contactQueryrow">
+            <form method="post" id="contactForm2" action="<?php echo $this->getUrl('settings/index/cform') ?>index/sendemailtwo">
+                <li><input type="text" class="input-text required-entry" value="" title="Name" id="name_block2" placeholder="Name" name="name_block" dval="2"></li>
+                <li><input type="text" class="input-text required-entry validate-email" value="" title="Email" id="email_block2" placeholder="Email" name="email_block" dval="3"></li>
+                <li><input type="text" class="input-text validate-length maximum-length-10 minimum-length-10 validate-digits" value="" title="Telephone" id="telephone_block2" placeholder="Mobile No." name="telephone_block" dval="4"></li>
+                <li><textarea rows="3" cols="5" class="required-entry input-text" title="Comment" id="comment_block2" placeholder="Query*" name="comment_block" dval="5"></textarea></li>
+                 <input type="hidden" name="type" value="c2" />
+                <li>
+                    <button class="button" title="Submit" type="submit"><span><span>Submit</span></span></button>
+                </li>
+              </form>
+        </ul>
+        <script type="text/javascript">
+        //< ![CDATA[
+                var customForm = new VarienForm('contactForm2');
+            //]]>
+        </script>
+    </div>
+
+
+    <div class="contactColm">
+        <h3>For any Query</h3>
+        <p>Please submit your question below and Biotique will respond within 48 hours during the business week.</p>
+        <div id="messages_product_view"></div>
+        <ul class="contactQueryrow">
+            <form method="post" id="contactForm3" action="<?php echo $this->getUrl('settings/index/cform') ?>index/sendemailthree">
+                <li><input type="text" class="input-text required-entry" value="" title="Name" id="name_block3" placeholder="Name" name="name_block" dval="2"></li>
+                <li><input type="text" class="input-text required-entry validate-email" value="" title="Email" id="email_block3" placeholder="Email" name="email_block" dval="3"></li>
+                <li><input type="text" class="input-text validate-length maximum-length-10 minimum-length-10 validate-digits" value="" title="Telephone" id="telephone_block3" placeholder="Mobile No." name="telephone_block" dval="4"></li>
+                <li><textarea rows="3" cols="5" class="required-entry i\'nput-text" title="Comment" id="comment_block3" placeholder="Query*" name="comment_block" dval="5"></textarea></li>
+                 <input type="hidden" name="type" value="c3" />
+                <li>
+                    <button class="button" title="Submit" type="submit"><span><span>Submit</span></span></button>
+                </li>
+              </form>
+        </ul>
+        <script type="text/javascript">
+        //< ![CDATA[
+                var customForm = new VarienForm('contactForm2');
+            //]]>
+        </script>
+    </div>
+
+
+</div>
+
+
+
+
+
+<style type="text/css">
+.contactblock {
+  overflow: hidden;
+  padding: 10px 30px;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="box simple_contact" style="display:none;">
+ <?php echo $Thirdmail = Mage::getStoreConfig('settings/helpline/contactmailthird'); ?>
+<form id="simple_contact_form" name="simple_contact_form" action="<?php echo $this->getUrl('settings/') ?>index/sendemail" method="post">
+ 
+    <fieldset class="group-select">
+        <h4 class="legend">Contact Form </h4>
+        <ul>
+        <li>
+                <div class="input-box">
+                    <label for="name">Gimme your name <span class="required">*</span></label><br />
+ 
+                    <input name="name" id="name" title="Name" value="" class="required-entry input-text" type="text" />
+                </div>
+ 
+                <div class="input-box">
+                    <label for="email">And your email <span class="required">*</span></label><br />
+                    <input name="email" id="email" title="Email" value="" class="required-entry input-text validate-email" type="text" />
+                </div>
+ 
+                <div class="clear"></div>
+ 
+                <div class="input-box">
+           &nbsp;        <label for="comment">Some comment?</label><br />
+ 
+                    <textarea name="comment" id="comment" title="Comment" class="required-entry input-text" style="height:100px;" cols="50" rows="3"></textarea>
+                </div>
+                </li>
+                </ul>
+    </fieldset>
+    <div class="button-set">
+        <p class="required">* Required Fields</p>
+        <button class="form-button" type="submit"><span>Submit</span></button>
+ 
+    </div>
+</form>
+ 
+</div>
+<script type="text/javascript">
+    //< ![CDATA[
+        var customForm = new VarienForm('simple_contact_form');
+    //]]>
+</script>
+

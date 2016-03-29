@@ -1,0 +1,13 @@
+		<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+		<ul class="slider3item">
+		<?php foreach ($_products as $_item): ?>
+          <li>
+            <div class="collectBox">
+              <a href="<?php echo $this->getProductUrl($_item) ?>"><figure><img src="<?php echo $this->helper('catalog/image')->init($_item, 'image')->resize(84, 150) ?>" alt=""></figure></a>
+              <strong><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></a></strong> 
+			  <span class="green"><?php echo Mage::helper('core')->currency($this->helper('catalog/output')->productAttribute($_item, $_item->getPrice() , 'price')) ?></span> 
+			  <a href="<?php echo $this->getProductUrl($_item) ?>" class="ctnBtn">Shop Now</a> </div>
+          </li>
+         <?php endforeach; ?> 
+        </ul>
+      <?php endif; ?>                     

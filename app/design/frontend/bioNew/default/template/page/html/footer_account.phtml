@@ -1,0 +1,15 @@
+<?php
+     $isLoggedIn='';
+	 $isLoggedIn = $this->helper('customer')->isLoggedIn(); //To check if user is logged in or not 
+?>
+<h3>My Account</h3>
+<ul class="links">
+<?php if(!isset($isLoggedIn) || $isLoggedIn== ''){ ?>
+<li><a class="e-login2" href="javascript:void(0)">Login/Signup</a></li>
+<?php } else{ ?>
+<li><a href="<?php echo $this->getUrl('') ?>sales/order/history/">Order History</a></li>
+<li><a href="<?php echo $this->getUrl('') ?>wishlist">My Wishlist</a></li>
+<li><a href="<?php echo $this->getUrl('') ?>customer/account/edit/changepass/1/">Change Password</a></li>
+<li><a href="<?php echo $this->getUrl('') ?>trackorder/">Order Tracking</a></li>
+<?php } ?>
+</ul>

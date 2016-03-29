@@ -1,0 +1,96 @@
+<div id="loginSignup">
+   <div class="customPopup">
+      <a href="#" class="closeCtn"><i class="fa fa-times"></i></a>      
+      <div class="popupMiddle">
+         <div class="popupTop">
+            <h5><?php echo $this->__('Login to your account') ?></h5>
+         </div>
+         <div class="popupLeft">
+<?php //echo $this->getMessagesBlock()->toHtml() ?>
+<?php /* Extensions placeholder */ ?>
+<?php echo $this->getChildHtml('customer.form.login.extra')?>
+            <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form" onsubmit="advancedtranslateSearch(<?php echo $this->getPostActionUrl() ?>);">
+            
+            
+                <?php echo $this->getBlockHtml('formkey'); ?>
+<ul class="popupinputRow">			
+			<li><input type="email" name="login[username]" placeholder="Email Address" id="email" onkeyup="chkmailexists(this)" class="input-text required-entry validate-email" required /></li>
+            <li><input type="password" name="login[password]" placeholder="Password" id="pass" class="input-text required-entry validate-password"  required/></li>            
+            <li>
+              <input type="checkbox" class="styled" name="" value="" id="logged">
+              <label for="logged">Keep me logged In</label>
+            </li>
+            <li><input type="submit" onclick="doAjax();" name="send" value="Log In" id="send2"></li>
+            <li><a href="#" id="e-forgot" class="f-left"><?php echo $this->__('Forgot Your Password?') ?></a></li>
+				
+		</ul>		
+            
+            <?php echo $this->getChildHtml('form.additional.info'); ?>
+         </div>
+         <div class="popupRight">
+            <ul class="popupSocial">
+			
+			<?php echo $this->getChildHtml('inchoo_socialconnect_login') ?>
+            </ul>
+         </div>
+		 <?php if (Mage::helper('checkout')->isContextCheckout()): ?>
+            <input name="context" type="hidden" value="checkout" />
+        <?php endif; ?>
+         </form>
+         <div class="popupBottom">
+            <h3>New to Biotique? <a href="#">Create a new account</a></h3>
+
+         </div>
+      </div>
+      <div class="whyLogin">
+         <div class="popupTop">
+            <h5>Why Login?</h5>
+         </div>
+         <ul class="loginTips">
+            <li><i class="fa fa-caret-right"></i>Free Shipping and Samples*</li>
+            <li><i class="fa fa-caret-right"></i>Stay updated with latest offers, big savings, and new arrivals</li>
+            <li><i class="fa fa-caret-right"></i>Place orders easily</li>
+            <li><i class="fa fa-caret-right"></i>Track past orders</li>
+            <li><i class="fa fa-caret-right"></i>Manage WishList</li>
+         </ul>
+      </div>
+   </div>
+</div>  
+<script type="text/javascript">
+
+    //<![CDATA[
+    var $h = jQuery.noConflict();
+function advancedtranslateSearch(url){  
+    new Ajax.Request(url, {
+      method: 'get',
+      parameters: $h('login-form').serialize(),
+      onSuccess: function(transport) {
+          json = transport.responseText.evalJSON();
+          $h('result').update('<div class="hor-scroll">'+json.records+'</div>');
+      }
+    });
+}
+//end of javascript code
+]]></script>
+<script type="text/javascript">
+
+function chkmailexists(email){
+  var email = email.value;
+  var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+  if (re.test(email)) {
+    jQuery.ajax({ 
+        type: "POST",
+        url: '<?php echo Mage::getBaseUrl(); ?>'+'settings/index/mailchk',
+        data: {email:email},
+        success: function(response) {
+            alert(response);
+        }
+    });
+  }  
+}
+
+
+//<![CDATA[
+    var dataForm = new VarienForm('login-form', true);
+//]]>
+</script>

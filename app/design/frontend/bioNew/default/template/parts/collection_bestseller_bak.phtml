@@ -1,0 +1,138 @@
+ <?php 
+ $_menu = $this->getHtml('level-top');
+		$attribute = Mage::getSingleton('eav/config')->getAttribute('catalog_product', 'item_ingregident');
+		$options = $attribute->getSource()->getAllOptions(false);
+		?>
+
+ <div class="newCollection">
+    <div class="collectionTop">
+      <div class="layout">      
+        <h1>our new collection</h1>      
+      </div>      
+    </div>
+    <div class="collectionBottom">
+      <div class="collectionImg">
+        <figure><img src="<?php echo $this->getSkinUrl('images/collection-img.jpg') ?>" alt="" /></figure>
+      </div>
+      <div class="collectionContent">
+        <div class="layout">
+          <div class="collectionCon">
+            <div class="collectionLeft">
+              <figure><img src="<?php echo $this->getSkinUrl('images/bioImg-white-logo.png') ?>" alt="" /></figure>
+            </div>
+            <div class="collectionRight">
+              <h2>WELCOME TO A NEW AGE OF ANTI-AGE.</h2>
+              <p>The wisdom of traditional Indian medicine and ingredients.
+The science of clinically-proven Swiss bio-technology. The dawn of advanced, bio-energetic, naturally therapeutic</p>
+              <a href="#" class="ctnBtn">View collection</a> <a href="#" class="ctnBtn">why Biotique advance?</a>
+            </div>
+          </div>      
+        </div>
+      </div>  
+    </div>
+  </div>
+  <div class="bestSellers">
+    <em class="shadow"></em>
+    <div class="bestSellersbg">
+      <figure><img src="<?php echo $this->getSkinUrl('images/sellers.jpg') ?>" alt="" /></figure>
+    </div>
+    <div class="bestSellerscon">
+      <div class="layout">        
+        <div class="sellersContent">
+          <h3>best sellers</h3>
+          <p>Shop our latest customer favorites!</p>
+        </div>
+        <div class="sellersSlider">
+          <div id="bestseller" class="sky-carousel">
+            <div class="sky-carousel-wrapper">
+              <ul class="sky-carousel-container">
+                <li>
+                  <img src="<?php echo $this->getSkinUrl('images/seller2.png') ?>" alt="" />
+                  <a href="#" class="bigImg"></a>
+                  <div class="sc-content">
+                    <h2>Bio honey gel</h2>
+                    <p>INR 199.00</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="<?php echo $this->getSkinUrl('images/seller2.png') ?>" alt="" />
+                  <a href="#" class="bigImg"></a>
+                  <div class="sc-content">
+                    <h2>Bio honey gel 2</h2>
+                    <p>INR 199.00</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="<?php echo $this->getSkinUrl('images/seller2.png') ?>" alt="" />
+                  <a href="#" class="bigImg"></a>
+                  <div class="sc-content">
+                    <h2>Bio honey gel 3</h2>
+                    <p>INR 199.00</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="<?php echo $this->getSkinUrl('images/seller2.png') ?>" alt="" />
+                  <a href="#" class="bigImg"></a>
+                  <div class="sc-content">
+                    <h2>Bio honey gel 4</h2>
+                    <p>INR 199.00</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="<?php echo $this->getSkinUrl('images/seller2.png') ?>" alt="" />
+                  <a href="#" class="bigImg"></a>
+                  <div class="sc-content">
+                    <h2>Bio honey gel 5</h2>
+                    <p>INR 199.00</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="<?php echo $this->getSkinUrl('images/seller2.png') ?>" alt="" />
+                  <a href="#" class="bigImg"></a>
+                  <div class="sc-content">
+                    <h2>Bio honey gel 6</h2>
+                    <p>INR 199.00</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="product-feature">
+    <section class="layout">
+      <div class="pf-wrap">
+        <article class="product-left">
+          <figure> <img src="<?php echo $this->getSkinUrl('images/girl_pic.png') ?>" alt="" title=""> </figure>
+          <section class="prod-desc">
+            <h2>SKIN CONSULTATION</h2>
+            <!-- <h5>FIND THE BEST SOLUTIONS</h5> -->
+            <p>Find the ideal regimen for beautiful, ageless skin and healthy well-being.</p>
+            <a href="#" class="ctn">FIND MORE</a> </section>
+        </article>
+        <article class="product-right">
+          <div class="prBox">
+              <ul class="productSlider"> 
+			  <?php for($i=0;$i<count($options);$i++){
+									echo "<li><img src='".$this->getSkinUrl('images/coconut.png')."' alt='' title=''><a href='#'><strong>".$options[$i]['label']."</strong></a></li>";
+									}
+									?>   
+			  
+               <!-- <li> <img src="<?php echo $this->getSkinUrl('images/coconut.png') ?>" alt="" title=""> <strong>COCONUT1</strong> <a href="#" class="read-more">Read More</a> </li>
+                <li> <img src="<?php echo $this->getSkinUrl('images/coconut.png') ?>" alt="" title=""> <strong>COCONUT2</strong> <a href="#" class="read-more">Read More</a> </li>
+                <li> <img src="<?php echo $this->getSkinUrl('images/coconut.png') ?>" alt="" title=""> <strong>COCONUT3</strong> <a href="#" class="read-more">Read More</a> </li> -->
+              </ul>
+          </div>
+          <section class="prod-desc">
+            <h2>INGREDIENTS</h2>
+            <!-- <h5>TAKE THE NATURAL PATH</h5> -->
+            <p>Biotique products are made of 100% organically-pure, preservative-free ingredients
+and renewable resources—cultivated, gathered, blended and manufactured in the
+foothills of the Himalayas. No animal testing.</p>
+            <a href="#" class="ctn">FIND ALL</a> </section>
+        </article>
+      </div>
+    </section>
+  </div>

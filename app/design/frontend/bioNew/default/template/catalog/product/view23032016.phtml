@@ -1,0 +1,446 @@
+	<?php $_helper = $this->helper('catalog/output'); ?>
+	<?php $_product = $this->getProduct(); ?>
+	<script type="text/javascript">
+	var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+	</script>
+	<?php echo $this->getChildHtml('alert_urls') ?>
+	<?php //echo $this->getChildHtml('product_type_data') ?>
+	<?php echo $this->getTierPriceHtml() ?>
+	<?php echo $this->getChildHtml('extrahint') ?>
+	<?php echo $this->getChildHtml('other');?>
+	<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+	<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+	<?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+	<?php endif;
+	//$category_id = Mage::registry('current_category')->getId();
+	$category_id = '';
+	$category_id = Mage::getModel('catalog/layer')->getCurrentCategory()->getId();
+	?>
+			<section class="shopContainer">
+			<?php $_isActive = Mage::getStoreConfig('outofstocksubscription/mail/active', $_storeId); ?>
+    <?php if(!$_product->isSaleable() && $_isActive): ?>
+    	<?php $_url = $this->getUrl('outofstocksubscription') ?>
+    <?php else: ?>
+    	<?php $_url = $this->getSubmitUrl($_product); ?>
+    <?php endif; ?>
+			<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+				<form action="<?php echo $_url; ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+				<?php echo $this->getBlockHtml('formkey') ?>
+					<div class="no-display">
+						<input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+						<input type="hidden" name="related_product" id="related-products-field" value="" />
+						</div>
+					<div class="layout">
+						<div class="productWrap">
+							<div class="productZoomer">
+								<div class="proLeft">
+									<ul class="proThumb image1 thumbs">
+									 <?php  echo $this->getChildHtml('media'); ?>
+									  
+									</ul>          
+								</div>
+
+								<div class="targetArea">
+									<img id="image1" alt="zoomable" title="" src="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>"/>
+								</div>
+								<div id="description"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?></div>
+							</div>
+							<div class="proDescription">
+								<div class="proinfo">
+								<?php 
+								echo $this->getReviewsSummaryHtml($_product, false, true);
+								?>
+									<ul class="reviewLink">
+										<?php if ($this->canEmailToFriend()): ?>
+										<?php if(Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+										<li <?php if($category_id == 116 || $category_id == 141){?> class="send-friend_purple" <?php } else { ?> class="send-friend" <?php }?>><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><i class="fa fa-envelope"></i><?php echo $this->__('Send to a Friend') ?></a></li>
+										<?php else: ?>
+										<li <?php if($category_id == 116 || $category_id == 141){?> class="send-friend_purple" <?php } else { ?> class="send-friend" <?php }?>><a href="#" class="e-login2"><i class="fa fa-envelope"></i><?php echo $this->__('Send to a Friend') ?></a></li>
+										<?php endif; ?>
+										<?php endif; ?>
+										
+										<?php if ($_product->isSaleable() && $this->helper('wishlist')->isAllow()) : ?>
+										<?php if(Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+										<li <?php if($category_id == 116 || $category_id == 141){?> class="add-wishlist_purple" <?php } else { ?> class="add-wishlist" <?php }?>><a href="<?php echo $this->getAddToWishlistUrl($_product) ?>" class="link-wishlist"><i class="fa fa-heart"></i><?php echo $this->__('Add to Wishlist') ?></a></li>
+										<?php else: ?>
+										<li <?php if($category_id == 116 || $category_id == 141){?> class="add-wishlist_purple" <?php } else { ?> class="add-wishlist" <?php }?>><a href="#" class="e-login2 link-wishlist"><i class="fa fa-heart"></i><?php echo $this->__('Add to Wishlist') ?></a></li>
+										<?php endif; ?>
+										<?php endif; ?>
+									</ul>
+								</div>
+							</div>
+						</div> 
+						<div class="detailSec">
+							<div class="bioSec">
+								<?php /*?><?php $medallion_image =$_product->getResource()->getAttribute('medallion_image')->getFrontend()->getValue($_product); ?>
+								<?php if ( $medallion_image = 'no_selection'):?>
+								<figure>
+								<img src="" alt="" />
+								</figure>
+								<?php  else: ?>
+								<figure>
+								<?php $medallion_image1 ='<img src="'.$this->helper('catalog/image')->init($_product, 'medallion_image').'"  />'; ?>
+								<?php echo $_helper->productAttribute($_product, $medallion_image1 , 'medallion_image'); ?>
+								</figure>
+								<?php  endif; ?><?php */?>
+								<div <?php if($category_id == 116 || $category_id == 141){?> class="bioCont_purple" <?php } else { ?> class="bioCont" <?php }?>>
+									<h2><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+									<h3><?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?><span><?php echo $_product->getAttributeText('skin_type'); ?></span></h3>          
+								</div>
+							</div>
+							<?php $special_offer=$_product->getAttributeText('special_offer'); ?>
+							<?php if($special_offer){?>
+							<div class="sploffer">
+								<small>Special Offer - <a href="#">See Details</a></small>
+							</div>
+							<?php } ?>
+						<?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>
+						<?php if($alias == 'additional') echo $html; ?>
+						<?php endforeach;?>
+						</div>
+					<div class="proRight">
+					<div <?php if($category_id == 116 || $category_id == 141){?> class="whiteBox_purple" <?php } else { ?> class="whiteBox" <?php }?>>
+					<?php echo $this->getChildHtml('product_type_data') ?>
+						<?php if (!$this->hasOptions()):?>
+							<?php if($_product->isSaleable()): ?>
+							<?php  echo $this->getChildHtml('addtocart') ?>
+							<?php endif; ?>
+						<?php //echo $this->getChildHtml('addto') ?>
+						<?php // echo $this->getChildHtml('extra_buttons') ?>
+						<?php elseif (!$_product->isSaleable()): ?>
+							<div class="add-to-box">
+							<?php //echo $this->getChildHtml('addto') ?>
+							</div>
+						<?php endif; ?>
+					</div>
+					  <?php if(!$_product->isSaleable() && $_isActive): ?>
+            	<div class="product-options">
+				<form action="submit()">
+				<p><?php echo $this->__('Notify Me when product is in Stock') ?></p><br>
+				
+					<p style="margin-bottom:10px; overflow:hidden"> <span style="float:left"><?php echo $this->__('Email') ?></span>
+            		<input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="enter validate email" id="subscription_email" name="subscription_email" value="" style="width:86%; margin-left:5px" class="input-text " />
+					<!--<input type="Submit" name="Notify Me " class="button btn-cart newslettrbtn"></input>-->
+					<button class="button btn-cart newslettrbtn" type="submit"><span><span><?php echo $this->__('Notify Me') ?></span></span></button>
+					<!--<button onclick="productAddToCartForm.submit();" class="button btn-cart newslettrbtn" type="submit"><span><span><?php echo $this->__('Notify Me') ?></span></span></button>-->
+				</p><br>
+				</form>
+            		<!--<table width="100%">
+            			<tr>
+            				<td colspan="2" style="padding-bottom:5px;">
+            					<strong><?php echo $this->__('Notify Me when product is in Stock') ?></strong>
+            				</td>
+            			</tr>            			
+            			<tr>
+            				<td style="padding-bottom:5px;"><?php echo $this->__('Email') ?></td>
+            				<td>
+            					<input type="text" id="subscription_email" name="subscription_email" value="" style="width:200px;" class="input-text required-entry validate-email" />
+            				</td>
+            			</tr>
+            			<tr>
+            				<td>&nbsp;</td>
+            				<td style="font-size:10px;">
+            					<?php// echo $this->__("Notify me when this product is back in stock") ?>
+            				</td>
+            			</tr>
+            			<tr>
+            				<td style="">&nbsp;</td>
+            				<td>
+            					<button onclick="productAddToCartForm.submit();" class="button btn-cart" type="button"><span><span><?php echo $this->__('Notify Me') ?></span></span></button>
+            				</td>
+            			</tr>
+            		</table>-->
+            	</div>
+            <?php endif; ?>
+            
+					<div <?php if($category_id == 116 || $category_id == 141){?> class="whiteBox_purple" <?php } else { ?> class="whiteBox" <?php }?>>
+						<h3>Check delivery time & COD availability</h3>
+							<div class="check-delivery">
+								<input name="zipcode" size="17" type="text" id="zipcode" maxlength="10" class="input-text" placeholder="<?php echo $this->__('Enter your Pincode'); ?>"/>
+								<button type="button" name="zip-check" title="Check" class="ctnBtn" id="zip-check" ><span><?php echo $this->__('Check'); ?></span></button>
+								
+							</div>
+							
+							<div class="availSec">
+								<figure class="delImg">
+								<?php if($category_id == 116 || $category_id == 141){?> 
+								<img src="<?php echo $this->getSkinUrl('images/carImg_purple.png') ?>" alt="">
+								<?php } else { ?>
+								<img src="<?php echo $this->getSkinUrl('images/carImg.png') ?>" alt="">
+								<?php }?>
+								
+								</figure>
+								<!--<span>Available, if you order in next 3 hours & 1 minute <a href="#">[?]</a></span>-->
+							</div>
+							<div id="delivery-message"></div>
+					</div>
+					<!--<div class="replenishmentService">
+					<span>Replenishment Service: <a href="#">[?]</a></span>
+						<div class="drop">
+							<select class="stylish-drop">
+								<option value="">Purchase One Time</option>
+								<option value="">2</option>
+								<option value="">3</option>
+								<option value="">4</option>
+							</select>
+						</div>
+					</div>-->
+					</div>    
+					</div>
+				</form>
+			</section>
+			<section class="ingredSec">
+				<?php $item_ingredient_image = $_product->getResource()->getAttribute('item_ingredient_image')->getFrontend()->getValue($_product); ?>
+				<?php if ( $item_ingredient_image != 'no_selection'):?>
+				<figure>
+				<?php $item_ingredient_image1 ='<img src="'.$this->helper('catalog/image')->init($_product, 'item_ingredient_image')->resize(1280,268).'"  />'; ?>
+				<!--image change 24-11-2015--> <?php echo $_helper->productAttribute($_product, $item_ingredient_image1 , 'item_ingredient_image'); ?>
+				</figure>
+				
+				<?php  else: ?>
+				<figure>
+				<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA). 'images/banner_article.jpg'; ?>" alt="" />
+				</figure>
+				<?php  endif; ?>
+				<?php $cssID = $_product->getData('item_ingregident'); 
+					  $cssIds = explode(",", $cssID);
+				?>
+				<section class="absolute_info" id="color_<?php echo $cssIds[0]; ?>">
+					<div class="layout">
+					
+						<h4>Ingredients</h4>
+						<h6><?php echo $_product->getAttributeText('item_ingregident'); ?></h6>
+						<p><?php echo $_product->getData('item_ingredient_desscription'); ?></p>
+						<ul <?php if($category_id == 116 || $category_id == 141){?> class="ctncolm_purple" <?php } else { ?> class="ctncolm" <?php }?>>
+							<li><a href="<?php echo Mage::getBaseUrl().'products/?item_ingregident='.$_product->getData('item_ingregident').'&limit=all';
+                            //echo $_product->getResource()->getAttribute('item_ingregident')->getFrontend()->getValue($_product);
+                            //echo $_product->getData('item_ingregident');
+                         	?>">shop <?php echo $_product->getAttributeText('item_ingregident'); ?> products</a></li>
+							<li><a href="<?php echo Mage::getUrl("ingredients")?>">view all ingredients</a></li>
+						</ul>
+					</div>
+				</section>
+			</section>
+<?php /*  <section class="newCollCont">
+<div class="layout">  
+    <div class="collectLeft">
+      <h3>Recently Viewed Items</h3>
+      <div class="recentlyViewedItems">
+          <?php $view_product = $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/footer_recently_viewed.phtml')->toHtml(); 
+          	if( !empty($view_product) ){
+          		echo $view_product;
+          	}else{
+          ?>
+      		<div class="no_Product itempro01"><?php echo "No Items Viewed"; ?></div>
+      	  <?php
+          	}
+          ?>
+      </div>
+    </div>
+    <div class="collectRight">
+     <h3 <?php if($category_id == 116 || $category_id == 141){?> style="color:#666666;" <?php } else { ?>   <?php }?>>Works well with</h3>
+      <div class="worksWell">
+	  <ul class="worksWellcolm">
+	  <?php if($_product->getCrossSellProducts()): ?>
+	  <?php
+		$crossSellProducts = $_product->getCrossSellProducts();
+		$i = 0;
+		foreach($crossSellProducts as $item): 
+		if($i==2) break;
+		?>
+          <li>
+		  <?php $product_id = $item['entity_id'];
+				$obj = Mage::getModel('catalog/product');
+				$_product = $obj->load($product_id); ?>
+				
+            <div <?php if($category_id == 116 || $category_id == 141){?> class="collectBox_purple" <?php } else { ?> class="collectBox" <?php }?>>
+              <figure>
+                <a href="<?php echo $_product->getProductUrl();?>"><img src="<?php echo $_product->getImageUrl(); ?>" alt=""></a>
+              </figure>
+              <a href="<?php echo $_product->getProductUrl();?>"><strong><?php echo $_product->getName();?></strong></a>
+              <span><?php echo $this->getPriceHtml($_product, true) ?></span>
+			  <a href="<?php echo $_product->getProductUrl();?>" class="ctnBtn">Shop Now</a>
+            </div>
+          </li>  
+			<?php $i++; ?>
+			
+		<?php endforeach; ?>
+        </ul>
+	  <?php else: ?> <!--.$this->getChildHtml('related_prod');-->
+		<li class="no_Product"><?php  echo "No Products Mapped" ?></li>
+		<?php endif; ?>
+       </ul>
+      </div>
+    </div>    
+  </div> 
+</section> 
+*/ ?>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<?php //echo $this->helper('catalog/image')->init($_product, 'image'); echo '<br />'; ?>
+            
+		<?php //echo $_product->getImageUrl(); ?>	
+		<section class="reviewContainer">
+  <section class="reviewContainer-inner">
+  <?php 
+$parts=explode('<ul class="reviewLink">',$this->getReviewsSummaryHtml($_product, false, true));
+	?>
+  <div class="reviewBlock">
+  <div class="reviewImg">
+  <div class="reviewImg"><figure>
+	<img src="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>">
+  </figure></div> <!-- /reviewImg --> </div> <!-- /reviewImg -->
+  <div class="reviewContent">
+  <h3>Ratings & Reviews</h3>
+  <h5>Summary of Customer Ratings & Reviews</h5>
+    <?php 
+$line=explode('<p>',$parts[0]);
+$p= str_replace('</p>','','<p>'.$line[1]);
+echo $p.' to a friend.</p>'	?>
+	<a class="ctnBtn" href="javascript:void(0)">Read Reviews</a>
+ <span class="right-review reviewblock"> <a class="ctnBtn secondBtn" href="<?php echo Mage::getUrl('review/product/list', array('id'=> $_product->getId())); ?>#review-form" rel="nofollow"> <?php echo $this->__('Write Review') ?></a></span>
+ 
+ <div class="overallRate"><strong>Overall Ratings</strong> <?php echo $line[0]; ?></div> <!-- /overallRate -->
+ </div> <!-- /reviewContent -->
+  </div> <!-- /reviewBlock -->
+  <span class="shadow"></span>
+</section>
+</section>
+			
+			
+			
+			
+	
+				<section class="customerReview">
+				<div <?php if($category_id == 116 || $category_id == 141){?> class="shortRating_purple" <?php } else { ?> class="shortRating" <?php }?>>
+				<div class="layout">    
+				<div class="srLeft">
+				<h4>Customer reviews</h4>
+				</div>
+				<div class="srRight"> <small>Sort By</small>
+				<div class="short">
+				<select class="stylish-drop">
+				<option value="">All</option>
+				<option value="">10 to 20</option>
+				<option value="">21 to 30</option>
+				<option value="">31 to 50</option>
+				</select>
+				</div>
+				<small>Rating</small>
+				<div class="ratingDrop">
+				<select class="stylish-drop">
+				<option value="">All</option>
+				<option value="">10 to 20</option>
+				<option value="">21 to 30</option>
+				<option value="">31 to 50</option>
+				</select>
+				</div>
+				</div>      
+				</div>
+				</div>
+				<div class="reviewgrayBar">
+				<div class="layout">      
+				<p>Biotique customers have said this product is best for:</p>
+				<ul class="tagList">
+				<li><a href="#">Anti-Aging(5)</a></li>
+				<li><a href="#">Moisturizing(3)</a></li>
+				<li><a href="#">Aging(2)</a></li>
+				<li><a href="#"><i class="fa fa-plus"></i>see more tags</a></li>
+				</ul>      
+				</div>
+				</div><?php echo $this->getChildHtml('product_additional_data') ?>
+				<div class="product_review_list"> <?php echo $this->getChildHtml('product_review') ?> </div>
+				</section>	
+	<script type="text/javascript">
+	//<![CDATA[
+	var productAddToCartForm = new VarienForm('product_addtocart_form');
+	productAddToCartForm.submit = function(button, url) {
+	if (this.validator.validate()) {
+	var form = this.form;
+	var oldUrl = form.action;
+
+	if (url) {
+	form.action = url;
+	}
+	var e = null;
+	try {
+	this.form.submit();
+	} catch (e) {
+	}
+	this.form.action = oldUrl;
+	if (e) {
+	throw e;
+	}
+
+	if (button && button != 'undefined') {
+	button.disabled = true;
+	}
+	}
+	}.bind(productAddToCartForm);
+
+	productAddToCartForm.submitLight = function(button, url){
+	if(this.validator) {
+	var nv = Validation.methods;
+	delete Validation.methods['required-entry'];
+	delete Validation.methods['validate-one-required'];
+	delete Validation.methods['validate-one-required-by-name'];
+	// Remove custom datetime validators
+	for (var methodName in Validation.methods) {
+	if (methodName.match(/^validate-datetime-.*/i)) {
+	delete Validation.methods[methodName];
+	}
+	}
+	if (this.validator.validate()) {
+	if (url) {
+	this.form.action = url;
+	}
+	this.form.submit();
+	}
+	Object.extend(Validation.methods, nv);
+	}
+	}.bind(productAddToCartForm);
+	//]]>
+	</script>
+	
+	
+	<script>
+	Event.observe('zip-check', 'click', function(event){
+		new Ajax.Request("<?php echo $this->getUrl('checkdelivery/index/index') ?>", {
+			method: "get",
+			parameters: {zipcode : $('zipcode').value },
+			onSuccess: function(transport) {
+				 var json = transport.responseText.evalJSON();
+				 $('delivery-message').update(json.message);				 
+				 $('delivery-message').setStyle({ color: json.color});
+				 $('delivery-html').update(json.html);	
+			}
+		});
+	});
+</script>
+<?php
+ if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+ echo $this->getChildHtml('review_form');} else { ?>
+ <div class="layout">
+<h2 class="heading"></H2>
+
+<div class="rate_main">
+ <div id="wrtreview" class="popup usr-login">
+ <div class="customPopup">
+ <a href="#" class="closeCtn"><i class="fa fa-times"></i></a> 
+ <div class="popupMiddle">
+ <p class="review-nologged" id="review-form">
+    <?php //echo $this->__('Only registered users can write reviews. Please, <a href="%s">log in</a> or <a href="%s">register</a>', Mage::getUrl('customer/account/login'), Mage::helper('customer')->getRegisterUrl()) ?> <?php echo $this->__('Only registered users can write reviews. Please, <a href="#" id="show_login">log in</a>') ?>
+    </p>
+    </div> <!-- /popupMiddle -->
+</div> <!-- /customPopup -->
+    </div></div></div></div>
+    <?php } ?>

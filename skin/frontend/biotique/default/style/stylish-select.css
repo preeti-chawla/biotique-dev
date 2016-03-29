@@ -1,0 +1,82 @@
+
+
+.stylish-select .SSContainerDivWrapper {left:-9999px;}
+.stylish-select .SSContainerDivWrapper {margin:0;padding:0;width:290px;position:absolute;top:22px;left:0;z-index:2;}
+.stylish-select ul.newList {margin:0;padding:0;list-style:none;color:#000;background:#fff;border:1px solid #ddd;overflow:auto;height:auto!important;}
+.stylish-select ul.newList * {margin:0;padding:0;}
+.stylish-select ul.newList a {font:14px/20px 'calibri';color: #58595b;text-decoration:none;display:block;padding:3px 8px;}
+.stylish-select .newListSelected {width:285px;color:#000;height:19px;padding:3px 0 0 6px;float:left;background:url(select-bg.png) no-repeat;}
+.stylish-select ul.newList li a:focus {-moz-outline-style: none;}
+.stylish-select .selectedTxt {width:258px;overflow:hidden;height:16px;padding:0 23px 0 0; cursor:pointer;}
+.stylish-select .hiLite {background:#eee!important;color:#58595b!important;}
+.stylish-select .newListHover {background:#ddd!important;color:#000!important;cursor:pointer;}
+.stylish-select .newListDisabled {opacity: 0.6;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";filter: alpha(opacity=60);}
+.stylish-select .newListItemDisabled {opacity: 0.6;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";filter: alpha(opacity=60);}
+.stylish-select .newListOptionDisabled {opacity: 0.6;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";	filter: alpha(opacity=60);}
+.stylish-select .newListSelHover,.stylish-select .newListSelFocus {background-position:0 -22px;cursor:default;}
+.stylish-select .newListOptionTitle {font-weight:bold;}
+.stylish-select .newListOptionTitle ul {margin:3px 0 0;}
+.stylish-select .newListOptionTitle li {font-weight:normal;}
+
+.stylish-select .drop .newListSelected{
+	width:100%;
+	padding:0;
+	border:1px solid #ddd;
+	height: 28px;
+}
+.stylish-select .drop .selectedTxt{
+	width:100%;
+	padding:3px 20px 3px 7px;
+	background:#fff url("../images/drop.png") no-repeat 97% center;
+	background-size: 13px 6px;
+	font:14px/20px 'calibri';
+	color:58595b;
+	height:26px;
+}
+.stylish-select .drop .SSContainerDivWrapper{
+	left:-1px!important;
+	top: 26px!important;
+	width: 157px;
+}
+
+.stylish-select .short .newListSelected{
+	width:100%;
+	padding:0;
+	border:1px solid #ddd;
+	height: 28px;
+}
+.stylish-select .short .selectedTxt{
+	width:100%;
+	padding:3px 20px 3px 7px;
+	background:#fff url("../images/drop.png") no-repeat 97% center;
+	background-size: 13px 6px;
+	font:14px/20px 'calibri';
+	color:58595b;
+	height:26px;
+}
+.stylish-select .short .SSContainerDivWrapper{
+	left:-1px!important;
+	top: 26px!important;
+	width:142px;
+}
+
+.stylish-select .ratingDrop .newListSelected{
+	width:100%;
+	padding:0;
+	border:1px solid #ddd;
+	height: 28px;
+}
+.stylish-select .ratingDrop .selectedTxt{
+	width:100%;
+	padding:3px 20px 3px 7px;
+	background:#fff url("../images/drop.png") no-repeat 97% center;
+	background-size: 13px 6px;
+	font:14px/20px 'calibri';
+	color:58595b;
+	height:26px;
+}
+.stylish-select .ratingDrop .SSContainerDivWrapper{
+	left:-1px!important;
+	top: 26px!important;
+	width:79px;
+}

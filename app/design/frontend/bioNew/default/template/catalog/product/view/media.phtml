@@ -1,0 +1,15 @@
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+ if (count($this->getGalleryImages()) > 0): ?>
+        <?php foreach ($this->getGalleryImages() as $_image): ?>
+    		   <li class="slide">
+				   <figure>
+				   <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->resize(350); ?>"
+				   data-large="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small_image', $_image->getFile()) ?>"
+				   data-title="<?php echo $_product->getName(); ?>"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small_image', $_image->getFile())->resize(60); ?>"  alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" /></a>
+                                   </figure>
+                      
+			   </li>  
+<?php endforeach; 
+endif; ?>

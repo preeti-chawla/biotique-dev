@@ -1,0 +1,65 @@
+
+<div class="layout">
+	<div class="filtercontent-wrap">
+<!-- <div class="popupcontent" >
+		<div class="customPopup" style="display:none;"> Popup content comes here </div>
+</div>	 -->	
+		<div id="filter1" class="filterTabContent" style="display: block;">			
+			<div class="filterlistRow">
+			<ul class="filterList">
+<?php
+// print_r($option) and find all the elements 
+	/*echo $option["value"]; 
+	echo $option["label"]; */
+			$attribute_code = "item_ingregident"; 
+			$attribute_details = Mage::getSingleton("eav/config")->getAttribute("catalog_product", $attribute_code); 
+			$options = $attribute_details->getSource()->getAllOptions(false); 
+			foreach($options as $option){ ?>			
+			<li>
+                <div class="filterbox">
+                  <h4><a href="#" onclick="getproduct(<?php echo $option["value"]; ?>,'<?php echo $option["label"]; ?>')"><?php echo $option["label"]; ?></a></h4>
+                </div>
+              </li>
+			<?php } ?>
+			</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+function getproduct(id,name){
+	jQuery.ajax({ 
+	    type: "POST",
+	    url: '<?php echo Mage::getBaseUrl(); ?>'+'settings/index/getproduct',
+	    data: {id:id,name:name},
+	    success: function(response) {
+	        //alert(response);
+          jQuery(".popupcontent").html(response);
+          jQuery(".overlay").show();
+          jQuery(".popupcontent").show();
+
+	        //location.reload();
+	    } 
+	});
+}
+</script>
+<style type="text/css">
+.popupcontent .customPopup {
+  min-height: 360px;
+}
+.popupcontent {
+  left: 0;
+  margin: 0 auto;
+  position: fixed;
+  right: 0;
+  top: 20px;
+  width: 828px;
+  z-index: 9999;
+  display: none;
+}
+.popupMiddleContent {
+  clear: both;
+  max-height: 280px;
+  overflow-y: scroll;
+}
+</style>

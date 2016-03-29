@@ -1,0 +1,267 @@
+
+
+<?php
+   /**
+    * Magento
+    *
+    * NOTICE OF LICENSE
+    *
+    * This source file is subject to the Academic Free License (AFL 3.0)
+    * that is bundled with this package in the file LICENSE_AFL.txt.
+    * It is also available through the world-wide-web at this URL:
+    * http://opensource.org/licenses/afl-3.0.php
+    * If you did not receive a copy of the license and are unable to
+    * obtain it through the world-wide-web, please send an email
+    * to license@magentocommerce.com so we can send you a copy immediately.
+    *
+    * DISCLAIMER
+    *
+    * Do not edit or add to this file if you wish to upgrade Magento to newer
+    * versions in the future. If you wish to customize Magento for your
+    * needs please refer to http://www.magentocommerce.com for more information.
+    *
+    * @category    design
+    * @package     base_default
+    * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+    * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+    * Category view template
+    *
+    * @see Mage_Catalog_Block_Category_View
+    */
+   ?>
+<?php
+   $_helper    = $this->helper('catalog/output');
+   $_category  = $this->getCurrentCategory();
+   $_imgHtml   = '';
+   if ($_imgUrl = $_category->getImageUrl()) 
+   {
+   $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" /></p>';
+   $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
+   }
+   
+   $children = Mage::getModel('catalog/category')->getCategories($_category->getId());
+   $countChild = 0;
+   foreach ($children as $cat){
+   $countChild++;
+   }
+   
+   
+   if(isset($_GET['cat']) ) { 
+   $currcategory =  Mage::getModel("catalog/category")->load($_GET['cat']);
+   $parentcat = Mage::getModel("catalog/category")->load($currcategory->parent_id);
+   $p_parentcat = Mage::getModel("catalog/category")->load($parentcat->parent_id);
+   ?>
+<div class="banner_detail cat<?php echo $_GET['cat']; ?> ban_<?php echo  $_category->entity_id; ?>" style="background:url(<?php echo $currcategory->getImageUrl() ?>) left top no-repeat;">
+   <div class="banner_detail3">
+      <span style="color:0"><?php echo $_helper->categoryAttribute($p_parentcat, $p_parentcat->getName(), 'name') ?></span>
+   </div>
+   <div class="banner_detail1"><span style="color:0"><?php echo $_helper->categoryAttribute($currcategory, $currcategory->getName(), 'name') ?></span></div>
+   <div class="banner_detail2"><?php if($_description=$currcategory->getDescription()): ?>  
+      <?php echo $_helper->categoryAttribute($currcategory, $_description, 'description') ?>   
+      <?php endif; ?>
+   </div>
+</div>
+<?php if($this->isContentMode()): ?>
+<?php echo $this->getCmsBlockHtml() ?>
+<?php elseif($this->isMixedMode()): ?>
+<?php echo $this->getCmsBlockHtml() ?>
+<?php echo $this->getProductListHtml() ?>
+<?php else: ?>
+<?php echo $this->getProductListHtml(); ?>	
+<?php endif; ?>
+<?php }
+   else if($countChild==0){
+   	?>
+<div class="banner_detail" style="background:url(<?php echo $_category->getImageUrl() ?>) left top no-repeat;">
+   <div class="banner_detail2"><?php if($_description=$_category->getDescription()): ?>  
+      <?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?>   
+      <?php endif; ?>
+   </div>
+</div>
+<?php if($this->isContentMode()): ?>
+<?php echo $this->getCmsBlockHtml() ?>
+<?php elseif($this->isMixedMode()): ?>
+<?php echo $this->getCmsBlockHtml() ?>
+<?php echo $this->getProductListHtml() ?>
+<?php else: ?>
+<?php echo $this->getProductListHtml(); ?>	
+<?php endif; ?>
+<?php 
+   }
+   else { ?>
+<?php
+   $_category  = $this->getCurrentCategory();
+   $collection = Mage::getModel('catalog/category')->getCategories($_category->entity_id);
+   $helper     = Mage::helper('catalog/category');
+   $attribute = Mage::getSingleton('eav/config')->getAttribute('catalog_product', 'item_concern');
+   $options = $attribute->getSource()->getAllOptions(false);
+   $cat_id=$_helper->categoryAttribute($_category, $_category->getId(), 'id');
+   $concern_list=Mage::getModel('biotique_concerns/match')->getCategoryConcerns($cat_id);
+   $key_starts=key($concern_list);
+   ?>
+<section class="innerBanner pc-banner">
+   <div class="innerbannerImg">
+      <figure><img src="<?php echo $this->getSkinUrl('images/skincare-banner.jpg') ?>" alt="" /></figure>
+   </div>
+   <div class="innerbannerContent">
+      <div class="layout">
+         <div class="productDec">
+            <div class="productHeading">
+               <h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
+            </div>
+            <div class="productDetails">
+               <div class="pdColm">
+                  <h3>Collection</h3>
+                  <ul class="list">
+                     <li><a href="#">Biotique Advance</a></li>
+                     <li><a href="#">Biotique Botanical</a></li>
+                  </ul>
+               </div>
+               <div class="pdColm">
+                  <h3>Category</h3>
+                  <ul class="list">
+                     <?php foreach ($collection as $cat):?>
+                     <li>
+                        <a href="<?php echo $helper->getCategoryUrl($cat);?>">
+                        <?php echo $cat->getName();?>
+                        </a>
+                        <?php //$childLevel2Category = Mage::getModel('catalog/category')->getCategories($cat->entity_id); ?>
+                     </li>
+                     <?php endforeach;?>
+                  </ul>
+               </div>
+               <div class="pdColm">
+                  <?php  if(isset($key_starts) &&  key_starts != ''){
+                     ?>
+                  <h3>Concerns</h3>
+                  <ul class="list">
+                     <?php
+                        for($i=$key_starts;$i<=count($concern_list)+$key_starts;$i++)
+                        {
+                        echo " <li><a href='products'>".$concern_list[$i]."</a></li>";
+                        }
+                        ?>                              
+                  </ul>
+                  <?php } ?>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<section class="bodyContainer">
+   <span class="shadow"></span>
+   <div class="pc-bestSeller">
+      <div class="layout">
+         <div class="block">
+            <div class="bestsellerColm">
+               <h2>best sellers</h2>
+               <div class="slidercolm">
+                  <ul class="bestsellerSlider">
+                     <li>
+                        <div class="bs-productBox">
+                           <figure><img src="<?php echo $this->getSkinUrl('images/bs-pro-02.jpg') ?>" alt="" title=""></figure>
+                           <div class="productSlider-con">
+                              <h4>COCONUT</h4>
+                              <span>INR 199.00</span>
+                              <a href="#" class="ctn">Shop Now</a>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="bs-productBox">
+                           <figure><img src="<?php echo $this->getSkinUrl('images/bs-pro-01.jpg') ?>" alt="" title=""></figure>
+                           <div class="productSlider-con">
+                              <h4>COCONUT</h4>
+                              <span>INR 199.00</span>
+                              <a href="#" class="ctn">Shop Now</a>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="bs-productBox">
+                           <figure><img src="<?php echo $this->getSkinUrl('images/bs-pro-01.jpg') ?>" alt="" title=""></figure>
+                           <div class="productSlider-con">
+                              <h4>COCONUT</h4>
+                              <span>INR 199.00</span>
+                              <a href="#" class="ctn">Shop Now</a>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="bs-productBox">
+                           <figure><img src="<?php echo $this->getSkinUrl('images/bs-pro-02.jpg') ?>" alt="" title=""></figure>
+                           <div class="productSlider-con">
+                              <h4>COCONUT</h4>
+                              <span>INR 199.00</span>
+                              <a href="#" class="ctn">Shop Now</a>
+                           </div>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="specialofferColm">
+               <h2>Special OFFERS</h2>
+               <div class="slidercolm">
+                  <ul class="productSlider">
+                     <li>
+                        <div class="bs-offerbox">
+                           <figure>
+                              <img src="<?php echo $this->getSkinUrl('images/bs-pro-03.jpg') ?>" alt="" title="">
+                           </figure>
+                           <div class="bs-offer-text">
+                              <h5>BIO WHITE ADVANCED FAIRNESS KIT</h5>
+                              <small>For a Radiant Fair Glow</small>
+                              <p>Set of 6 Product for Radiant Fair Glow</p>
+                              <strong> INR 1,599.00</strong>
+                              <a href="#" class="ctn">Shop Now</a>
+                           </div>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="bs-offerbox">
+                           <figure>
+                              <img src="<?php echo $this->getSkinUrl('images/bs-pro-03.jpg') ?>" alt="" title="">
+                           </figure>
+                           <div class="bs-offer-text">
+                              <h5>BIO WHITE ADVANCED FAIRNESS KIT</h5>
+                              <small>For a Radiant Fair Glow</small>
+                              <p>Set of 6 Product for Radiant Fair Glow</p>
+                              <strong> INR 1,599.00</strong>
+                              <a href="#" class="ctn">Shop Now</a>
+                           </div>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="defineProduct">
+      <span class="shadow"></span>
+      <div class="defineProductImg">
+         <figure>
+            <img src="<?php echo $this->getSkinUrl('images/skincare-banner-2.jpg') ?>" alt="" title="">
+         </figure>
+      </div>
+      <div class="defineProductCon">
+         <div class="layout">
+            <div class="circlecontent">
+               <figure>
+                  <img src="<?php echo $this->getSkinUrl('images/transparency-circle.png') ?>" alt="" title="">
+               </figure>
+               <div class="circleText">
+                  <h4>Skin Consultation</h4>
+                  <h5>online Skin & Haricare Guide</h5>
+                  <p>This quick online consultation will help you find targeted solutions to meet your daily, special skin and Haircare needs.</p>
+                  <span>Answer a few simple questions and receive personalized recommendations designed specifically for you.</span>              
+               </div>
+               <a href="#" class="get-started">get started</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<?php } ?>

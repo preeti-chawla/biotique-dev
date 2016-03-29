@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+
+<layout>
+	<reference name="head">
+		 <action method="addItem">
+		    <type>skin_js</type>
+		    <name>js/gist.js</name>
+		 </action>
+	</reference>
+</layout>

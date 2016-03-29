@@ -1,0 +1,7 @@
+<?php $attribute = Mage::getSingleton('eav/config')->getAttribute('catalog_product', 'item_concern');
+$options = $attribute->getSource()->getAllOptions(false);
+for($i=0;$i<=count($options);$i++)
+	{
+			echo $options[$i]['value']."  ".$options[$i]['label']."</br>";
+	}
+?>   

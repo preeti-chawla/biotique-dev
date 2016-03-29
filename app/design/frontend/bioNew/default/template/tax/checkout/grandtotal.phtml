@@ -1,0 +1,22 @@
+<?php $countryCode = Mage::app()->getStore()->getCurrentCurrencyCode(); ?>
+<?php $currency_symbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?>
+<?php if ($this->includeTax() && $this->getTotalExclTax()>=0):?>
+    <li class="pAmount">
+        <span class="titleDetails"><?php echo $this->helper('tax')->__('Grand Total Excl. Tax')?></span>
+        <span class="inr"></span>
+        <span class="mrp"><?php echo $this->helper('checkout')->formatPrice($this->getTotalExclTax()) ?></span>
+    </li>
+    <?php echo $this->renderTotals('taxes', $this->getColspan()); ?>
+    <li class="pAmount">
+        <span class="titleDetails"><?php echo $this->helper('tax')->__('Grand Total Incl. Tax')?></span>
+        <span class="inr"></span>
+        <span class="mrp"><?php echo $this->helper('checkout')->formatPrice($this->getTotal()->getValue()) ?></span>
+    </li>    
+<?php else:?>
+    <li class="pAmount">
+        <span class="titleDetails"><?php echo $this->helper('tax')->__('Payable Amount')?></span>
+        <span class="inr"><?php echo $currency_symbol; ?></span>
+        <span class="mrp"><?php echo number_format($this->getTotal()->getValue(),2,'.',','); ?></span>
+    </li>
+
+<?php endif;?>

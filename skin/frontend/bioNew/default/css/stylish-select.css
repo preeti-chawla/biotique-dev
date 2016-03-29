@@ -1,0 +1,231 @@
+
+
+.stylish-select .SSContainerDivWrapper {left:-9999px;}
+.stylish-select .SSContainerDivWrapper {margin:0;padding:0;width:290px;position:absolute;top:22px;left:0;z-index:2;}
+.stylish-select ul.newList {margin:0;padding:0;list-style:none;color:#000;background:#fff;border:1px solid #ddd;overflow:auto;height:auto!important;}
+.stylish-select ul.newList * {margin:0;padding:0;}
+.stylish-select ul.newList a {font:14px/20px 'calibri';color: #58595b;text-decoration:none;display:block;padding:3px 8px;}
+.stylish-select .newListSelected {width:285px;color:#000;height:19px;padding:3px 0 0 6px;float:left;background:url(select-bg.png) no-repeat;}
+.stylish-select ul.newList li a:focus {-moz-outline-style: none;}
+.stylish-select .selectedTxt {width:258px;overflow:hidden;height:16px;padding:0 23px 0 0; cursor:pointer;}
+.stylish-select .hiLite {background:#eee!important;color:#58595b!important;}
+.stylish-select .newListHover {background:#ddd!important;color:#000!important;cursor:pointer;}
+.stylish-select .newListDisabled {opacity: 0.6;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";filter: alpha(opacity=60);}
+.stylish-select .newListItemDisabled {opacity: 0.6;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";filter: alpha(opacity=60);}
+.stylish-select .newListOptionDisabled {opacity: 0.6;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";	filter: alpha(opacity=60);}
+.stylish-select .newListSelHover,.stylish-select .newListSelFocus {background-position:0 -22px;cursor:default;}
+.stylish-select .newListOptionTitle {font-weight:bold;}
+.stylish-select .newListOptionTitle ul {margin:3px 0 0;}
+.stylish-select .newListOptionTitle li {font-weight:normal;}
+
+.stylish-select .drop .newListSelected{
+	width:100%;
+	padding:0;
+	border:1px solid #ddd;
+	height: 28px;
+}
+.stylish-select .drop .selectedTxt{
+	width:100%;
+	padding:3px 20px 3px 7px;
+	background:#fff url("../images/drop.png") no-repeat 97% center;
+	background-size: 13px 6px;
+	font:14px/20px 'calibri';
+	color:58595b;
+	height:26px;
+}
+.stylish-select .drop .SSContainerDivWrapper{
+	left:-1px!important;
+	top: 26px!important;
+	width: 157px;
+}
+
+.stylish-select .short .newListSelected{
+	width:100%;
+	padding:0;
+	border:1px solid #ddd;
+	height: 28px;
+}
+.stylish-select .short .selectedTxt{
+	width:100%;
+	padding:3px 20px 3px 7px;
+	background:#fff url("../images/drop.png") no-repeat 97% center;
+	background-size: 13px 6px;
+	font:14px/20px 'calibri';
+	color:58595b;
+	height:26px;
+}
+.stylish-select .short .SSContainerDivWrapper{
+	left:-1px!important;
+	top: 26px!important;
+	width:142px;
+}
+
+.stylish-select .ratingDrop .newListSelected{
+	width:100%;
+	padding:0;
+	border:1px solid #ddd;
+	height: 28px;
+}
+.stylish-select .ratingDrop .selectedTxt{
+	width:100%;
+	padding:3px 20px 3px 7px;
+	background:#fff url("../images/drop.png") no-repeat 97% center;
+	background-size: 13px 6px;
+	font:14px/20px 'calibri';
+	color:58595b;
+	height:26px;
+}
+.stylish-select .ratingDrop .SSContainerDivWrapper{
+	left:-1px!important;
+	top: 26px!important;
+	width:79px;
+}
+/**/
+.stylish-select .dayList .newListSelected{
+	width:100%;
+	padding:0;
+	border:none;
+	height: 28px;
+}
+.stylish-select .dayList .selectedTxt{
+	width:100%;
+	padding:3px 10px 3px 7px;
+	background:#fff url("../images/drop.png") no-repeat 93% center;
+	background-size:8px 4px;
+	font:14px/24px 'calibri';
+	color:#686868;
+	height:28px;
+}
+.stylish-select .dayList .SSContainerDivWrapper{
+	left:-1px!important;
+	top:28px!important;
+	width:74px;
+}
+.stylish-select .dayList ul.newList *{
+	padding-top:0;
+}
+.stylish-select .dayList ul.newList{
+	max-height:150px;
+}
+.stylish-select .dayList ul.newList a{
+	font-size: 12px;
+	line-height: 18px;
+}
+/**/
+.stylish-select .monthList .newListSelected{
+	width:100%;
+	padding:0;
+	border:none;
+	height: 28px;
+}
+.stylish-select .monthList .selectedTxt{
+	width:100%;
+	padding:3px 10px 3px 7px;
+	background:#fff url("../images/drop.png") no-repeat 93% center;
+	background-size:8px 4px;
+	font:14px/24px 'calibri';
+	color:#686868;
+	height:28px;
+}
+.stylish-select .monthList .SSContainerDivWrapper{
+	left:-1px!important;
+	top:28px!important;
+	width:74px;
+}
+.stylish-select .monthList ul.newList *{
+	padding-top:0;
+}
+.stylish-select .monthList ul.newList{
+	max-height:150px;
+}
+.stylish-select .monthList ul.newList a{
+	font-size: 12px;
+	line-height: 18px;
+}
+/**/
+.stylish-select .yearList .newListSelected{
+	width:100%;
+	padding:0;
+	border:none;
+	height: 28px;
+}
+.stylish-select .yearList .selectedTxt{
+	width:100%;
+	padding:3px 10px 3px 7px;
+	background:#fff url("../images/drop.png") no-repeat 93% center;
+	background-size:8px 4px;
+	font:14px/24px 'calibri';
+	color:#686868;
+	height:28px;
+}
+.stylish-select .yearList .SSContainerDivWrapper{
+	left:-1px!important;
+	top:28px!important;
+	width:74px;
+}
+.stylish-select .yearList ul.newList *{
+	padding-top:0;
+}
+.stylish-select .yearList ul.newList{
+	max-height:150px;
+}
+.stylish-select .yearList ul.newList a{
+	font-size: 12px;
+	line-height: 18px;
+}
+/**/
+
+/**/
+.stylish-select .countryList .newListSelected{
+	width:100%;
+	padding:0;
+	border:none;
+	height: 28px;
+}
+.stylish-select .countryList .selectedTxt{
+	width:100%;
+	padding:2px 10px 2px 7px;
+	background:#fff url("../images/drop.png") no-repeat 93% center;
+	background-size:8px 4px;
+	font:15px/24px 'calibri';
+	color:#686868;
+	height:28px;
+}
+.stylish-select .countryList .SSContainerDivWrapper{
+	left:-1px!important;
+	top:28px!important;
+	width:100%;
+}
+.stylish-select .countryList ul.newList *{
+	padding-top:0;
+	width: 100%;
+}
+.stylish-select .countryList ul.newList{
+	max-height:150px;
+}
+.stylish-select .countryList ul.newList a{
+	font-size:13px;
+	line-height:21px;
+}
+/**/
+
+.stylish-select .cityList .newListSelected{
+	width:100%;
+	padding:0;
+	border:1px solid #ddd;
+	height:31px;
+}
+.stylish-select .cityList .selectedTxt{
+	width:100%;
+	padding:4px 20px 4px 7px;
+	background:#fff url("../images/drop.png") no-repeat 97% center;
+	background-size: 13px 6px;
+	font:14px/20px 'calibri';
+	color:58595b;
+	height:29px;
+}
+.stylish-select .cityList .SSContainerDivWrapper{
+	left:-1px!important;
+	top:29px!important;
+	width:100%;
+}

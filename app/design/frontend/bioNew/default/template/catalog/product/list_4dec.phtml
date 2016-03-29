@@ -1,0 +1,169 @@
+<?php $ingredient_id = $this->getRequest()->getParam('item_ingregident'); ?>
+<?php if($ingredient_id){?>
+<?php
+$_productCollection=$this->getLoadedProductCollection();
+$_helper = $this->helper('catalog/output');
+$cat_id=$this->getLayer()->getCurrentCategory()->getId(); 
+$innerProduct=Mage::helper('banner')->inner_product($cat_id);
+$page='';
+$collection=Mage::getResourceModel("catalog/product_collection")->addAttributeToSelect("item_ingregident");
+echo "<pre>";
+foreach($collection as $product){	
+	if($product['type_id']=="simple")	{
+		$ingredients = explode(",",$product->getData()['item_ingregident']);
+		foreach($ingredients as $i){
+			if($i==$ingredient_id){
+				//echo $product->getData()['sku']." has ".$i."<br/>";
+
+				//$p = Mage::getResourceModel("catalog/product")->getAttributeRawValue($product->getData()['entity_id'],'name',Mage::app()->getStore()->getStoreId());
+				print_r($p);
+			}
+		}
+	}
+	else{
+		$asso_prod=$product->getTypeInstance(true)->getAssociatedProducts($product);
+		foreach($asso_prod as $a){
+			//print_r($a['name']." has ".$product->getData()["item_ingregident"]);
+			$ingredients = explode(",",$product->getData()["item_ingregident"]);
+			foreach($ingredients as $i){
+				if($i==$ingredient_id){
+					?>
+					<?php
+				}
+			}
+		}
+	}
+
+}
+echo "</pre>";
+
+$page=$this->getRequest()->getParam('p'); // output is 1795
+if(isset($innerProduct[0]['image']) && $innerProduct[0]['image'] != ''){
+	$image_path=Mage::getBaseUrl('media') . 'banners/' . $innerProduct[0]['image'];
+}
+if(!$_productCollection->count()){ ?>
+	<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php }else{ ?>
+	<?php //echo $this->getToolbarHtml() ?>
+		<div class="productWrap">
+		<?php 
+		$_columnCount = $this->getColumnCount(); 
+		$i=0; foreach ($_productCollection as $_product){
+		$_productNameStripped = $this->stripTags($_product->getName(), null, true); 
+
+		$product_coll = $_product->getData(); 
+		//print_r($product_coll);
+		$ingredient_collection = $product_coll['item_ingregident'];
+		//echo "<pre>";print_r($ingredient_collection);echo"</pre>";
+
+		?>
+		<?php if($ingredient_collection == $ingredient_id){ ?> 
+			<?php if($i%2 == 0){ ?>
+				<div class="productRow">
+					<ul class="productBox ingre<?php echo $ingredient_collection; ?>">
+			<?php } ?>
+			<?php if($i == 3 && (isset($image_path) && $image_path != '') && ($page == '' || $page == '1')){ ?>
+				<li class="last special-pro">
+				<div class="probox">
+					<div class="proImg">
+						<figure><a href= "<?php echo $innerProduct[0]['subtitle'] ?>" target="_blank"><img src="<?php echo $image_path ?>" alt="" /></a></figure>
+					</div>
+				</div>
+			<?php } else{ ?>
+				<li <?php echo $i%2 != 0 ? ' class="last"':''; ?> >
+					<?php $new_prod=$_product->getData('new_product');//To check if product is set new ?>		  		  
+						<div class="probox">
+								<div class="proImg">
+									<figure><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(210,290); ?>" width="210" height="290" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a></figure>
+								</div>
+								<div <?php if($cat_id == 116 || $cat_id == 141){?> class="proContent_purple" <?php } else { ?> class="proContent" <?php }?>>
+										<h4><?php echo $_productNameStripped; ?></h4>
+										<p><?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?></p>
+										<small>Best for For All Skin Types</small>
+										<?php echo $this->getReviewsSummaryHtml($_product) ?>
+										<h5><?php echo $this->getPriceHtml($_product, true) ?></h5>
+										<?php if($_product->isSaleable()): ?>
+										<a class="ctn" href="<?php echo $_product->getProductUrl() ?>">shop now</a>
+										<?php else: ?>
+										<a href="javascript:void(0)" title="<?php echo $this->__('Sold Out') ?>" class="sold-out"></a>
+										<?php endif; ?>
+								</div>
+						</div>
+					<?php } ?>
+				</li>
+				<?php if($i+1 == sizeof($_productCollection) && $i%2 == 0){ ?>
+					<li class="last"></li>
+				<?php } ?>
+			<?php if($i%2 != 0){ ?>
+			</ul>
+			<?php } ?> 
+		<?php $i++; } ?>
+		<?php } ?> 
+		</div>
+	<?php } ?>
+<?php }else{ ?> 
+
+<?php
+$_productCollection=$this->getLoadedProductCollection();
+$_helper = $this->helper('catalog/output');
+$cat_id=$this->getLayer()->getCurrentCategory()->getId(); 
+$innerProduct=Mage::helper('banner')->inner_product($cat_id);
+$page='';
+$page=$this->getRequest()->getParam('p'); // output is 1795
+if(isset($innerProduct[0]['image']) && $innerProduct[0]['image'] != ''){
+	$image_path=Mage::getBaseUrl('media') . 'banners/' . $innerProduct[0]['image'];
+}
+if(!$_productCollection->count()){ ?>
+	<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php }else{ ?>
+	<?php echo $this->getToolbarHtml() ?>
+		<div class="productWrap">
+		<?php 
+		$_columnCount = $this->getColumnCount(); 
+		$i=0; foreach ($_productCollection as $_product){
+		$_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+
+		<?php if($i%2 == 0){ ?>
+			<div class="productRow">
+				<ul class="productBox">
+		<?php } ?>
+		<?php if($i == 3 && (isset($image_path) && $image_path != '') && ($page == '' || $page == '1')){ ?>
+			<li class="last special-pro">
+			<div class="probox">
+				<div class="proImg">
+					<figure><a href= "<?php echo $innerProduct[0]['subtitle'] ?>" target="_blank"><img src="<?php echo $image_path ?>" alt="" /></a></figure>
+				</div>
+			</div>
+		<?php } else{ ?>
+			<li <?php echo $i%2 != 0 ? ' class="last"':''; ?> >
+				<?php $new_prod=$_product->getData('new_product');//To check if product is set new ?>		  		  
+					<div class="probox">
+							<div class="proImg">
+								<figure><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(210,290); ?>" width="210" height="290" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a></figure>
+							</div>
+							<div <?php if($cat_id == 116 || $cat_id == 141){?> class="proContent_purple" <?php } else { ?> class="proContent" <?php }?>>
+									<h4><?php echo $_productNameStripped; ?></h4>
+									<p><?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?></p>
+									<small>Best for For All Skin Types</small>
+									<?php echo $this->getReviewsSummaryHtml($_product) ?>
+									<h5><?php echo $this->getPriceHtml($_product, true) ?></h5>
+									<?php if($_product->isSaleable()): ?>
+									<a class="ctn" href="<?php echo $_product->getProductUrl() ?>">shop now</a>
+									<?php else: ?>
+									<a href="javascript:void(0)" title="<?php echo $this->__('Sold Out') ?>" class="sold-out"></a>
+									<?php endif; ?>
+							</div>
+					</div>
+				<?php } ?>
+			</li>
+		<?php if($i+1 == sizeof($_productCollection) && $i%2 == 0){ ?>
+			<li class="last"></li>
+		<?php } ?>
+			<?php if($i%2 != 0){ ?>
+			</ul>
+			<?php } $i++; } ?>
+		</div>
+	<?php } ?>
+
+
+<?php } ?>

@@ -1,0 +1,762 @@
+@font-face {
+
+font-family: MyriadPro-Regular;
+
+src: url(../fonts/MyriadPro-Regular.ttf ) format("truetype");
+
+} 
+
+.mobMenu {
+
+	display: none;
+
+}
+
+.leftContent {
+
+	width: 100%;
+
+	float: left;
+
+	text-align: center;
+
+}
+
+.leftContent h2 {
+
+	color: #0b7846;
+
+	font-family: MyriadPro-Regular;
+
+	font-weight: normal;
+
+	font-size: 22px;
+
+	padding: 20px 0px;
+
+	text-transform: uppercase;
+
+}
+
+.leftContent p {
+
+	padding-right: 0px !important;
+
+	line-height: 18px !important;
+
+	font-size: 18px !important;
+
+}
+#aboutTab1 .leftContent h2 { color: #fff;}
+#aboutTab1 .leftContent p { color: #fff;}
+#aboutTab2 .leftContent h2 { color: #fff;}
+#aboutTab2 .leftContent p { color: #fff;}
+.rightImg {
+
+	width: 45%;
+
+	float: right;
+
+	text-align: center;
+
+}
+
+.haritage {
+
+	width: 50%;
+
+	/*float: right;*/
+
+	text-align: center;
+
+	padding-right: 30px;
+
+	display: inline-block;
+
+	height: 300px;
+	
+	margin: -70px 0 0 335px;
+
+	 
+
+}
+
+.haritage p {
+
+	padding-right: 0px !important;
+
+	font-family: calibri;
+
+	line-height: 20px !important;
+
+	font-size: 17px !important;
+
+}
+
+.haritage h2 {
+
+	color: #fff;
+
+	font-family: MyriadPro-Regular;
+
+	font-weight: normal;
+
+	font-size: 22px;
+
+	padding-bottom: 20px;
+
+}
+
+.birthImg {
+
+	width: 33%;
+
+	float: left;
+
+}
+
+.birthContent {
+
+	float: left;
+
+	height: 350px;
+
+	overflow-y: auto;
+
+	padding-right: 20px;
+
+	text-align: center;
+
+	width: 45%;
+
+}
+
+.birthContent p {
+
+	padding-right: 0px !important;
+
+	line-height: 20px !important;
+
+	font-size: 18px !important;
+
+	color: #fff !important;
+
+}
+
+.birthContent h2 {
+
+	color: #fff;
+
+	font-family: MyriadPro-Regular;
+
+	font-weight: normal;
+
+	font-size: 22px;
+
+	padding-bottom: 20px;
+
+	text-transform: uppercase;
+
+}
+#aboutTab4 .tab-cont1 .topspace3 { height: 0 !important;}
+.cultivating {
+
+	float: right;
+
+	height: 300px;
+
+	overflow-y: auto;
+
+	padding-right: 20px;
+
+	text-align: center;
+
+	width: 45%;
+
+	margin-right: 24%;
+	margin-top: 12px;
+
+}
+
+.cultivating p {
+
+	padding-right: 0px !important;
+
+	line-height: 20px !important;
+
+	font-size: 18px !important;
+
+}
+
+.cultivating h2 {
+
+	color: #0b7846;
+
+	font-family: MyriadPro-Regular;
+
+	font-weight: normal;
+
+	font-size: 22px;
+
+	padding-bottom: 20px;
+
+	text-transform: uppercase;
+
+}
+
+.Gradients {
+
+	float: right;
+
+	height: 300px;
+
+	overflow-y: auto;
+
+	padding-right: 20px;
+
+	text-align: center;
+
+	margin-top: 8%;
+
+	width: 40%;
+
+	margin-right: 5%;
+
+}
+
+.Gradients p {
+
+	padding-right: 0px !important;
+
+	line-height: 20px !important;
+
+	font-size: 18px !important;
+
+}
+
+.Gradients h2 {
+
+	color: #0b7846;
+
+	font-family: MyriadPro-Regular;
+
+	font-weight: normal;
+
+	font-size: 22px;
+
+	padding-bottom: 20px;
+
+	text-transform: uppercase;
+
+}
+
+.view_ingrdients {
+
+	background: #0b7846;
+
+	width: 50%;
+
+	margin: 0 auto;
+
+	padding: 10px;
+
+}
+.view_ingrdients:hover {
+	background:#b4ca89;
+}
+.view_ingrdients a {
+
+	font-family: MyriadPro-Regular;
+
+	font-weight: normal;
+
+	font-size: 16px;
+
+	text-transform: uppercase;
+
+	color: #fff;
+
+}
+
+ @media only screen and (min-width: 1101px) and (max-width: 1250px) {
+
+.aboutTabbingWrap .aboutTabconWrap .aboutTabcon .aboutTabcontent {
+
+	left: 0;
+
+	padding: 10px 0 20px;
+
+	position: absolute;
+
+	top: 150px;
+
+	width: 100%;
+
+}
+
+}
+
+ @media only screen and (min-width: 1001px) and (max-width: 1100px) {
+
+.aboutTabbingWrap .aboutTabconWrap .aboutTabcon .aboutTabcontent {
+
+	left: 0;
+
+	padding: 0 0 20px !important;
+
+	position: absolute;
+
+	top: 140px;
+
+	width: 100%;
+
+}
+
+.leftContent {
+
+	float: left;
+
+	height: 240px;
+
+	overflow-y: auto;
+
+	padding-right: 20px;
+
+	text-align: center;
+
+	width: 98%;
+
+}
+
+.birthContent {
+
+	float: right;
+
+	height: 280px;
+
+	overflow-y: auto;
+
+	padding-right: 20px;
+
+	text-align: center;
+
+	width: 55%;
+
+}
+
+.birthImg {
+
+	float: left;
+
+	width: 28%;
+
+}
+
+.cultivating {
+
+	float: right;
+
+	height: 280px;
+
+	margin-right: 5%;
+
+	overflow-y: auto;
+
+	padding-right: 20px;
+
+	text-align: center;
+
+	width: 45%;
+
+}
+
+
+
+}
+
+ @media only screen and (min-width: 768px) and (max-width: 1000px) {
+
+
+
+.aboutTabbingWrap .aboutTabconWrap .aboutTabcon .aboutTabcontent {
+
+	left: 0;
+
+	padding: 0 0 20px !important;
+
+	position: absolute;
+
+	top: 80px;
+
+	width: 100%;
+
+}
+
+.haritage {
+
+	display: inline-block;
+
+	float: right;
+
+	height: 220px;
+
+	padding-right: 30px;
+
+	text-align: center;
+
+	width: 41%;
+
+}
+
+.birthContent {
+
+	float: right;
+
+	height: 230px;
+
+	overflow-y: auto;
+
+	padding-right: 20px;
+
+	text-align: center;
+
+	width: 55%;
+
+}
+
+.cultivating {
+
+	height: 220px;
+
+	width: 45%;
+
+}
+
+.leftContent {
+
+	float: left;
+
+	height: 240px;
+
+	overflow-y: auto;
+
+	padding-right: 20px;
+
+	text-align: center;
+
+	width: 98%;
+
+}
+
+.Gradients {
+
+	float: right;
+
+	height: 300px;
+
+	margin-right: 5%;
+
+	margin-top: 4%;
+
+	overflow-y: auto;
+
+	padding-right: 20px;
+
+	text-align: center;
+
+	width: 40%;
+
+}
+
+.view_ingrdients {
+
+	background: none repeat scroll 0 0 #B4CA89;
+
+	margin: 0 auto;
+
+	padding: 10px;
+
+	width: 80%;
+
+}
+
+.haritage {
+
+	float: right;
+
+	padding-right: 40px;
+
+	text-align: center;
+
+	width: 44%;
+
+}
+
+}
+
+ @media only screen and (max-width: 767px) {
+
+.birthImg img {
+
+	float: none !important;
+
+}
+
+.birthImg {
+
+	text-align: center;
+
+}
+
+.leftContent {
+
+	width: 100%;
+
+}
+
+.rightImg {
+
+	width: 100%;
+
+}
+
+.rightImg img {
+
+	float: none;
+
+}
+
+.birthContent {
+
+	margin-top: 20px;
+
+}
+
+.cultivating {
+
+	height: 220px;
+
+	overflow-y: scroll;
+
+	width: 45%;
+
+}
+
+.cultivating h2 {
+
+	font-size: 18px;
+
+}
+
+.cultivating p {
+
+	font-size: 14px !important;
+
+	line-height: 20px !important;
+
+	padding-right: 0 !important;
+
+}
+
+.haritage {
+
+	padding-right: 0px;
+
+}
+
+.cultivating, .Gradients, .birthContent, .birthImg, .haritage {
+
+	width: 100% !important;
+
+	margin-right: 0px;
+
+}
+
+.leftContent p, .Gradients p, .cultivating p, .birthContent p, .haritage p {
+
+	font-size: 14px !important;
+
+}
+
+.birthContent p {
+
+	color: inherit!important;
+
+	font-size: 18px !important;
+
+	line-height: 20px !important;
+
+	padding-right: 0 !important;
+
+}
+
+.birthContent h2 {
+
+	color: inherit;
+
+	margin-top: 20px;
+
+	font-family: MyriadPro-Regular;
+
+	font-size: 22px;
+
+	font-weight: normal;
+
+	padding-bottom: 20px;
+
+	text-transform: uppercase;
+
+}
+
+.mobMenu {
+
+	display: none;
+
+}
+
+}
+
+ @media screen and (max-width: 480px) {
+
+.mobMenu {
+
+	display: block;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab {
+
+	width: 100%;
+
+	box-shadow: 0px 0px 4px #666;
+
+}
+
+.aboutTab11 {
+
+	display: none;
+
+}
+
+/*#accordion h4 { padding:20px; clear:both; color:#fff; }
+
+	#accordion h4 a{ font-family:MyriadPro-Regular; text-transform:uppercase; font-size:18px;  display: block;  }
+
+	#accordion h4 a img{  padding-right:10px; position:relative; top:-5px; }
+
+	
+
+	.accordion-toggle { display:block; padding:20px; background:#fff; box-shadow:0px 0px 4px #666;}
+
+.accordion-toggle {cursor: pointer;}
+
+  .accordion-content {display: none;}
+
+  .accordion-content.default {display: block;}
+
+
+
+  .active { background:#0b7846 !important; padding:20px;}
+
+  .active a { color:#fff; font-family:MyriadPro-Regular; text-transform:uppercase; font-size:18px;}*/
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li.aboutTab1.active a {
+
+	background-position: left -250px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li.aboutTab2.active a {
+
+	background-position: left -310px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li.aboutTab3.active a {
+
+	background-position: left -370px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li.aboutTab4.active a {
+
+	background-position: left -430px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li.aboutTab5.active a {
+
+	background-position: left -490px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li.aboutTab1 a {
+
+	background-position: 0px 33px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li.aboutTab2 a {
+
+	background-position: 0px -23px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li.aboutTab3 a {
+
+	background-position: 0px -83px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li.aboutTab4 a {
+
+	background-position: 0px -143px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li.aboutTab5 a {
+
+	background-position: 0px -200px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li {
+
+	font-size: 11px;
+
+	line-height: 14px;
+
+	margin-right: 0;
+
+	padding-bottom: 10px;
+
+	text-align: left;
+
+	width: 100%;
+
+	padding-left: 30px;
+
+}
+
+.aboutTabbingWrap .aboutTabbing ul.aboutTab li a {
+
+	font-size: 11px;
+
+	line-height: 14px;
+
+	margin-right: 0;
+
+	padding-bottom: 10px;
+
+	text-align: left;
+
+	width: 100%;
+
+	font-size: 18px;
+
+	padding-left: 40px;
+
+}
+
+}
+

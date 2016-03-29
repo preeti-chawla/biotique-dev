@@ -1,0 +1,17 @@
+		<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+				<div class="collectLeft">
+					<h3>Recently Viewed Items</h3>
+					<div class="flexslider" id="flexslider4">
+						<ul class="slides">
+						<?php foreach ($_products as $_item): ?>
+							<li>
+								<div class="collectBox">
+									<figure><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(50, 50) ?>" alt=""></figure>
+									<strong><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></strong> <span class="green">INR <?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getPrice() , 'price') ?></span> <a href="<?php echo $this->getProductUrl($_item) ?>" class="ctnBtn">Shop Now</a> 
+								</div>
+							</li>
+						<?php endforeach; ?>
+						</ul>
+					</div>
+				</div>
+		<?php endif; ?>                     

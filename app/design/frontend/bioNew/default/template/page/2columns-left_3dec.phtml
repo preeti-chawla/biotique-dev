@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <?php echo $this->getChildHtml('head') ?>
+   </head>
+   <body <?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':''?>>
+      <?php echo $this->getChildHtml('global_notices') ?>
+      <?php echo $this->getChildHtml('after_body_start') ?>
+      <?php echo $this->getChildHtml('header') ?>
+      <?php echo $this->getChildHtml('breadcrumbs') ?>
+      <?php echo $this->getChildHtml('innerbanner') ?>
+      <section class="bodyContainer">
+         <span class="shadow"></span>
+         <div class="layout">
+            <aside class="containerLeft">
+                <?php echo $this->getChildHtml('left') ?>
+            </aside>
+            <div class="containerRight">
+               <div class="shadowtop">
+                  <div class="shadowBottom">
+                     <?php echo $this->getChildHtml('global_messages') ?>
+                     <?php echo $this->getChildHtml('content') ?> 
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+	<?php 
+		echo $this->getChildHtml('footer');
+		echo $this->getChildHtml('footerstrip');
+		echo $this->getChildHtml('newsletter');
+		echo $this->getAbsoluteFooter();
+		echo $this->getChildHtml('before_body_end');
+	?>
+   </body>
+</html>

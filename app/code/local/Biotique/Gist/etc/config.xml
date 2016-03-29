@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Biotique_Gist>
+			<version>0.0.1</version>
+		</Biotique_Gist>
+	</modules>
+
+	<global>
+		<helpers>
+			<biotique_gist>
+				<class>Biotique_Gist_Helper</class>
+			</biotique_gist>
+		</helpers>
+	</global>
+    <frontend>
+		<routers>
+			<biotique_gist>
+				<use>standard</use>
+				<args>
+					<frontName>gist</frontName>
+					<module>Biotique_Gist</module>
+				</args>
+			</biotique_gist>
+		</routers>
+		<layout>
+			<updates>
+				<biotique_gist>
+					<file>biotique/gist.xml</file>
+				</biotique_gist>
+			</updates>
+		</layout>	
+    </frontend>
+</config>

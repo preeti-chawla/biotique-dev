@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<config>
+	<menu>
+		<biotique translate="title" module="banner">
+			<title>Biotique</title>
+			<sort_order>1002</sort_order>
+			<action>adminhtml/biotique</action>
+			<children>
+				<banner translate="title" module="banner">
+					<title>Banner</title>
+					<sort_order>0</sort_order>
+					<action>adminhtml/banner</action>
+					<children>
+						<slider translate="title" module="banner">
+							<title>Home Slider</title>
+							<sort_order>0</sort_order>
+							<action>adminhtml/slider</action>
+						</slider>
+						<catbanner translate="title" module="banner">
+							<title>Category Head Banner</title>
+							<sort_order>1</sort_order>
+							<action>adminhtml/catbanner</action>
+						</catbanner>
+						<prodbanner translate="title" module="banner">
+							<title>Product Banner</title>
+							<sort_order>2</sort_order>
+							<action>adminhtml/prodbanner</action>
+						</prodbanner>
+					</children>
+				</banner>
+			</children>
+		</biotique>
+	</menu>
+</config>

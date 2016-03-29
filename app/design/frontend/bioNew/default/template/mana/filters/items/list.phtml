@@ -1,0 +1,99 @@
+<?php 
+/**
+ * @category    Mana
+ * @package     Mana_Filters
+ * @copyright   Copyright (c) http://www.manadev.com
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+/** 
+ * Template for showing options for filter as a HTML list 
+ * @author Mana Team
+ * Injected instead of standard catalog/layer/filter.phtml in Mana_Filters_Block_Filter_Attribute constructor.
+ * This template is overridden by copying (template body was pasted from catalog/layer/filter.phtml 
+ * and modified as needed). All changes are marked with comments.
+ */
+/* @var $this Mana_Filters_Block_Filter_Attribute */
+?>
+<?php echo Mage::helper('mana_core')->getNamedHtml('mana_filters/markup', 'before_items', array('block' => $this)) ?>
+<ul class="leftrowList proaccordian m-filter-item-list <?php echo $this->getFilterOptions()->getIsReverse() ? 'm-reverse' : '' ?>">
+<?php foreach ($this->getItems() as $_item): ?>
+    <li <?php if ($_item->getMShowSelected()): ?>class="m-selected-ln-item"<?php endif; ?> id='menu'>
+    
+        <?php // MANA BEGIN ?>
+        <?php  if ($_item->getMSelected()): ?>
+        
+         <a class="ajaxfilter selected" rel='tab' href="<?php echo $_item->getRemoveUrl() ?>" title="<?php echo $this->escapeHtml($_item->getLabel()) ?>"><?php echo $this->escapeHtml($_item->getLabel()) ?></a>
+        
+
+        <?php else : ?>
+	        <?php if (!$this->getFilterOptions()->getDisableNoResultOptions() || $_item->getCount() > 0 || $_item->getMSelected()): ?>
+	        <a class="ajaxfilter" rel='tab' href="<?php echo $this->urlEscape($_item->getUrl()) ?>" title="<?php echo $this->escapeHtml($_item->getLabel()) ?>"><?php echo $this->escapeHtml($_item->getLabel()) ?></a>
+	        <?php else: echo $this->escapeHtml($_item->getLabel()) ?>
+	        <?php endif; ?>
+        <?php endif; ?>
+        <?php // MANA END ?>
+        <?php /* if (Mage::getStoreConfigFlag('mana_filters/display/count')) : ?>
+            (<?php echo $_item->getCount() ?>)
+        <?php endif; */ ?>
+    </li>
+<?php endforeach ?>
+</ul>
+<?php echo Mage::helper('mana_core')->getNamedHtml('mana_filters/markup', 'after_items', array('block' => $this)) ?>
+<style>
+.leftrow .block-content .actions a { display: none;}
+</style>
+
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+    <script type='text/javascript' src='http://sudojesse.github.io/dynamic-page/js/modernizr.js'></script>
+<script>
+
+$(function() {
+
+    if(Modernizr.history){
+
+    var newHash      = "",
+        $mainContent = $(".wholedata"),
+        $pageWrap    = $(".layout"),
+        baseHeight   = 0,
+        $el;
+        
+    $pageWrap.height($pageWrap.height());
+    baseHeight = $pageWrap.height() - $mainContent.height();
+    
+    $(".bodyContainer").delegate(".ajaxfilter", "click", function() {
+    $('.wholedata').attr('id', 'wholedata-ajax-loader');
+        _link = $(this).attr("href");
+        history.pushState(null, null, _link);
+        loadContent(_link);
+        return false;
+    });
+    /*function loadContent(href){
+        $mainContent
+                .find(".maindata")
+                .fadeOut(200, function() {
+                    $mainContent.load(href + " .maindata", function() {*/
+                    /*    $mainContent.fadeIn(200, function() {
+                            $pageWrap.animate({
+                                height: baseHeight + $mainContent.height() + "px"
+                            });
+                        });*/                        
+                       /*$('.wholedata').removeAttr('id');
+                         $('.wholedata').removeAttr('id');
+                    });
+                });
+    }*/
+    
+    $(window).bind('popstate', function(){
+       _link = location.pathname.replace(/^.*[\\\/]/, '');
+       loadContent(_link);
+    });
+
+}
+
+    
+});
+</script>
+
+
+  

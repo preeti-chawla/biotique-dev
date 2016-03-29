@@ -1,0 +1,54 @@
+<!--@subject Email - Header @-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <style type="text/css">
+        @media only screen and (max-device-width: 480px){
+    .container-table{
+        width: 100% !important;
+        max-width: 100% !important  ;
+        h1{ border-bottom: 20px solid red;}
+    }
+}
+    </style>
+</head>
+<body>
+{{var non_inline_styles}}
+<!-- Begin wrapper table -->
+<table width="100%" cellpadding="0" cellspacing="0" border="0" id="background-table">
+    <tr>
+        <td valign="top" class="container-td" align="center">
+            <table cellpadding="0" cellspacing="0" border="0" align="center" class="container-table">
+                <tr>
+                    <td align="center" valign="middle" width="100%" style="border: 1px solid #ebebeb; border-bottom: 0; background: #fff; text-align: center;">
+                        <table align="center" cellpadding="0" cellspacing="0" border="0" class="logo-container" style="text-align: center; width: 100%;">
+                            <tr>
+                                <td align="center" valign="middle"  width="100%" class="logo" style="text-align: center; width: 100%;">
+                                    <a href="{{store url=""}}" style="float: none; text-align: center;">
+                                        <img
+                                            {{if logo_width}}
+                                            width="{{var logo_width}}"
+                                            {{else}}
+                                            width="184"
+                                            {{/if}}
+
+                                            {{if logo_height}}
+                                            height="{{var logo_height}}"
+                                            {{else}}
+                                            height="77"
+                                            {{/if}}
+
+                                            src="{{var logo_url}}"
+                                            alt="{{var logo_alt}}"
+                                            border="0"/>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" class="top-content">
+                    <!-- Begin Content -->

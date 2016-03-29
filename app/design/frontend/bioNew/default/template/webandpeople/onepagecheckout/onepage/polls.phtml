@@ -1,0 +1,25 @@
+<div id="customer-polls-wrap" class="checkout-agreements">
+<?php $intro = Mage::helper('onepagecheckout')->getConfigParam('polls/intro'); ?>
+<?php if ($intro) : ?>
+<div class="polls-intro"><?php echo $intro; ?></div>
+<?php endif; ?>
+<?php $polls = $this->getPolls(); ?>
+<?php foreach ($polls as $pollId => $pollType) : ?>
+<?php $poll = $this->getPoll($pollId); ?>
+<?php $pollAnswers = $this->getPollAnswers($pollId); ?>
+<div class="poll-title"><?php echo $this->htmlEscape($poll->getPollTitle()); ?></div>
+<input name="survey_<?php echo $pollId; ?>[]" id="survey_<?php echo $pollId; ?>_state" type="hidden" value="<?php echo $pollId . '|0'; ?>" />
+<?php if ($pollAnswers) : ?>
+<?php $pollId = $poll->getId(); ?>
+<ul class="poll-answers">
+<?php foreach ($pollAnswers as $answer) : ?>
+    <li>
+        <input onclick="if (this.type != 'radio') return; if ($(survey_<?php echo $pollId; ?>_state).rel == this.id && this.rel) this.checked = false; this.rel = this.checked; $(survey_<?php echo $pollId; ?>_state).rel = this.id;" type="<?php echo $pollType; ?>" name="survey_<?php echo $pollId; ?>[]" class="<?php echo $pollType; ?> poll_vote" id="survey_<?php echo $pollId . '_'. $answer->getId() ?>" value="<?php echo $pollId . '|' . $answer->getAnswerId() ?>" />
+        <span class="label"><label for="survey_<?php echo $pollId . '_'. $answer->getId() ?>"><?php echo $this->htmlEscape($answer->getAnswerTitle()) ?></label></span>
+    </li>
+<?php endforeach; ?>
+</ul>
+<?php endif; ?>
+<?php endforeach; ?>
+<script type="text/javascript">decorateList('.poll-answers');</script>
+</div>

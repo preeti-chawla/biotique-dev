@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+
+<config>
+	<modules>
+		<Biotique_Products>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends />
+		</Biotique_Products>
+	</modules>
+</config>

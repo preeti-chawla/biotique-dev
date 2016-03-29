@@ -1,0 +1,94 @@
+
+<?php 
+$ip = $_SERVER['REMOTE_ADDR'];
+$url = 'http://freegeoip.net/json/'.$ip;
+$rCURL = curl_init();
+curl_setopt($rCURL, CURLOPT_URL, $url);
+curl_setopt($rCURL, CURLOPT_HEADER, 0);
+curl_setopt($rCURL, CURLOPT_RETURNTRANSFER, 1);
+$aData = curl_exec($rCURL);
+curl_close($rCURL);
+$result = json_decode ( $aData );        
+$country = $result->country_code;
+$namecountry = trim($result->country_name);
+$getmycountry = trim($country);
+$countrycode = strtolower($getmycountry);
+$storeId = Mage::app()->getStore()->getStoreId();
+$currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+?>
+
+
+
+
+<div class="sellersSlider">
+
+          <div id="bestseller" class="sky-carousel">
+
+            <div class="sky-carousel-wrapper">
+
+              <ul class="sky-carousel-container">
+
+
+
+<?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
+
+<?php $i=0; foreach ($_products->getItems() as $_product): ?>
+
+    <?php if ($i>5): continue; endif; ?>
+
+		<li>
+
+                  <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>">
+
+                 <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(185,185); ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>"/>
+
+            </a>
+
+                  <a href="#" class="bigImg"></a>
+
+                  <div class="sc-content">
+
+                    <h2><a class="product-name" href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>)"><?php echo $_product->getName() ?></a></h2>
+
+<?php 
+$productId = $_product->getId();
+$international_price = Mage::getResourceModel('catalog/product')->getAttributeRawValue($productId, 'international_price', $storeId);
+$international_sprice = Mage::getResourceModel('catalog/product')->getAttributeRawValue($productId, 'international_sprice', $storeId);
+?>
+
+                  <?php if ($countrycode == 'in') { ?>
+                    <?php echo $this->getPriceHtml($_product, true); ?>
+                  <?php }else{ ?>
+                    <?php if($international_sprice > 0){ ?>
+                      <?php echo $international_sprice; ?>
+                    <?php }else{?>  
+                      <?php if($international_price > 0){ 
+                        echo $international_price; 
+                      }else{ 
+                        echo $this->getPriceHtml($_product, true);
+                      } ?>
+                    <?php } ?>  
+                  <?php } ?>
+
+                    <p><?php //echo $this->getPriceHtml($_product) ?></p>
+
+                  </div>
+
+                </li>
+
+<?php $i++; endforeach; ?>
+
+<?php for($i;$i%5!=0;$i++): ?>
+
+    <?php endfor ?>
+
+	<?php endif; ?>
+
+				</ul>
+
+            </div>
+
+          </div>
+
+        </div>
+

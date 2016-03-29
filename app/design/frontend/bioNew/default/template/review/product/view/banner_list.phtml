@@ -1,0 +1,61 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+?>
+
+
+<div class="layout">
+      <div class="reviewImg">
+        <figure><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(173, 193); ?>" alt="" /></figure>
+      </div>
+      <div class="reviewContent">
+        <h3>Rating & reviews</h3>
+        <h5>Summary of Customer Ratings & Reviews1111</h5>
+<?php 
+		$recommended="0";
+		$read = Mage::getSingleton('core/resource')->getConnection('core_read');
+		$reviewsCount = Mage::getModel('review/review')->getTotalReviews($this->getProduct()->getId(), true, Mage::app()->getStore()->getId());
+		$result_final = $read->fetchAll("SELECT * FROM review_detail LEFT JOIN review ON review_detail.review_id=review.review_id where review.entity_pk_value = '".$this->getProduct()->getId()."' AND review.status_id=1 AND review_detail.recommend=1"); 
+		$val=(count($result_final)/$this->getReviewsCount())*100;
+		?>
+<p><?php echo count($result_final)." of ".$reviewsCount." (".number_format($val,2)."%)" ?> reviewers would recommend this product to a friend.</p>
+        <a class="ctnBtn" href="#">Read Review(<?php echo $reviewsCount ?>)</a> <a class="ctnBtn secondBtn" href="#">write review</a>
+        <div class="overallRate"> <strong>overall rating</strong>
+          		 <div class="star"> <span style="width:<?php echo $this->getRatingSummary() ?>%;"></span> </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+

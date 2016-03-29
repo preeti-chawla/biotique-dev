@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout> 
+	<default>
+		<!-- <reference name="head">
+			<action method="addItem">
+	                <type>skin_js</type>
+	                <name>js/settings.js</name>
+	            </action>
+	        <action method="addItem">
+                <type>skin_css</type>
+                <name>css/settings.css</name>
+            </action>            
+        </reference> -->
+	</default>
+	<settings_index_index>
+		<reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>		
+	    <reference name="content">
+	        <block type="settings/settings"  name="about"  template="settings/contactform.phtml">
+	        </block>
+	    </reference>
+	</settings_index_index>
+
+	<settings_index_ingre>
+		<reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>		
+	    <reference name="content">
+	        <block type="catalog/product_list"  name="about"  template="settings/list.phtml">
+	        </block>
+	    </reference>
+	</settings_index_ingre>
+
+	<settings_index_ingredients>
+		<reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>		
+	    <reference name="content">
+	        <block type="settings/settings"  name="ingredients"  template="settings/ingredients.phtml">
+	        </block>
+	    </reference>
+	</settings_index_ingredients>
+
+	
+
+</layout>

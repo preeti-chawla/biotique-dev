@@ -1,0 +1,15 @@
+		
+	<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+		<ul class="slider3item">
+		<?php foreach ($_products as $_item): ?>
+		<li>
+                <div class="collectBox">
+ 					<figure><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(200, 290) ?>" alt=""></figure>
+					<strong><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></strong>
+					<span><?php echo $this->getPriceHtml($_item, true) ?></span>
+					<a href="<?php echo $this->getProductUrl($_item) ?>" class="ctnBtn">shop now</a>
+                  </div>
+		</li>
+		<?php endforeach; ?>
+        </ul>
+	<?php endif; ?> 

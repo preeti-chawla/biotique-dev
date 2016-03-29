@@ -1,0 +1,440 @@
+ <style>
+ .shoppingdetailsArea .shoppingareaRight, .shoppingdetailsArea .shoppingareaLeft{ margin-top:4%}
+ </style>
+ <?php
+/**
+
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/** @var Mage_Checkout_Block_Onepage_Billing $this */
+?>
+<div class="shoppingbagContainer" style="padding:0; position:absolute;  top:0px; left:0px;">
+   <ul class="shoppingBag">
+      <li><a href="<?php echo Mage::getUrl("checkout/cart"); ?>"><span class="sCircle ">1</span><span class="shoppingText ">Shopping Bag</span></a></li>
+      <?php if ($this->getCheckout()->getStepData('billing', 'is_show')): ?>
+	  <li><span id="billing-progress-opcheckout" class="sCircle active">2</span><span class="shoppingText activeText">Billing & Shipping Address </span></li>
+	  <?php endif; ?>
+	  <?php if ($this->getCheckout()->getStepData('shipping_method', 'is_show')): ?>
+      <li><span id="shipping_method-progress-opcheckout" class="sCircle">3</span><span class="shoppingText">Payment Details </span></li>
+	  <?php endif; ?>
+	  <?php if ($this->getCheckout()->getStepData('payment', 'is_show')): ?>
+      <li><span id="payment-progress-opcheckout" class="sCircle">4</span><span class="shoppingText">Place  Order</span></li>
+	  <?php endif; ?>
+	</ul>
+   <span class="shoppingShadow" style="top:75px;"></span>
+</div>
+
+
+<div id="<?php if($this->isCustomerLoggedIn()){ echo 'frm3';} else { echo 'frm1'; } ?>">
+<?php if(!($this->isCustomerLoggedIn())){ ?>
+<h3 style="text-align:center">Please sign up to Checkout</h3> <?php }?>
+
+
+<div class="billingDetails">
+ 
+<form id="co-billing-form" action="" class="co-billing-form">
+<fieldset>
+<?php if($this->isCustomerLoggedIn()) { ?>
+  <div class="chooseMethodHd">
+	<h3 style="border:none">select address</h3>
+  </div>
+ <?php
+	$class="deliveryAddress";
+	$class1="innerAddress";
+$class3="addressRemove";
+ }else{ 
+ $class="";
+ $class1="billingInput";
+$class3="";
+ } ?>
+ <ul class="form-list <?php echo $class; ?> ">
+<?php if ($this->customerHasAddresses()): ?>
+    <div class="input-box" style="display:none">
+					<?php echo $this->getAddressesHtmlSelect('billing') ?>
+				</div>
+			    <?php 
+				$customerId = Mage::getSingleton('customer/session')->getCustomer();    
+				$customer = Mage::getModel('customer/customer')->load($customerId->getId()); 
+				$data = array();
+				$i=0; 
+				foreach ($customer->getAddresses() as $address) {
+					$data = $address->toArray();
+                    $id = $address->getId();
+					?>
+					
+					<li class="wide <?php if($customer->getDefaultBilling() == $address->getId()) { echo 'active';} ?>">
+						<div class="dAddress">
+                            <a href="javaScript:void(0);" onClick="setAddress(this.id)" id="<?php echo $i;?>"> 
+								<address> 
+									  <span class="name"><?php echo $data['firstname'].' '.$data['lastname']; if($customer->getDefaultBilling() == $address->getId()) { echo ' (Default)';} ?></span>
+									  <!--<span class="block"><?php echo $data['company']; ?></span>-->
+									  <span class="locality"><?php echo $data['street']; ?></span>
+									  <span class="pCode"><?php echo $data['city']; ?> - <?php echo $data['postcode']; ?></span>
+									  <?php $country_name = Mage::app()->getLocale()->getCountryTranslation($data['country_id']); ?>
+									  <span class="pCode"><?php echo $country_name; ?></span>
+								<span class="mobile">Mobile No : <?php echo $data['telephone']; ?></span>
+								</address>
+							</a>
+							<?php //echo $this->getAddressesHtmlSelect('billing') ?>
+						</div>
+						<a href="javaScript:void(0);" onClick="deleteAddress(<?php echo $id; ?>)"  class="addressRemove">Remove</a> 
+						<a href="<?php echo $this->getUrl('customer/address/edit') ?>" class="editAddress">Edit Address</a>
+					</li>
+					
+				<?php $i++;
+				} 
+				?>
+   <?php // echo $this->getAddressesHtmlSelect('billing') ?>
+    <?php endif; ?>
+	<li id="billing-new-address-form"<?php if ($this->customerHasAddresses()): ?> style="display:none;"<?php endif; ?>>
+        <fieldset>
+            <input type="hidden" name="billing[address_id]" value="<?php echo $this->getAddress()->getId() ?>" id="billing:address_id" />
+            <ul class="<?php echo $class1; ?>">
+                
+			<li><?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress()->getFirstname() ? $this->getAddress() : $this->getQuote()->getCustomer())->setForceUseCustomerRequiredAttributes(!$this->isCustomerLoggedIn())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml(); ?></li>
+				
+				<li>
+        <?php if(!$this->isCustomerLoggedIn()): ?>
+                    <div class="field">
+                        <div class="input-box">
+                            <input type="email" placeholder="<?php echo $this->__('Email Address') ?>" name="billing[email]" id="billing:email" value="<?php echo $this->escapeHtml($this->getAddress()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text " required />
+                        </div>
+                    </div>
+        <?php endif; ?>
+                </li>
+
+                <li class="fields">
+                    <!--<div class="field">
+                        <div class="input-box">
+                            <input type="text" placeholder="<?php echo $this->__('Company') ?>" id="billing:company" name="billing[company]" value="<?php echo $this->escapeHtml($this->getAddress()->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('company') ?>" />
+                        </div>
+                    </div>-->
+
+                    <div class="field">
+					  <div class="input-box">
+						<?php $countryCode = array('+1','+7','+27','+32','+33','+34','+39','+40','+44','+46','+47','+48','+49','+51','+54','+55','+56','+81','+82','+86','+91','+92','+93','+358','+359','+380','+420','+598','+672'); ?>
+						<select id="billing:countrycode" name="countrycode" class="countrycode">
+						  <option value="">Select</option>
+						  <?php for($i=0;$i<count($countryCode);$i++){ ?>
+						  <option value="<?php echo $countryCode[$i]; ?>"><?php echo $countryCode[$i]; ?></option>
+						  <?php } ?>
+                        </select>
+						<input type="text" placeholder="<?php echo $this->__('Mobile No') ?>" name="billing[telephone]" value="<?php echo $this->escapeHtml($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text <?php //echo $this->helper('customer/address')->getAttributeValidationClass('telephone'); ?> mobileno" id="billing:telephone" style="width:64%; margin-left:5px" />
+                        </div>
+                    </div>
+
+				</li>
+        <?php //$_streetValidationClass = $this->helper('customer/address')->
+        
+        //Class('street'); ?>
+                <li class="wide">
+                    <div class="input-box">
+                        <input type="text" placeholder="<?php echo $this->__('Address') ?>" title="<?php echo $this->__('Street Address') ?>" name="billing[street][]" id="billing:street1" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet(1)) ?>" class="input-text <?php// echo $_streetValidationClass ?>" required />
+                    </div>
+                </li>
+        <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+        <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                <li class="wide">
+                    <div class="input-box">
+                        <input type="text" placeholder="<?php echo $this->__('Street Address %s', $_i) ?>" title="<?php echo $this->__('Street Address %s', $_i) ?>" name="billing[street][]" id="billing:street<?php echo $_i ?>" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet($_i)) ?>" class="input-text <?php echo $_streetValidationClass ?>" required />
+                    </div>
+                </li>
+        <?php endfor; ?>
+                <?php if ($this->helper('customer/address')->isVatAttributeVisible()) : ?>
+                <li class="wide">
+                    <div class="input-box">
+                        <input type="text" placeholder="<?php echo $this->__('VAT Number') ?>" id="billing:vat_id" name="billing[vat_id]" value="<?php echo $this->escapeHtml($this->getAddress()->getVatId()) ?>" title="<?php echo $this->__('VAT Number') ?>" class="input-text <?php //echo $this->helper('customer/address')->getAttributeValidationClass('vat_id') ?>" required />
+                    </div>
+                </li>
+                <?php endif; ?>
+                <li class="fields">
+                    <div class="field">
+                        <div class="input-box">
+                      <!--      <input type="text" placeholder="<?php echo $this->__('City') ?>" title="<?php echo $this->__('City') ?>" name="billing[city]" value="<?php echo $this->escapeHtml($this->getAddress()->getCity()) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('city') ?>" id="billing:city" />-->
+                         <?php //echo $this->getCountryHtmlSelect('billing') ?>
+                            <?php $_countries = Mage::getResourceModel('directory/country_collection')->loadByStore()->toOptionArray(false) ?>
+<?php if (count($_countries) > 0): ?>
+    <select name="billing[country_id]" id="billing:country_id" class="validate-select countires">
+        <option value="">Select country</option>
+        <?php foreach($_countries as $_country): ?>
+            <option value="<?php echo $_country['value'] ?>">
+                <?php echo $_country['label'] ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+<?php endif; ?>
+                     
+                        </div>
+                    </div>
+				</li>
+				<li>
+                    <div class="field">
+                        <div class="input-box">
+                         <!--  <input type="text" id="billing:region" name="billing[region]" value="<?php echo $this->escapeHtml($this->getAddress()->getRegion()) ?>"  title="<?php echo $this->__('State/Province') ?>" placeholder="State" class="input-text" style="display:none;" />
+                             <script type="text/javascript">
+                            //<![CDATA[
+                                $('billing:region_id').setAttribute('defaultValue',  "<?php echo $this->getAddress()->getRegionId() ?>");
+                            //]]>
+                            </script>-->
+                         
+                            <select id="billing:regionstate" placeholder="<?php echo $this->__('State/Province') ?>" name="billing[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select regions" disabled>
+                                <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                                <?php
+                                  $regions     =   $this->getRegionCollection();
+
+                    foreach($regions as $region)
+                    {
+              echo "<option id='sub_".$region[country_id]."' value='".$region['region_id']."'>".$region['default_name'] . "</option>";
+                    } ?>
+                            </select>
+                     
+                    
+                        </div>
+                    </div>
+                </li>
+                <li class="fields">
+                    <div class="field">
+                        <div class="input-box">
+                         <select name="billing[city]" class="validate-select cities" id="billing:cityid" disabled>
+                      <option value="">Select city</option>
+                      <?php
+                      $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+		$sql = "Select c.*,r.region_id from directory_country_region_city as c,directory_country_region as r where r.code=c.region_code";
+			//$sql = "Select c.* from directory_country_region_city as c where c.region_code IN (select code from directory_country_region where region_id=499)";    
+			//$sql = "Select * from directory_country_region_city";    
+			//echo $sql;
+              $city=  $connection->fetchAll($sql);
+                    foreach($city as $c)
+                    {
+                        echo "<option class='sub_".str_replace(' ','_',$c['region_id'])."' value='".$c['cityname']."'>".$c['cityname'] . "</option>";
+                    } ?>
+                      </select>
+                            
+                        </div>
+                    </div>
+				</li>
+				<li>
+                    <div class="field">
+                        <div class="input-box">
+                         
+                         <input type="text" placeholder="<?php echo $this->__('Zip/Postal Code') ?>" title="<?php echo $this->__('Zip/Postal Code') ?>" name="billing[postcode]" id="billing:postcode" value="<?php echo $this->escapeHtml($this->getAddress()->getPostcode()) ?>" class="input-text  <?php //echo $this->helper('customer/address')->getAttributeValidationClass('postcode') ?>" required />
+                        </div>
+                    </div>
+                </li>
+              
+               
+                <?php if(!$this->isCustomerLoggedIn()): ?>
+
+        <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+        <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+            <?php if ($_dob->isEnabled() || $_gender->isEnabled()): ?>
+
+                <li class="fields">
+                <?php if ($_dob->isEnabled()): ?>
+                    <div class="field">
+                        <?php echo $_dob->setDate($this->getQuote()->getCustomerDob())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($_gender->isEnabled()): ?>
+                    <div class="field">
+                        <?php echo $_gender->setGender($this->getQuote()->getCustomerGender())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                    </div>
+                <?php endif ?>
+                </li>
+            <?php endif ?>
+
+            <?php if ($this->isTaxvatEnabled()):?>
+                <li><?php echo $this->getTaxvatHtml() ?></li>
+            <?php endif; ?>
+                <li class="fields" id="register-customer-password">
+                    <div class="field">
+                        <div class="input-box">
+                            <input type="password" placeholder="<?php echo $this->__('Password') ?>" name="billing[customer_password]" id="billing:customer_password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" class="input-text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" oninvalid="setCustomValidity('Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters');" onChange="try{setCustomValidity("")} catch(e){}" />
+                        </div>
+                    </div>
+				</li>
+				
+                
+                <li>
+                    <div class="field">
+                        <div class="input-box">
+                            <input type="password" placeholder="<?php echo $this->__('Confirm Password') ?>" name="billing[confirm_password]" title="<?php echo $this->__('Confirm Password') ?>" id="billing:confirm_password" class="input-text required-entry" />
+                        </div>
+                    </div>
+                </li>
+                
+               <!-- <form action="*/*/saveShipping" id="co-shipping-form">
+                            <?php if(!$this->isCustomerLoggedIn()) { ?>
+                    <div> <input class="toggleclickedd checkbox usebilladd" type="checkbox" name="shipping[same_as_billing]" id="shipping:same_as_billing" value="1" <?php if($this->getAddress()->getSameAsBilling()): ?> checked="checked"<?php endif; ?> title="<?php echo $this->__('Use Billing Address') ?>" onclick="shipping.setSameAsBilling(this.checked)" class="checkbox" /><label for="shipping:same_as_billing"><?php echo $this->__('Use Billing Address') ?></label></div>   <?php } ?>
+               <div class="buttons-set" id="shipping-buttons-container">
+                   <!--<p class="required"><?php echo $this->__('* Required Fields') ?></p>-->
+                   <!--<p class="back-link"><a href="#" onclick="checkout.back(); return false;"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>-->
+                  <!-- <button type="submit" class="button shippingcontinue" style="margin-bottom: 10px !important; width: 100%;" title="<?php echo $this->__('Continue') ?>" ><span><span><?php echo $this->__('Continue') ?></span></span></button>
+                </form> -->
+                
+                
+                
+                <?php echo $this->getChildHtml('persistent.remember.me'); ?>
+                <?php endif; ?>
+                <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
+                    <li class="control">
+                        <input type="checkbox" name="billing[save_in_address_book]" value="1" title="<?php echo $this->__('Save in address book') ?>" id="billing:save_in_address_book" onChange="if(window.shipping) shipping.setSameAsBilling(false);"<?php if ($this->getAddress()->getSaveInAddressBook()):?> checked="checked"<?php endif;?> class="checkbox" /><label for="billing:save_in_address_book"><?php echo $this->__('Save in address book') ?></label>
+                    </li>
+                <?php else:?>
+                    <li class="no-display"><input type="hidden" name="billing[save_in_address_book]" value="1" /></li>
+                <?php endif; ?>
+                <?php echo $this->getChildHtml('form.additional.info'); ?>
+				<?php if ($this->canShip()): ?>
+				<li style="display:none" class="control">
+					<input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" value="1"<?php if ($this->isUseBillingAddressForShipping()) {?> checked="checked"<?php }?> title="<?php echo  $this->__('Ship to this address') ?>" onClick="$('shipping:same_as_billing').checked = true;" class="radio" /><label for="billing:use_for_shipping_yes"><?php echo  $this->__('Ship to this address') ?></label></li>
+				<li style="display:none" class="control">
+					<input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_no" value="0"<?php if (!$this->isUseBillingAddressForShipping()) {?> checked="checked"<?php }?> title="<?php echo $this->__('Ship to different address') ?>" onClick="$('shipping:same_as_billing').checked = false;" class="radio" /><label for="billing:use_for_shipping_no"><?php echo $this->__('Ship to different address') ?></label>
+				</li>
+			<?php endif; ?>
+			
+	
+            </ul>
+			<?php if (!$this->canShip()): ?>
+				<input type="hidden" name="billing[use_for_shipping]" value="1" />
+			<?php endif; ?>
+			
+			<div class="buttons-set" id="billing-buttons-container">
+				<?php /*<p class="required"><?php echo $this->__('* Required Fields') ?></p> */ ?>
+				<button style="margin-bottom: 10px !important; width: 100%;" type="submit" title="<?php echo $this->__('Continue') ?>" class=" billingcontinue button <?php echo $class3; ?>"><span><span><?php echo $this->__('Continue Checkout') ?></span></span></button>
+				            <a class="e-login2 login-quick-checkout" style="line-height: 30px;    text-align: center;" href="#"> <i class="fa fa-backward"></i> Login for Quick Checkout</a>
+
+<?php if($this->isCustomerLoggedIn()): ?>
+<a class="editAddress" href="javascript:void(0);">Cancel</a>
+    <?php endif; ?>
+				<span class="please-wait" id="billing-please-wait" style="display:none;">
+					<img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+				</span>
+			</div>
+			
+            <?php echo $this->getChildHtml('persistent.remember.me.tooltip'); ?>
+        </fieldset>
+     </li>
+	</li>
+	 <?php if($this->isCustomerLoggedIn()): ?>
+   <li style="display:none">
+ <?php //echo $this->getAddressesHtmlSelect('billing') ?>
+ 
+   <?php 
+				$customerId = Mage::getSingleton('customer/session')->getCustomer();    
+				$customer = Mage::getModel('customer/customer')->load($customerId->getId()); 
+				$data = array();
+				$i=0; 
+				foreach ($customer->getAddresses() as $address) {
+					$data = $address->toArray();
+                    $id = $address->getId();
+					?>
+					
+
+					
+						<div class="dAddress">
+                            <a href="javaScript:void(0);" onClick="setAddress(this.id)" id="<?php echo $i;?>"> 
+								<address>
+									  <span class="name"><?php echo $data['firstname'].' '.$data['lastname']; if($customer->getDefaultBilling() == $address->getId()) { echo ' (Default)';} ?></span>
+									  <span class="block"><?php echo $data['company']; ?></span>
+									  <span class="locality"><?php echo $data['street']; ?></span>
+									  <span class="pCode"><?php echo $data['city']; ?> - <?php echo $data['postcode']; ?></span>
+									  <?php $country_name = Mage::app()->getLocale()->getCountryTranslation($data['country_id']); ?>
+									  <span class="pCode"><?php echo $country_name; ?></span>
+									  <span class="mobile">Mobile No : <?php echo $data['telephone']; ?></span>
+								</address>
+							</a>
+							<?php //echo $this->getAddressesHtmlSelect('billing') ?>
+						</div>
+						<a href="javaScript:void(0);" onClick="deleteAddress(<?php echo $id; ?>)"  class="addressRemove">Remove</a>
+						<a href="#" class="editAddress">Edit Address</a>
+					
+				<?php $i++;
+				} 
+				?>
+				
+	<!-- <a href="javascript:void(0);" class="newAddress">Add New Address</a>-->
+	</li>
+    <?php endif; ?>
+   </ul>
+    
+</fieldset>
+</form>
+    <!--<button onclick="shipping.setSameAsBilling(false);">Continue as a guest login</button>-->
+</div>
+</div>
+  
+
+<script type="text/javascript">
+//<![CDATA[
+    var billing = new Billing('co-billing-form', '<?php echo $this->getUrl('checkout/onepage/getAddress') ?>address/', '<?php echo $this->getUrl('checkout/onepage/saveBilling') ?>');
+    var billingForm = new VarienForm('co-billing-form');
+
+    //billingForm.setElementsRelation('billing:country_id', 'billing:region', '<?php echo $this->getUrl('directory/json/childRegion') ?>', '<?php echo $this->__('Select State/Province...') ?>');
+    $('billing-address-select') && billing.newAddress(!$('billing-address-select').value);
+
+    var billingRegionUpdater = new RegionUpdater('billing:country_id', 'billing:region', 'billing:region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'billing:postcode');
+    if ($('onepage-guest-register-button')) {
+        Event.observe($('onepage-guest-register-button'), 'click', function(event) {
+            var billingRememberMe = $('co-billing-form').select('#remember-me-box');
+            if (billingRememberMe.length > 0) {
+                if ($('login:guest') && $('login:guest').checked) {
+                    billingRememberMe[0].hide();
+                } else if ($('login:register') && ($('login:register').checked || $('login:register').type == 'hidden')) {
+                    billingRememberMe[0].show();
+                }
+            }
+        });
+    }
+//]]>
+jQuery(document).ready(function(){
+	jQuery('.newAddress').click(function(){
+		jQuery('#billing-new-address-form').css('display','block');
+		jQuery('.newAddress').parent().css('display','none');
+	})
+jQuery('.editAddress').click(function(){
+jQuery('#billing-new-address-form').css('display','none');
+		jQuery('.newAddress').parent().css('display','block');
+})
+	
+})
+</script>
+<script>
+function setAddress(obj)
+	{
+		document.getElementById('billing-address-select').selectedIndex = obj;
+
+jQuery('.wide').removeClass('active');
+jQuery('#'+obj).parent().parent().addClass('active');
+	}
+</script>
+<script type="text/javascript">
+//<![CDATA[
+    function deleteAddress(addressId) {
+        if(confirm('<?php echo $this->__('Are you sure you want to delete this address?') ?>')) {
+            window.location='<?php echo $this->getUrl("checkout/onepage/delete"); ?>id/'+addressId;
+        }
+        return false;
+    }
+//]]>
+</script>

@@ -1,0 +1,326 @@
+<script type="text/javascript">
+jQuery('#image1, #description, #image2, #description2').multizoomhide();
+jQuery(document).ready(function($){
+$('#image1').addimagezoom({
+descArea: '#description',
+speed: 1500,
+descpos: true,
+imagevertcenter: true,
+magvertcenter: true,
+zoomrange: [3, 10],
+magnifiersize: [400,400],
+magnifierpos: 'right',
+cursorshade: true
+});
+
+$('#image2').addimagezoom({
+descArea: '#description2',
+disablewheel: true
+});
+$('.proThumb').bxSlider({
+mode: 'vertical',
+slideWidth:58,
+minSlides:3,
+pager:false,
+moveSlides:1,
+infiniteLoop:false,
+hideControlOnEnd:true,
+slideMargin: 10
+});
+});
+
+</script>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<?php echo $this->getChildHtml('alert_urls') ?>
+<?php //echo $this->getChildHtml('product_type_data') ?>
+<?php echo $this->getTierPriceHtml() ?>
+<?php echo $this->getChildHtml('extrahint') ?>
+<?php echo $this->getChildHtml('other');?>
+<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+<?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+<?php endif;?>
+				<section class="shopContainer">
+					<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+					<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+						<?php echo $this->getBlockHtml('formkey') ?>
+						<div class="no-display">
+							<input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+							<input type="hidden" name="related_product" id="related-products-field" value="" />
+						</div>
+						<div class="wrapper">
+							<div class="productWrap">
+								<div class="productZoomer">
+									<div class="proLeft">
+									<ul class="proThumb image1 thumbs">
+									<?php echo $this->getChildHtml('media') ?>
+									</ul>
+									</div>
+									<div class="targetArea"><img id="image1" alt="zoomable" title="" src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(265) ?>"/></div>
+								</div>
+								<div class="proDescription"></div>
+								<div class="proinfo">
+									<?php 
+									//echo $this->getReviewsSummaryHtml($_product, 'short');
+									echo $this->getReviewsSummaryHtml($_product, false, true);
+									?>
+										<ul class="sendSec">
+										<?php if ($this->canEmailToFriend()): ?>
+											<li class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Send to a Friend') ?></a></li>
+											<?php endif;
+											if ($_product->isSaleable() && $this->helper('wishlist')->isAllow()) : ?>
+											<li class="heart"><a href="<?php echo $this->getAddToWishlistUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+										<?php endif; ?>
+										</ul>
+								</div> 
+							</div>		
+						<!-- <div class="prodSec">
+						<?php echo $this->getChildHtml('media') ?>
+						<div class="prodImgBox">
+						<div class="bigPro">
+						<?php $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(265).'" alt="'.$this->escapeHtml($this->getImageLabel()).'" title="'.$this->escapeHtml($this->getImageLabel()).'" />'; ?>
+						<figure><?php echo $_helper->productAttribute($_product, $_img, 'image'); ?></figure>
+						<a class="zoomIcon" href=""></a> 
+						</div>
+						<div class="proinfo">
+						<?php 
+						echo $this->getReviewsSummaryHtml($_product, 'short');
+						echo $this->getReviewsSummaryHtml($_product, false, true);
+						?>
+						</div>
+						</div>
+						</div> -->
+							<div class="detailSec">
+								<div class="bioSec">
+									<figure class="bioImg"><img src="<?php echo $this->getSkinUrl('images/bioImg.jpg'); ?>" alt="" /></figure>
+									<div class="bioCont">
+										<h2><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+										<h3>HYDRATING CLEANSER</h3>
+										<h3># For All Skin Types</h3>
+									</div>
+								</div>
+								<div class="sploffer">
+									<span class="splsec">special offer</span>
+									<p>Get Attractive 14% OFF with Combo1 <a href="#">See Details</a></p>
+								</div>
+							<?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>
+							<?php if($alias == 'additional') echo $html; ?>
+							<?php endforeach;?>
+								<div class="replenishSec">
+									<span><strong>Replenishment Service: </strong>[?]</span>
+									<div class="drop">
+									<select class="stylish-drop">
+									<option value="1">Purchase One Time</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									</select>
+									</div>
+								</div>
+							</div>
+						<div class="proRight">
+						<div class="whiteBox first">
+						<ul class="cartSec">
+						<?php echo $this->getChildHtml('product_type_data') ?>
+						<!-- <li> <strong>Size</strong> <strong class="wid80">Price</strong> <strong>Qty</strong> </li>
+						<li>
+						<span><?php echo "----".$_product->getResource()->getAttribute('unit')."0000000"; ?></span> <span class="wid80"><?php echo $this->getPriceHtml($_product, true) ?></span>
+						<div class="drop">
+						<select class="stylish-drop">
+						<option value="">1</option>
+						<option value="">2</option>
+						<option value="">3</option>
+						<option value="">4</option>
+						</select>
+						</div>
+						</li> -->
+						</ul>
+						<?php if (!$this->hasOptions()):?>
+						<?php if($_product->isSaleable()): ?>
+						<?php  echo $this->getChildHtml('addtocart') ?>
+						<?php endif; ?>
+						<?php //echo $this->getChildHtml('addto') ?>
+						<?php // echo $this->getChildHtml('extra_buttons') ?>
+						<?php elseif (!$_product->isSaleable()): ?>
+						<div class="add-to-box">
+						<?php //echo $this->getChildHtml('addto') ?>
+						</div>
+						<?php endif; ?>
+						</div>
+						<div class="whiteBox">
+						<h3>Check delivery time & COD
+						availability
+						</h3>
+						<input type="text" name="pincode" value="Enter your Pincode">
+						<a class="ctnBtn" href="#">CHECK</a>
+						<div class="availSec">
+						<figure class="delImg"><img src="<?php echo $this->getSkinUrl('images/carImg.png'); ?>" alt=""></figure>
+						<span>Available, if you order in next 3 hours & 1 minute [?]</span> 
+						</div>
+						</div>
+						</div>
+						</div>
+					</form>
+				</section>
+				<section class="ingredSec">
+				<img src="<?php echo $this->getSkinUrl('images/banner_article.jpg'); ?>" alt="" title="">
+				<section class="absolute_info">
+				<h4>Ingredients</h4>
+				<h6>Berberry</h6>
+				<p>Berberry is an ancient and honored herb with a rich history of anti-bacterial and anti-inflammatory properties that help soothe, heal and protect skin from damage and disease. Berberry has also been known to cure pimples and boils.</p>
+				<ul>
+				<li><a href="#">shop Berberry products</a></li>
+				<li><a href="#">view all ingredients</a></li>
+				</ul>
+				</section>
+				</section>
+				<section class="newCollCont">
+				<div class="wrapper">
+				<div class="block">
+				<?php echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/product_viewed.phtml')->toHtml(); ?>
+				<div class="collectRight">
+				<h3>Works well with</h3>
+        		<?php echo $this->getLayout()->createBlock('checkout/cart_crosssell')->setTemplate('checkout/cart/crosssell.phtml')->toHtml();?>
+				<!-- <ul class="workSec">
+				<li>
+				<div class="collectBox">
+				<figure><img src="<?php echo $this->getSkinUrl('images/collectImg4.png'); ?>" alt=""></figure>
+				<strong>Bio Dandelion </strong> <span>INR 199.00</span> <a href="#" class="ctnBtn">Shop Now</a> 
+				</div>
+				</li>
+				<li>
+				<div class="collectBox">
+				<figure><img src="<?php echo $this->getSkinUrl('images/collectImg5.png'); ?>" alt=""></figure>
+				<strong>Bio Honey Water </strong> <span>INR 149.00</span> <a href="#" class="ctnBtn">Shop Now</a> 
+				</div>
+				</li>
+				</ul>  -->
+				</div>
+				</div>
+				</div>
+				</section>
+				<section class="reviewContainer">
+					<div class="reviewbannerImg">
+					<figure><img src="<?php echo $this->getSkinUrl('images/reviewbannerImg.jpg'); ?>" alt="" /></figure>
+					</div>
+					<div class="reviewBlock">
+						<div class="wrapper">
+							<div class="reviewImg">
+								<figure><img src="<?php echo $this->getSkinUrl('images/reviewImg.png'); ?>" alt="" /></figure>
+							</div>
+							<div class="reviewContent">
+								<h3>Rating & reviews</h3>
+								<h5>Summary of Customer Ratings & Reviews</h5>
+								<p>11 out of 13 (85%) reviewers would recommend this product to a friend.</p>
+								<a class="ctnBtn" href="#">Read Review(13)</a> <a class="ctnBtn secondBtn" href="#">write review</a>
+								<div class="overallRate">
+								<strong>overall rating</strong>
+								<div class="star"> <span style="width:60%;"></span> </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span class="shadow"></span> 
+				</section>
+				<section class="customerReview">
+					<div class="shortRating">
+						<div class="wrapper">
+							<div class="block">
+								<div class="srLeft">
+								<h4>Customer reviews <span>(13 Reviews)</span></h4>
+								</div>
+								<div class="srRight">
+								<small>Sort By</small>
+									<div class="short">
+										<select class="stylish-drop">
+										<option value="">All</option>
+										<option value="">10 to 20</option>
+										<option value="">21 to 30</option>
+										<option value="">31 to 50</option>
+										</select>
+									</div>
+									<small>Rating</small>
+									<div class="ratingDrop">
+										<select class="stylish-drop">
+										<option value="">All</option>
+										<option value="">10 to 20</option>
+										<option value="">21 to 30</option>
+										<option value="">31 to 50</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="reviewgrayBar">
+						<div class="wrapper">
+							<div class="block">
+							<p>Biotique customers have said this product is best for:</p>
+								<ul class="tagList">
+									<li><a href="#">Anti-Aginag(5)</a></li>
+									<li><a href="#">Moisturizing(3)</a></li>
+									<li><a href="#">Aging(2)</a></li>
+									<li><a href="#"><i class="fa fa-plus"></i>see more tags</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="product-collateral">
+					<?php echo $this->getChildHtml('product_additional_data') ?>
+					</div>
+				<?php echo $this->getChildHtml('product_review') ?>
+				</section>
+<script type="text/javascript">
+//<![CDATA[
+var productAddToCartForm = new VarienForm('product_addtocart_form');
+productAddToCartForm.submit = function(button, url) {
+if (this.validator.validate()) {
+var form = this.form;
+var oldUrl = form.action;
+
+if (url) {
+form.action = url;
+}
+var e = null;
+try {
+this.form.submit();
+} catch (e) {
+}
+this.form.action = oldUrl;
+if (e) {
+throw e;
+}
+
+if (button && button != 'undefined') {
+button.disabled = true;
+}
+}
+}.bind(productAddToCartForm);
+
+productAddToCartForm.submitLight = function(button, url){
+if(this.validator) {
+var nv = Validation.methods;
+delete Validation.methods['required-entry'];
+delete Validation.methods['validate-one-required'];
+delete Validation.methods['validate-one-required-by-name'];
+// Remove custom datetime validators
+for (var methodName in Validation.methods) {
+if (methodName.match(/^validate-datetime-.*/i)) {
+delete Validation.methods[methodName];
+}
+}
+if (this.validator.validate()) {
+if (url) {
+this.form.action = url;
+}
+this.form.submit();
+}
+Object.extend(Validation.methods, nv);
+}
+}.bind(productAddToCartForm);
+//]]>
+</script>

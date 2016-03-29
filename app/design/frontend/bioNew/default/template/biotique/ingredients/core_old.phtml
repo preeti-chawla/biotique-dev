@@ -1,0 +1,37 @@
+<?php
+$ingredients = Mage::helper('biotique_ingredients')->fetch_ingredients( $this->getRequest()->getParam('range',''));
+?>
+<div class="filtercontent-wrap">
+   <div class="filterTabContent" id="filter1">
+      <div class="filterlistRow">
+         <ul class="filterList">
+         <?php foreach($ingredients as $ingredient): 
+         		$prod_name = $ingredient->getAlias();
+         	?>
+            <li>
+               <div class="filterbox">
+                  <h4><a href="#"><?php echo $prod_name; ?></a></h4>
+                  <figure>
+                     <img src="<?php echo Mage::getBaseUrl('media') .  'ingredients/'. $ingredient->getData('small_image'); ?>" alt="" />
+                  </figure>
+               </div>
+               <div class="fb-Description">
+                  <div calss="fb_image" style="background:url(<?php echo Mage::getBaseUrl('media') .  'ingredients/'. $ingredient->getData('large_image'); ?>) 0 0 no-repeat; float:left; width:100%; background-size:100%">
+                    <!-- Added this for getting ingredient ID in the page start --->
+                     <div class="descriptionLeft" id="ingredient_<?php echo $ingredient->getId(); ?>">
+                      <!--- End ---->
+                        <h5><?php echo $prod_name; ?></h5>
+                     </div>
+                     <div class="descriptionRight">
+                        <p><?php echo $ingredient->getDescription(); ?></p>
+                        <a href="<?php echo Mage::getUrl('products') .'?item_ingregident='. $ingredient->getData('ingredient_id'); ?>" class="more-ctn"><i class="fa fa-caret-right"></i>shop all <?php echo $prod_name; ?> products</a>
+                        <a href="#" class="close-ctn"><i class="fa fa-times"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </li>
+        <?php endforeach; ?>
+         </ul>
+      </div>
+   </div>
+</div>

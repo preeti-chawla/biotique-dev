@@ -1,0 +1,90 @@
+<?php
+/**
+* Magento
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE_AFL.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magento.com so we can send you a copy immediately.
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade Magento to newer
+* versions in the future. If you wish to customize Magento for your
+* needs please refer to http://www.magento.com for more information.
+*
+* @category    design
+* @package     base_default
+* @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+* @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*/
+
+/**
+* Top menu for store
+*
+* @see Mage_Page_Block_Html_Topmenu
+*/
+		$_menu = $this->getHtml('level-top');
+		$attribute = Mage::getSingleton('eav/config')->getAttribute('catalog_product', 'item_concern');
+		$options = $attribute->getSource()->getAllOptions(false);
+?>
+		<nav>
+			<ul class="menu">
+				<li><a href="#">Collections<span></span></a>
+					<div class="dropwrap">
+						<div class="dropLink">
+								<div class="dropsub">
+									<h4><a href="#">Skincare Lines</a></h4>
+									<ul>
+									<li><a href="<?php echo $this->getUrl('products?item_collection=7') ?>">Biotique Advance</a></li>
+									<li><a href="<?php echo $this->getUrl('products?item_collection=8') ?>">Biotique Botanical</a></li>
+									</ul>
+								</div>
+								<div class="dropsub">
+									<h4><a href="#">Category</a></h4>
+									<ul>
+									<li><a href="#">Cleansing</a></li>
+									<li><a href="#">Exfoliating</a></li>
+									<li><a href="#">Toning</a></li>
+									<li><a href="#">Vitalizing</a></li>
+									<li><a href="#">Mois turizing</a></li>
+									<li><a href="#">Scrubs & Masks</a></li>
+									<li><a href="#">Eye & Lip Care</a></li>
+									<li><a href="#">Sun Care</a></li>
+									</ul>
+								</div>
+								<div class="dropsub">
+								<h4><a href="#">Concerns</a></h4>
+									<ul>
+									<?php for($i=0;$i<count($options);$i++){
+									echo " <li><a href='#'>".$options[$i]['label']."</a></li>";
+									}
+									?>                              
+									</ul>
+								</div>
+						</div>
+						<div class="dropImgwrap">
+							<div class="dropImg left">
+								<figure><a href="#"><img src="<?php echo $this->getSkinUrl('images/nav-img.jpg') ?>" alt="" /></a></figure>
+							</div>
+							<div class="dropImg">
+								<figure><a href="#"><img src="<?php echo $this->getSkinUrl('images/nav-img2.jpg') ?>" alt="" /></a></figure>
+							</div>
+							<div class="dropImg">
+								<figure><a href="#"><img src="<?php echo $this->getSkinUrl('images/nav-img2.jpg') ?>" alt="" /></a></figure>
+							</div>
+						</div>
+					</div>
+				</li>
+			<?php echo $_menu ?>
+				<li><a href="#">Skin Consultation</a></li>
+				<li><a href="#">Gifts</a></li>
+				<li><a href="#">What's New</a></li>
+				<li class="last"><a href="#">About us</a></li>
+			</ul>
+		</nav>

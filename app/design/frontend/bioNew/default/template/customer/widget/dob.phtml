@@ -1,0 +1,135 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+USAGE:
+
+Simple:
+
+<?php echo $this->getLayout()->createBlock('customer/widget_dob')
+   ->setDate($this->getCustomer()->getDob())
+   ->toHtml() ?>
+
+For checkout/onepage/billing.phtml:
+
+<?php echo $this->getLayout()->createBlock('customer/widget_dob')
+   ->setDate($this->getCustomer()->getDob())
+   ->setFieldIdFormat('billing:%s')
+   ->setFieldNameFormat('billing[%s]')
+   ->toHtml() ?>
+
+NOTE: Regarding styles - if we leave it this way, we'll move it to boxes.css
+      Alternatively we could calculate widths automatically using block input parameters.
+*/
+
+/**
+ * @see Mage_Customer_Block_Widget_Dob
+ */
+?>
+<!-- <label for="<?php echo $this->getFieldId('month')?>"<?php if ($this->isRequired()) echo ' class="required"' ?>><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->__('Date of Birth') ?></label> -->
+<?php
+    $this->setDateInput('d',
+        '<div class="dayList"> <select class="stylish-drop" id="' . $this->getFieldId('day') . '" name="' . $this->getFieldName('day') . '" value="' . $this->getDay() . '">
+		<option value="">DD</option>
+                  <option value="">01</option>
+                  <option value="">02</option>
+                  <option value="">03</option>
+                  <option value="">04</option>
+                  <option value="">05</option>
+                  <option value="">06</option>
+                  <option value="">07</option>
+                  <option value="">08</option>
+                  <option value="">09</option>
+                  <option value="">10</option>
+                  <option value="">11</option>
+                  <option value="">12</option>
+                  <option value="">13</option>
+                  <option value="">14</option>
+                  <option value="">15</option>
+                  <option value="">16</option>
+                  <option value="">17</option>
+                  <option value="">18</option>
+                  <option value="">19</option>
+                  <option value="">20</option>
+                  <option value="">21</option>
+                  <option value="">22</option>
+                  <option value="">23</option>
+                  <option value="">24</option>
+				  </select>
+         </div>'
+    );
+
+    $this->setDateInput('m',
+        '<div class="monthList">
+             <select class="stylish-drop" id="' . $this->getFieldId('month') . '" name="' . $this->getFieldName('month') . '" value="' . $this->getMonth()  . '">
+                  <option value="">MM</option>
+                  <option value="">01</option>
+                  <option value="">02</option>
+                  <option value="">03</option>
+                  <option value="">04</option>
+                  <option value="">05</option>
+                  <option value="">06</option>
+                  <option value="">07</option>
+                  <option value="">08</option>
+                  <option value="">09</option>
+                  <option value="">10</option>
+                  <option value="">11</option>
+                  <option value="">12</option>                  
+                </select>
+		         </div>'
+    );
+
+    $this->setDateInput('y',
+        '<div class="yearList">
+              <select class="stylish-drop" id="' . $this->getFieldId('year') . '" name="' . $this->getFieldName('year') . '" value="' . $this->getYear()  . '">
+                  <option value="">YYYY</option>
+                  <option value="">2014</option>
+                  <option value="">2013</option>
+                  <option value="">2012</option>
+                  <option value="">2011</option>
+                  <option value="">2010</option>
+                  <option value="">2009</option>
+                  <option value="">2008</option>
+                  <option value="">2007</option>
+                  <option value="">2006</option>
+                  <option value="">2005</option>
+                  <option value="">2004</option>
+                  <option value="">2003</option>                  
+                </select>
+	     </div>'
+    );
+?>
+    <?php echo $this->getSortedDateInputs() ?>
+    <div class="dob-full" style="display:none;">
+        <input type="hidden" id="<?php echo $this->getFieldId('dob')?>" name="<?php echo $this->getFieldName('dob')?>" />
+    </div>
+
+    <div class="validation-advice" style="display:none;"></div>
+<script type="text/javascript">
+//<![CDATA[
+    var customer_dob = new Varien.DOB('.customer-dob', <?php echo $this->isRequired() ? 'true' : 'false' ?>, '<?php echo $this->getDateFormat() ?>');
+//]]>
+</script>

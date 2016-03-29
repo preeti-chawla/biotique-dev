@@ -1,0 +1,134 @@
+<?php 
+ $_menu = $this->getHtml('level-top');
+    $attribute = Mage::getSingleton('eav/config')->getAttribute('catalog_product', 'item_ingregident');
+    $options = $attribute->getSource()->getAllOptions(false);
+    ?>
+
+ <div class="newCollection">
+    <div class="collectionTop">
+      <div class="layout">      
+        <h1>our new collection</h1>      
+      </div>      
+    </div>
+    <div class="newCollectionSlider">
+    <div class="slide">
+    <div class="collectionBottom">
+      <div class="collectionImg">
+        <figure><img src="<?php echo $this->getSkinUrl('images/collection-img.jpg') ?>" alt="" /></figure>
+      </div>
+      <div class="collectionContent">
+        <div class="layout">
+          <div class="collectionCon">
+            <div class="collectionRight">
+               <figure><img src="<?php echo $this->getSkinUrl('images/bioImg-white-logo.png') ?>" alt="" /></figure>
+              <h2>WELCOME TO A NEW AGE OF ANTI-AGE.</h2>
+              <p>The wisdom of traditional Indian medicine and ingredients.
+The science of clinically-proven Swiss bio-technology.
+The dawn of advanced, bio-energetic, naturally therapeutic treatments for skin of any type, at every age. With exclusive BXL Complex, a new power source for intercellular communication and youthful reinvention.
+</p>
+              <a href="<?php echo Mage::getUrl("biotique-advance.html")?>" class="ctnBtn">View collection</a> <a href="javascript:void(0)<?php /*?><?php echo Mage::getUrl("why-biotique-advance")?><?php */?>" class="ctnBtn akaash" >why Biotique advanced?</a>
+            </div>
+          </div>      
+        </div>
+      </div>  
+    </div>
+    </div>
+    <div class="slide">
+    <div class="collectionBottom">
+      <div class="collectionImg">
+        <figure><img src="<?php echo $this->getSkinUrl('images/why-advance-img.jpg') ?>" alt="" /></figure>
+      </div>
+      <div class="collectionContent">
+        <div class="layout">
+          <div class="collectionCon collectslide2">
+            <div class="collectionLeft" style="padding:69px 0 0 27px">
+              <figure><img src="<?php echo $this->getSkinUrl('images/bioImg-white-logo.png') ?>" alt="" /></figure>
+            </div>
+            <div class="collectionRight" style="background-image:none; padding-left:10%">
+             <figure><img src="<?php echo $this->getSkinUrl('images/bioImg-white-logo.png') ?>" alt="" /></figure>
+              <h2>Why Biotique advanced</h2>
+              <ul>
+                <li>Our most technologically-expert line of natural treatment products to help replenish and restore skin’s youthful appearance. </li>
+                <li>Breakthrough results with new BXL technology to supercharge skin.</li>
+                <li>Precious recipe for daily and special skin care needs at every age.</li>
+                <li>Products designed to work together for optimum results in no time.</li>
+              </ul>
+               
+              <a href="<?php echo Mage::getUrl("biotique-advance.html")?>" class="ctnBtn">View collection</a>  
+            </div>
+          </div>      
+        </div>
+      </div>  
+    </div>
+    </div>
+    </div>
+  </div>
+  <div class="bestSellers">
+    <em class="shadow"></em>
+    <div class="bestSellersbg">
+      <figure><img src="<?php echo $this->getSkinUrl('images/sellers.jpg') ?>" alt="" /></figure>
+    </div>
+    <div class="bestSellerscon">
+      <div class="layout">        
+        <div class="sellersContent">
+          <h3>best sellers</h3>
+          <p>Shop our latest customer favorites!</p>
+        </div>
+        <?php //echo $this->getLayout()->createBlock('core/template')->setTemplate('catalog/product/common_bestseller.phtml')->toHtml();
+        echo $this->getLayout()->createBlock('core/template')->setTemplate('catalog/product/common_bestseller.phtml')->toHtml();
+        ?>
+      </div>
+    </div>
+  </div>
+    <div class="product-feature">
+    <section class="layout">
+      <div class="pf-wrap">
+        <article class="product-left">
+          <figure> <img src="<?php echo $this->getSkinUrl('images/girl_pic.png') ?>" alt="" title=""> </figure>
+          <section class="prod-desc">
+            <h2>SKIN CONSULTATION</h2>
+            <!-- <h5>FIND THE BEST SOLUTIONS</h5> -->
+            <p>Find the ideal regimen for beautiful, ageless skin and healthy well-being.</p>
+            <a href="#" class="ctn">Coming Soon</a> </section>
+        </article>
+        <article class="product-right">
+          <div class="prBox">
+            <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('biotique/ingredients/home_ingredient.phtml')->toHtml();?>  
+          </div>
+          <section class="prod-desc">
+            <h2>INGREDIENTS</h2>
+            <!-- <h5>TAKE THE NATURAL PATH</h5> -->
+            <p>Biotique products are made of 100% organically-pure, preservative-free ingredients
+and renewable resources—cultivated, gathered, blended and manufactured in the
+foothills of the Himalayas. No animal testing.</p>
+            <a href="<?php echo Mage::getUrl("ingredients")?>" class="ctn">FIND ALL</a> </section>
+        </article>
+      </div>
+    </section>
+  </div>
+  <script type="text/javascript" src="http://biotiquefinal.pro-digi.co.in/skin/frontend/bioNew/default/js/jquery.js"></script>
+  <script>
+  $(document).ready(function(){
+    var btn = $(".newCollection .collectionContent .collectionCon .collectionRight .ctnBtn.akaash");
+    //$(".newCollection .bx-wrapper .bx-controls .bx-controls-direction .bx-next").remove();
+    /*$(".newCollection .collectionContent .collectionCon .collectionRight .ctnBtn").after(btn)*/
+    btn.on("click", function(){
+      newCollectionSlider.goToNextSlide();
+       $(".newCollection .bx-prev").show();
+      $(".newCollection .bx-next").hide();  
+    });
+    $('.newCollection .bx-wrapper .bx-controls .bx-controls-direction .bx-next').text("why Biotique advanced?");
+    
+
+    $(".newCollection .bx-prev").hide();
+        $('.newCollection .bx-next').click(function(event) {  
+          $(".newCollection .bx-prev").show();
+      $(".newCollection .bx-next").hide();      
+        }); 
+    $('.newCollection .bx-prev').click(function(event) {  
+          $(".newCollection .bx-prev").hide();
+      $(".newCollection .bx-next").show();      
+        });
+            
+   });
+   </script>

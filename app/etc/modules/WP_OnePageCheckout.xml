@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <WP_OnePageCheckout>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Checkout />
+                <Mage_Newsletter />
+            </depends>
+        </WP_OnePageCheckout>
+    </modules>
+</config>

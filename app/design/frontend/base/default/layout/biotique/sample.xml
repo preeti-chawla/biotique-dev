@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+
+<layout version="0.1.0">
+	<!-- from page layout checkout.xml, overrides checkout.onepage block -->
+	<checkout_onepage_index>
+		<reference name="checkout.onepage">
+			<action method="setTemplate">
+				<path>biotique/sample/checkout/onepage.phtml</path>
+			</action>
+			<block type="sample/checkout_onepage_select_sample" name="checkout.onepage.select_sample" as="select_sample" template="biotique/sample/checkout/onepage/select/sample.phtml" />
+		</reference>
+	</checkout_onepage_index>
+</layout>

@@ -1,0 +1,37 @@
+@media only screen and (max-width: 767px){
+   /* home page starts */
+   .std .product-feature{ display: block; margin-top: 10px;}
+   .std .product-feature .product-left figure{ margin: 0; width: 48%;}
+   .std .product-feature .product-left .prod-desc{padding-top: 0;}
+   
+   .stylish-select .std .site_info{ display: block;}
+   .std .bestSellers{ background-size: 100% auto;}
+   .std .newCollection .collectionBottom{ background-size: 100% auto; background-color: #c592d7;}
+   .stylish-select .newCollection .collectionContent{ padding-top: 100px;}
+   .stylish-select .newCollection .collectionContent .collectionCon .collectionRight{ width: 54%;}
+   .stylish-select .newCollection .collectionContent .collectionCon .collectionRight .ctnBtn{ margin-right: 10px; padding: 0 10px; font-size: 12px;}
+   
+   .stylish-select .newCollection .collectionContent .collectionCon.collectslide2 .collectionLeft{ display: block; max-width: none; width: 100%; padding: 0 30% !important;}
+   .stylish-select .newCollection .collectionContent .collectionCon.collectslide2 .collectionRight{ padding-top: 50px;}
+   .stylish-select .newCollection .collectionContent .collectionCon.collectslide2 .collectionRight figure{ display: none;}
+   .stylish-select .newCollection .collectionContent .collectionCon.collectslide2 .collectionRight h2{ text-align: center;}
+   .stylish-select .bestSellers{ padding-bottom: 0;}
+   .stylish-select .bestSellers .sellersSlider{ padding-top: 5%;}
+   /*footer */
+   #footer .footersection1{ display: block;}
+ 
+   
+}
+
+@media only screen and (max-width: 568px){
+    .stylish-select .newCollection .collectionContent{ padding-top: 235px;}
+   .stylish-select .newCollection .collectionContent .collectionCon .collectionRight, 
+   .stylish-select .newCollection .collectionContent .collectionCon.collectslide2 .collectionRight{ width: 100%;} 
+     .stylish-select .std .site_info .locator, 
+    .stylish-select .std .site_info .testimonials{ width: 100%;}
+    
+}
+
+@media only screen and (max-width: 375px){
+    .stylish-select .newCollection .collectionContent{ padding-top: 120px;}
+}

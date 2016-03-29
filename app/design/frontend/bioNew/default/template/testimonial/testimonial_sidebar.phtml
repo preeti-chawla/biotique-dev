@@ -1,0 +1,60 @@
+        <div id="sidebar">
+		
+<div class="testimonial-submit">
+	<div class="sidebarHd">
+		<h3>WRITE A TESTIMONIAL !<em></em></h3>
+	  </div>
+	  <div class="testiForm">
+	   <p>You must write at least 50 characters for this field.</p>
+	<form action="<?php echo Mage::getBaseUrl(); ?>testimonial/form/post" method="post" id="testimonial-form" enctype="multipart/form-data" >
+		<ul class="form-list contactQueryrow">
+			<li class="required-std">
+				<div class="std-input-box">
+					<textarea name="testimonial" id="testimonial" rows="5" cols="0" type="text" class="required-entry" placeholder="Your Review" required ></textarea>
+				</div>
+			</li>
+			<li  class="name">
+				<div class="input-box">
+					<input name="name" placeholder="Your Name" id="name" class="input-text required-entry" type="text" required />
+				</div>
+			</li>
+			<li class="email">
+				<div class="input-box">
+					<input name="email" id="email" placeholder="Your email" class="input-text required-entry validate-email" type="email" required>
+				</div>
+			</li>
+			<li class="email">
+				<div class="input-box">
+					<input name="address" placeholder="Address" id="address" type="text" class="input-text" required >
+				</div>
+			</li>
+			<li><div class="cityList cityList1">
+                  <select class="stylish-drop" name="testimonialLoc">
+                  <option value="">Location</option>                    
+                    <option value="delhi">Delhi</option>
+                    <option value="mumbai">Mumbai</option>                  
+                    <option value="bangalore">Bangalore</option>                  
+                    <option value="hyderabad">Hyderabad</option>                  
+                    <option value="ahmedabad">Ahmedabad</option>                  
+                    <option value="chennai">Chennai</option>                  
+                    <option value="kolkata">Kolkata</option>                  
+                  </select>
+                </div></li>
+			<li><button type="submit" title="<?php echo $this->__('Submit'); ?>" class="button"><span><span><?php echo $this->__('Submit'); ?></span></span></button></li>
+		</ul>
+		
+	</form>
+	</div>
+	<script type="text/javascript">
+	//<![CDATA[
+		var dataForm = new VarienForm('testimonial-form', true);
+	//]]>
+	</script>
+</div>
+
+
+		
+             
+        </div>        
+
+     

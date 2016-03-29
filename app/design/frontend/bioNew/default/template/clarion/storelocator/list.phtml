@@ -1,0 +1,191 @@
+<?php
+/**
+ * Storelocator template for stores list
+ *
+ * @author Magento
+ */
+
+/**
+ * @var $this Clarion_Storelocator_Block_List
+ * @see Clarion_Storelocator_Block_List
+ */
+?>
+<?php
+$markers = array();
+?>
+<div class="std">
+<section class="bodyContainer">
+<div id="store-location">
+      
+      <div class="layout">    
+        <aside class="containerLeft">
+            <div class="storeWrap">
+              <div class="findLocation">
+                <h3>our stores</h3>
+                <p>For the Biotique counters nearest you, please enter your city.</p>
+				<form action="<?php echo $this->getPostActionUrl() ?>" method="get" id="addressSearch">
+                
+				<input type="hidden" name="country" id="country" value="IN" />
+				<?php $city = $_GET['city']; ?>
+				<select name="city" class="stylish-drop">
+  <option>Select City</option>
+  <option value="AHMEDABAD" <?php if($city=='AHMEDABAD'){?> selected="selceted" <?php } ?>>AHMEDABAD</option>
+  <option value="ALLAHABAD" <?php if($city=='ALLAHABAD'){?> selected="selceted" <?php }?>>ALLAHABAD</option>
+  <option value="AMRITSAR" <?php if($city=='AMRITSAR'){?> selected="selceted" <?php }?>>AMRITSAR</option>
+  <option value="BANGALORE" <?php if($city=='BANGALORE'){?> selected="selceted" <?php }?>>BANGALORE</option>
+  <option value="CHANDIGARH" <?php if($city=='CHANDIGARH'){?> selected="selceted" <?php }?>>CHANDIGARH</option>
+  <option value="CHENNAI" <?php if($city=='CHENNAI'){?> selected="selceted" <?php }?>>CHENNAI</option>
+  <option value="COIMBATORE" <?php if($city=='COIMBATORE'){?> selected="selceted" <?php }?>>COIMBATORE</option>
+  <option value="ERNAKULAM" <?php if($city=='ERNAKULAM'){?> selected="selceted" <?php }?>>ERNAKULAM</option>
+  <option value="GHAZIABAD" <?php if($city=='GHAZIABAD'){?> selected="selceted" <?php }?>>GHAZIABAD</option>
+  <option value="GOA" <?php if($city=='GOA'){?> selected="selceted" <?php }?>>GOA</option>
+  <option value="GURGAON" <?php if($city=='GURGAON'){?> selected="selceted" <?php }?>>GURGAON</option>
+  <option value="GUWAHATI" <?php if($city=='GUWAHATI'){?> selected="selceted" <?php }?>>GUWAHATI</option>
+  <option value="HYDERABAD" <?php if($city=='HYDERABAD'){?> selected="selceted" <?php }?>>HYDERABAD</option>
+  <option value="INDORE" <?php if($city=='INDORE'){?> selected="selceted" <?php }?>>INDORE</option>
+  <option value="KANPUR" <?php if($city=='KANPUR'){?> selected="selceted" <?php }?>>KANPUR</option>
+  <option value="KOLKATA" <?php if($city=='KOLKATA'){?> selected="selceted" <?php }?>>KOLKATA</option>
+  <option value="LUCKNOW" <?php if($city=='LUCKNOW'){?> selected="selceted" <?php }?>>LUCKNOW</option>
+  <option value="MEERUT" <?php if($city=='MEERUT'){?> selected="selceted" <?php }?>>MEERUT</option>
+  <option value="MIZORAM" <?php if($city=='MIZORAM'){?> selected="selceted" <?php }?>>MIZORAM</option>
+  <option value="MUMBAI" <?php if($city=='MUMBAI'){?> selected="selceted" <?php }?>>MUMBAI</option>
+  <option value="NAGPUR" <?php if($city=='NAGPUR'){?> selected="selceted" <?php }?>>NAGPUR</option>
+  <option value="NEW DELHI" <?php if($city=='NEW DELHI'){?> selected="selceted" <?php }?>>NEW DELHI</option>
+  <option value="NOIDA" <?php if($city=='NOIDA'){?> selected="selceted" <?php }?>>NOIDA</option>
+  <option value="SECUNDERABAD" <?php if($city=='SECUNDERABAD'){?> selected="selceted" <?php }?>>SECUNDERABAD</option>
+  <option value="TRICHUR" <?php if($city=='TRICHUR'){?> selected="selceted" <?php }?>>TRICHUR</option>
+  <option value="TRIVANDRUM" <?php if($city=='TRIVANDRUM'){?> selected="selceted" <?php }?>>TRIVANDRUM</option>
+  <option value="ZIRAKPUR" <?php if($city=='ZIRAKPUR'){?> selected="selceted" <?php }?>>ZIRAKPUR</option>
+</select>
+				<button type="submit" title="<?php echo $this->__('Search') ?>" class="button ctn"><span><span>find our store</span></span></button>
+				</form>
+			  </div>
+              <div class="storeList">
+			  <?php
+					$_StoreCollection = $this->getStoreCollection();
+					$i = 1;
+					$totalStoreCount = $_StoreCollection->count(); 
+				?>
+                <div id="storeListScroll">
+				<?php if(!$totalStoreCount): ?>
+				<p class="note-msg"><?php echo $this->__('There are no stores.') ?></p>
+				<?php else: ?>
+				  <ul class="storeListRow">
+				  <?php foreach ($_StoreCollection as $store): ?>
+                    <li>
+                      <h4><a href="<?php echo $this->getStoreUrl($store);?>"><?php echo $this->escapeHtml(ucfirst($store->getName())) ?></a></h4>
+                      <p><?php if($store->getStreetAddress()): ?>
+                      <?php echo $this->escapeHtml($store->getStreetAddress()) ?><br>
+                      <?php endif; ?></p>
+                      <p><?php if($store->getCity()): ?>
+                        <?php echo $this->escapeHtml(ucfirst($store->getCity())) ;?><?php endif; ?> - <?php if($store->getZipcode()): ?><?php echo $this->escapeHtml($store->getZipcode()) ?><?php endif; ?><br>
+                      </p>
+					  <p><?php if($store->getState()): ?>
+                        <?php echo $this->escapeHtml(ucfirst($store->getState())); ?><br>
+                        <?php endif; ?></p>
+                      <p><?php if($store->getCountry()): ?>
+                        <?php echo ucfirst($this->getCountryName($store->getCountry())); ?><br>
+                        <?php endif; ?></p>
+                      <p><?php if($store->getPhone()): ?>
+                        Phone: <?php echo $this->escapeHtml($store->getPhone()) ?><br>
+                        <?php endif; ?></p>
+						
+					<?php 
+                                    //Get store google map related information
+                                    $storeName = $store->getName();
+                                    $storeLat = $store->getLatitude();
+                                    $storeLong = $store->getLongitude();
+                                    $storeRadius = $this->getRadius($store);
+                                    $storeZoomLevel = $this->getZoomLevel($store);
+                                    ?>
+					<?php if($storeLat && $storeLong): ?>
+					<button onclick="initialize(<?php echo $storeLat ;?>, <?php echo $storeLong ;?>, <?php echo $storeRadius ;?>, <?php echo $storeZoomLevel ;?>, '<?php echo $storeName ;?>', 'store-list-map-canvas');" class="button viewmap" title="<?php echo Mage::helper('clarion_storelocator')->__('View Map') ?>" type="button">
+					<i class="fa fa-eye"></i>View on Map                                    </button>
+                                <?php endif ;?>
+                    
+                    </li>
+					<?php 
+        // for google map
+        $markers[$i]['name'] = $store->getName();
+        $markers[$i]['lat'] = $store->getLatitude();
+        $markers[$i]['long'] = $store->getLongitude();
+        ?>
+      <?php endforeach; ?>
+      <?php endif; ?>
+                    
+                  </ul>
+                </div>
+                
+              </div>
+            </div>    
+        </aside>
+        <div class="containerRight">
+            <div class="shadowtop">
+              <div class="shadowBottom">
+                <div class="locationMap">
+				<?php if($totalStoreCount): ?>
+                    <figure><div id="store-list-map-canvas">&nbsp;</div></figure>
+                </div>
+              </div>
+            </div>        
+        </div>      
+      </div>
+    </div>
+	</section>
+	</div>
+	
+	<?php if(is_array($markers) && count($markers)>0 ) :?>
+ <script>
+  //<![CDATA[
+  var markers = [
+<?php foreach ($markers as $marker) : ?>
+ ['<?php echo $marker['name'];?>',<?php echo $marker['lat'];?>,<?php echo $marker['long'];?>],
+<?php endforeach ?>
+  ];
+    //]]>
+ </script>
+<?php endif ?>
+ <!--<div id="show-all-store">
+    <button onclick="place_multiple_markers(markers, googleMapDivId);" class="button" title="<?php echo Mage::helper('clarion_storelocator')->__('Show All Stores') ?>" type="button">
+        <span>
+          <span>
+            <?php echo Mage::helper('clarion_storelocator')->__('Show All Stores') ?>
+          </span>
+        </span>
+    </button>
+ </div>-->
+	<script type="text/javascript">
+    //<![CDATA[
+        var addressSearch = new VarienForm('addressSearch', true);
+    //]]>
+    </script>
+  <script>
+	<?php if(isset($_GET['country']) && isset($_GET['city']))	{?>
+      //<![CDATA[
+    var googleMapDivId = 'store-list-map-canvas';
+    google.maps.event.addDomListener(window, 'load', place_multiple_markers(markers, googleMapDivId));
+      //]]>
+	<?php }else{
+		?>
+		//<![CDATA[
+			google.maps.event.addDomListener(window,'load',function(){				
+				var country = "India";
+				var geocoder = new google.maps.Geocoder();
+				var myLatlng = new google.maps.LatLng(-34.397, 150.644);
+				var myOptions = {
+				  zoom: 5,
+				  center: myLatlng,
+				  mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				var map = new google.maps.Map(document.getElementById("store-list-map-canvas"),myOptions);
+				geocoder.geocode( {'address' :	 country}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						map.setCenter(results[0].geometry.location);
+					}
+				});
+			});
+			//]]>
+		<?php
+	}?>
+</script>
+<?php endif ?>

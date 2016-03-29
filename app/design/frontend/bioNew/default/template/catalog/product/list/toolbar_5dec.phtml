@@ -1,0 +1,22 @@
+<?php if($this->getCollection()->getSize()): ?>
+<div class="showingProduct">
+    <?php echo $this->getPagerHtml() ?>
+    
+  <span><?php if(!$this->getRequest()->getParam('item_ingregident')) echo $this->__('Showing %s Product(s)', $this->getTotalNum()) ?></span>
+   <?php if( $this->isExpanded() ): ?>
+  <div class="shortWrap"> 
+    <small><?php echo $this->__('Sort By') ?></small>
+    <div class="drop">
+        <select class="stylish-drop" onchange="setLocation(this.value)">
+        <?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
+            <option value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php if($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
+                <?php echo $this->__($_order) ?>
+            </option>
+        <?php endforeach; ?>
+        </select>
+    </div>
+    <a class="dwn-up" href="<?php echo $this->getCurrentDirection() == 'desc'? $this->getOrderUrl(null, 'asc'):$this->getOrderUrl(null, 'desc'); ?>"><i class="fa fa-long-arrow-<?php echo $this->getCurrentDirection() == 'desc'? 'down':'up'; ?>"></i></a>
+  </div>
+  <?php endif; ?>
+</div>
+<?php endif ?>

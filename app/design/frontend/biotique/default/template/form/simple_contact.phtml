@@ -1,0 +1,161 @@
+<script type="text/javascript" src="/skin/frontend/biotique/default/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/skin/frontend/biotique/default/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ //Enquiry form validation starts 
+               		jQuery("#simple_contact_form").validate({
+                rules: {
+                    name: {
+                        required: true
+                    },
+					 hotels_no: {
+                        required: true
+                    },
+					 guests_no: {
+                        required: true
+                    },
+					 contact_name: {
+                        required: true
+                    },
+					 designation: {
+                        required: true
+                    },
+					 contact_no: {
+                        required: true
+                    },
+					address: {
+                        required: true
+                    },
+					email: {
+                        required: true
+                    }
+                },
+                messages: {
+				 name: {
+                        required: "Hotel Name is required",
+                    },
+					hotels_no: {
+                        required: "No. of Hotels is required",
+                    },
+					guests_no: {
+                        required: "No. of Guest Rooms is required",
+                    },
+					contact_name: {
+                        required: "Contact Person Name is required",
+                    },
+					designation: {
+                        required: "Designation is required",
+                    },
+					contact_no: {
+                        required: "Contact No. is required",
+                    },
+					address: {
+                        required: "Address is required",
+                    },
+					email: {
+                        required: "Email is required",
+                    }
+				},
+				highlight: function(element) {
+	               jQuery(element).addClass("error");
+	         },
+	         unhighlight: function(element) {
+	           
+	               jQuery(element).removeClass("error");
+	         },
+	         errorPlacement: function(error, element) {
+	            
+	               error.insertAfter(element);
+	           
+	         },
+                submitHandler: function(form) {
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "<?php echo $this->getUrl('form-simplecontact/') ?>index/sendemail",
+                        data: jQuery(form).serialize(),
+                        cache: false,
+                        success: function(result) 
+						{
+                            if (result == '1')
+							{
+								jQuery("#simple_contact_form")[0].reset();
+								alert('Yo');       
+							}
+							else
+							{
+								jQuery("#simple_contact_form")[0].reset();
+								alert('No');                            
+							} 
+						}
+                    });
+                    return false;
+                }
+            });
+ //Enquiry form validation ends 			
+        });
+</script>
+
+<div class="box simple_contact">
+ 
+<form id="simple_contact_form" name="simple_contact_form">
+ 
+    <fieldset class="group-select">
+        <ul>
+        <li>
+                <div class="input-box">
+                    <label for="name">Hotel Name<span class="required">*</span></label><br />
+                    <input name="name" id="name" title="Hotel Name" value="" class="required-entry input-text" type="text" />
+                </div>
+				<div class="input-box">
+                    <label for="name">No. of Hotels <span class="required">*</span></label><br />
+                    <input name="hotels_no" id="hotels_no" title="No. of Hotels" value="" class="required-entry input-text" type="text" />
+                </div>
+				<div class="input-box">
+                    <label for="name">No. of Guest Rooms<span class="required">*</span></label><br />
+                    <input name="guests_no" id="guests_no" title="No. of Guest Rooms" value="" class="required-entry input-text" type="text" />
+                </div>
+				<div class="input-box">
+                    <label for="name">Current Brand for Room Amenties</label><br />
+                    <input name="brand_amenties" id="brand_amenties" title="Current Brand for Room Amenties" value="" class="required-entry input-text" type="text" />
+                </div>
+				<div class="input-box">
+                    <label for="name">Average Room Occupany/Year(in %)</label><br />
+                    <input name="room_occupany" id="room_occupany" title="Average Room Occupany/Year(in %)" value="" class="required-entry input-text" type="text" />
+                </div>
+				<div class="input-box">
+                    <label for="name">Query</label><br />
+                     <textarea name="query" id="query" title="Query" class="required-entry input-text" style="height:100px;" cols="50" rows="3"></textarea>
+                </div>
+				<div class="input-box">
+                    <label for="name">Contact Person Name<span class="required">*</span></label><br />
+                    <input name="contact_name" id="contact_name" title="Contact Person Name" value="" class="required-entry input-text" type="text" />
+                </div>
+				<div class="input-box">
+                    <label for="name">Designation <span class="required">*</span></label><br />
+                    <input name="designation" id="designation" title="Designation" value="" class="required-entry input-text" type="text" />
+                </div>
+				<div class="input-box">
+                    <label for="name">Contact No.<span class="required">*</span></label><br />
+                    <input name="contact_no" id="contact_no" title="Contact No." value="" class="required-entry input-text" type="text" />
+                </div>
+				<div class="input-box">
+                    <label for="email">Email Address<span class="required">*</span></label><br />
+                    <input name="email" id="email" title="Email" value="" class="required-entry input-text validate-email" type="text" />
+                </div>
+				<div class="input-box">
+                    <label for="name">Website</label><br />
+                    <input name="website" id="website" title="Website" value="" class="required-entry input-text" type="text" />
+                </div>
+				<div class="input-box">
+                    <label for="name">Address<span class="required">*</span></label><br />
+                    <textarea name="address" id="address" title="Address" class="required-entry input-text" style="height:100px;" cols="50" rows="3"></textarea>
+                </div>
+                </li>
+                </ul>
+    </fieldset>
+    <div class="button-set">
+        <p class="required">* Required Fields</p>
+        <input class="form-button" type="submit">
+    </div>
+</form>
+</div>

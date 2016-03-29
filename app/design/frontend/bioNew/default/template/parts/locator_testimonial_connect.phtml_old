@@ -1,0 +1,126 @@
+<script src="http://connect.facebook.net/en_US/sdk.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://assets.pinterest.com/sdk/sdk.js"></script>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1647796852130331',
+        xfbml      : true,
+        version    : 'v2.4'
+      });
+    };
+   </script>
+   <script>
+    window.pAsyncInit = function() {
+        PDK.init({
+            appId: "4799510993038229145", // Change this
+            cookie: true
+        });
+    };
+   </script>
+   <style>
+    .social_panel{
+      display:none;
+    }
+    .fixed_height{
+      height:310px;
+    }
+   </style>
+   <script>
+   jQuery.noconflict();
+    function doit(str){
+      $(".social_panel").hide(1000);
+      $("ul.socialTab > li").removeClass("active");
+      if(str=='twit') {
+        $("#twit").toggle(1000);
+        $("#twitter_btn").parent().addClass("active");
+      }
+      else if(str=="fb"){
+        $("#fb_btn").parent().addClass("active");
+        $("#faceb").toggle(1000);
+      }
+      else if(str="pin"){
+        $("#pin_btn").parent().addClass("active");
+        $("#pinterest").toggle(1000);
+      }
+    }
+   </script>
+<div class="site_info">
+
+    <div class="layout">
+
+      <section class="locator">
+
+        <h4>STORE LOCATOR</h4>
+
+        <p>Search Stores using the options below:</p>
+
+        <div class="drop">
+
+          <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('clarion/storelocator/listt.phtml')->toHtml();?>
+
+        </div>
+
+      </section>
+
+	  <section class="testimonials">
+
+      <?php echo $this->getLayout()->createBlock('testimonial/testimonial')->setTemplate('testimonial/testimonialt.phtml')->toHtml();?>
+
+	  </section>
+
+      <section class="social_connect">
+
+        <h4>CONNECT WITH US</h4>
+
+        <section class="social_icons">
+
+          <section class="social_icon_left">
+
+            <section class="social_icon_right fixed_height">
+
+              <section class="social_icon_mid">
+
+                <ul class="socialTab">
+
+                  <li><a class="twitter" id="twitter_btn" href="#" onClick="doit('twit')"></a> </li>
+
+                  <li><a class="fb" href="#" id="fb_btn" onClick="doit('fb')"></a> </li>
+
+                  <li><a class="yt" href="#yout"></a> </li>
+
+                  <li><a class="pin" href="#pin" id="pin_btn" onClick="doit('pin')"></a> </li>
+
+                </ul>
+          
+              </section>
+                  <div id='twit' class="social_panel">
+                          <a class="twitter-timeline"  href="https://twitter.com/Biotique_World" data-widget-id="661518886123114498">Tweets by @Biotique_World</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
+              <div id="faceb" class="social_panel">
+                  <div class="fb-page" data-href="https://www.facebook.com/Biotique"
+                  data-hide-cover="true" data-show-facepile="false" data-small-header="true" adapt_container_width="true"
+                  data-show-posts="true"></div></div>
+              <div id="pinterest" class="social_panel">
+                <a href="https://www.pinterest.com/biotique/"
+                   data-pin-do="embedUser"
+                   data-pin-board-width="400"
+                   data-pin-scale-height="320"
+                   data-pin-scale-width="80">
+                </a>
+              </div>
+            </section>
+
+          </section>
+
+          
+
+        </section>
+
+      </section>
+
+    </div>
+
+  </div>

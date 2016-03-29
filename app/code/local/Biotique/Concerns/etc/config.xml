@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Biotique_Concerns>
+			<version>0.0.1</version>
+		</Biotique_Concerns>
+	</modules>
+
+	<global>
+		<models>
+			<biotique_concerns>
+				<class>Biotique_Concerns_Model</class>
+				<resourceModel>biotique_concerns_resource_mysql4</resourceModel>
+			</biotique_concerns>
+			<biotique_concerns_resource_mysql4>
+				<class>Biotique_Concerns_Model_Mysql4</class>
+				<entities>
+					<match>
+						<table>bio_concerns</table>
+					</match>
+				</entities>
+			</biotique_concerns_resource_mysql4>
+		</models>
+		<resources>
+			<biotique_concerns_setup>
+				<setup>
+					<module>Biotique_Concerns</module>
+					<class>Biotique_Concerns_Model_Resource_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</biotique_concerns_setup>
+			<biotique_concerns_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</biotique_concerns_write>
+			<biotique_concerns_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</biotique_concerns_read>
+		</resources>
+
+		<blocks>
+			<biotique_concerns>
+				<class>Biotique_Concerns_Block</class>
+			</biotique_concerns>
+		</blocks>
+		<helpers>
+			<biotique_concerns>
+				<class>Biotique_Concerns_Helper</class>
+			</biotique_concerns>
+		</helpers>
+	</global>
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<biotique_concerns>Biotique_Concerns_Adminhtml</biotique_concerns>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+</config>

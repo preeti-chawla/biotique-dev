@@ -1,0 +1,34 @@
+ <?php 
+		$recommended="0";
+		$read = Mage::getSingleton('core/resource')->getConnection('core_read');
+		$reviewsCount = Mage::getModel('review/review')->getTotalReviews($this->getProduct()->getId(), true, Mage::app()->getStore()->getId());
+		$result_final = $read->fetchAll("SELECT * FROM review_detail LEFT JOIN review ON review_detail.review_id=review.review_id where review.entity_pk_value = '".$this->getProduct()->getId()."' AND review.status_id=1 AND review_detail.recommend=1"); 
+	
+		/*$result = $read->fetchAll("Select * FROM `review` where entity_pk_value = '".$this->getProduct()->getId()."' and status_id=1");
+			for($i=0;$i<count($result);$i++)
+			{
+			$final_res = $read->fetchAll("Select recommend FROM `review_detail` where review_id = '".$result[$i]['review_id']."'");
+				if($final_res[0]['recommend'] == '1')
+				{
+				$recommended++;
+				}
+			} */
+			$val=(count($result_final)/$this->getReviewsCount())*100;
+		?>
+ <?php if($this->getRequest()->getControllerName()=='product') { ?>
+				<p><?php echo count($result_final)." of ".$reviewsCount." (".number_format($val,2)."%)" ?> reviewers would recommend this product</p>
+				<ul class="reviewSec">
+						<li><a href="<?php echo $this->getReviewsUrl() ?>#review-form">Write a Review</a></li>
+						<li class="read"><a href="<?php echo $this->getReviewsUrl() ?>">Read All Reviews</a></li>
+				</ul>
+				<ul class="shareSec">
+						<li>Share :</li>
+						<li class="tw"><a href="#"></a></li>
+						<li class="fb"><a href="#"></a></li>
+						<li class="pint"><a href="#"></a></li>
+				</ul>
+					 <?php } ?>
+                <div class="review">
+                  <div class="star"> <span style="width:<?php echo $this->getRatingSummary() ?>%;"></span> </div>
+                  <span class="review-text">(<?php echo $reviewsCount ?> reviews)</span> 
+                </div>

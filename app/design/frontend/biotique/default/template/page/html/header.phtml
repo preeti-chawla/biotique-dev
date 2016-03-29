@@ -1,0 +1,40 @@
+ <?php $qty=$this->helper('checkout/cart')->getSummaryCount(); ?>        	  		 		
+
+		 <div class="topRow">
+            <div class="wrapper">
+               <div class="block">
+                  <div class="topLeft">
+                     <ul class="toplinks">
+                        <li><a href="#"><i class="fa fa-plus"></i> Free Shipping and Samples*</a></li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                     </ul>
+                  </div>
+				   <?php echo $this->getChildHtml('customer_form_login2'); ?>
+               </div>
+            </div>
+         </div>
+         <div class="wrapper">
+            <div class="logoBlock">
+               <figure><a href="<?php echo $this->getUrl('') ?>" <?php echo $this->getLogoAlt() ?>><img src="<?php echo $this->getSkinUrl('images/logo.png'); ?>" alt="" /></a></figure>
+            </div>
+            <div class="bottomRow">
+               <nav>
+                 <?php echo $this->getChildHtml('topMenu') ?>
+               </nav>
+               <ul class="rightIcon">
+			   <?php
+				   echo $this->getChildHtml('topSearch') ?>
+                  <li>
+                     <a href="#" id="faLock"><i class="fa fa-lock"></i></a>
+                     <div class="cartBlock">
+                        <a href="#" class="cartCtn"><i class="fa fa-times"></i></a>
+                        <h5><a href="#">RECENTLY ADDED ITEM(S)</a></h5>
+                        <span>You have <?php echo ($qty > '0' ) ? $qty :'0' ?> items in your shopping cart.</span>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      <?php if(!$this->getIsHomePage()) echo '<span class="shadow"></span>'; ?>

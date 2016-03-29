@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+  <config>
+     <modules>
+        <Ameex_Cancelorder>
+          <version>1.0.0</version>
+        </Ameex_Cancelorder>
+     </modules>
+     <frontend>
+       <routers>
+          <ameex_cancelorder>
+              <use>standard</use>
+              <args>
+                 <module>Ameex_Cancelorder</module>
+                 <frontName>cancelorder</frontName>
+              </args>
+           </ameex_cancelorder>
+       </routers>
+    </frontend>
+</config>

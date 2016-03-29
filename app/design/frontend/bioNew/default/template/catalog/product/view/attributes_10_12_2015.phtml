@@ -1,0 +1,30 @@
+<?php
+    $_helper = $this->helper('catalog/output');
+    $_product = $this->getProduct()
+?>
+<?php $category_id = Mage::registry('current_category')->getId();?>
+   <div class="tabContainer">
+      <?php if($_additional = $this->getAdditionalData()): 
+            foreach ($_additional as $_data){
+                $lbl = $this->escapeHtml($this->__($_data['label']));
+                $detail[$lbl] = $_helper->productAttribute($_product, $_data['value'], $_data['code']);
+            }
+     ?>
+
+      <ul class="tabs">
+         <li><?php if($category_id == 116 || $category_id == 141){ ?><a style="color:#9d90c5" href="#des"><span></span> Description </a><?php } else { ?> <a href="#des"><span></span> Description </a><?php }?></a></li>
+         <li><?php if($category_id == 116 || $category_id == 141){?><a style="color:#9d90c5" href="#ingr"><span></span> Ingredients </a><?php } else { ?> <a href="#ingr"><span></span> Ingredients </a><?php }?></a></li>
+		 <li><?php if($category_id == 116 || $category_id == 141){?><a style="color:#9d90c5" href="#how"><span></span> How to use </a><?php } else { ?> <a href="#how"><span></span> How to use </a><?php }?></a></li>
+         
+      </ul>
+      <div id="des" class="tabCont">
+         <p><?php echo $detail['Description']; ?></p>
+      </div>
+      <div id="ingr" class="tabCont">
+        <p><?php echo $detail['ingredients']; ?></p>
+      </div>
+      <div id="how" class="tabCont">
+        <p><?php echo $detail['How To Use']; ?></p>
+      </div>
+      <?php endif;?>
+    </div>

@@ -1,0 +1,22 @@
+ <?php $cat_id=Mage::getSingleton('catalog/layer')->getCurrentCategory()->getId();
+$innerBanner=Mage::helper('banner')->inner_banner($cat_id);
+if(isset($innerBanner[0]['image']) && $innerBanner[0]['image'] != ''){
+$image_path=Mage::getBaseUrl('media') . 'banners/' . $innerBanner[0]['image'];
+}
+else{
+$image_path=$this->getSkinUrl("images/pro-listing-banner.jpg");
+}
+?>
+<section class="innerBanner productlisting-banner">
+    <div class="innerbannerImg"><figure>
+	<img src="<?php echo $image_path ?>" alt="" />
+	</figure> 
+  </div>
+    <div class="innerbannerContent">
+      <div class="layout">        
+        <h1><?php echo $innerBanner[0]['subtitle']; ?></h1>
+        <span>Fresh, Clear, Beautiful Skin Begins Here </span>
+        <p>Cleanse your skin for a healthy and radiant complexion. Biotique offers a selection of cleansers, formulated without harsh or drying chemicals. Each one is formulated with ingredients of natural origin for normal, dry, oily, or aging skin.</p>
+      </div>
+    </div>
+  </section>

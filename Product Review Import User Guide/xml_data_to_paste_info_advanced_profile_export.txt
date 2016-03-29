@@ -1,0 +1,18 @@
+<action type="MK_Reviewexport_Model_Convert_Parser_Reviewexport" method="unparse">
+    <var name="store"><![CDATA[0]]></var>
+   </action>
+
+<action type="dataflow/convert_mapper_column" method="map">
+</action>
+
+<action type="dataflow/convert_parser_csv" method="unparse">
+    <var name="delimiter"><![CDATA[,]]></var>
+    <var name="enclose"><![CDATA["]]></var>
+    <var name="fieldnames">true</var>
+</action>
+
+<action type="dataflow/convert_adapter_io" method="save">
+    <var name="type">file</var>
+    <var name="path">var/export</var>
+    <var name="filename"><![CDATA[export_review.csv]]></var>
+</action>

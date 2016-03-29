@@ -1,0 +1,42 @@
+<?php
+$category_id = 146;
+$products = Mage::getModel('catalog/category')->load($category_id)
+ ->getProductCollection()
+ ->addAttributeToSelect('*') // add all attributes - optional
+ ->addAttributeToFilter('status', 1) // enabled
+ ->addAttributeToFilter('best_seller_product', 1) //visibility in catalog,search
+ ->setOrder('price', 'ASC'); //sets the order by price
+?>
+<div class="bestsellerColm">
+  <h2>best sellers</h2>
+  <div class="slidercolm">
+<?php
+$products_count = $products->count();
+
+if($products_count>0)
+{
+?>
+	<ul class="bestsellerSlider">            
+<?php
+foreach($products as $product)
+{ ?>
+	
+      <li>
+          <div class="bs-productBox">
+            <figure><a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($product->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(265) ?>"/></a></figure>
+            <div class="productSlider-con">
+              <h4><a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($product->getName()) ?>"><?php echo $product->getName(); ?></a></h4>
+              <span><?php echo $product->getPrice(); ?></span>
+              <a href="<?php echo $product->getProductUrl() ?>" class="ctn" title="<?php echo $this->htmlEscape($product->getName()) ?>">Shop Now</a>
+            </div>
+          </div>
+      </li>
+<?php } ?>
+	</ul>
+<?php
+}else{
+	echo '<div class="noSeller">No Best Sellers</div>';
+}
+?>
+  </div>
+</div>

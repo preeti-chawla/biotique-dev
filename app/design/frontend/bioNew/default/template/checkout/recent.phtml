@@ -1,0 +1,21 @@
+<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+<div class="likeHead">
+   <h3>Recently Viewed</h3>
+</div>
+<div class="shoppingProduct">                
+	<ul id="shoppingSlider">
+		<?php foreach ($_products as $_item): ?>
+	      <li>
+	         <div class="bs-productBox">
+	            <figure><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(50, 50) ?>" /></figure>
+	            <div class="productSlider-con">
+	               <h4><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></h4>
+	               <span><?php echo $this->getPriceHtml($_item, true) ?></span>
+	               <a href="<?php echo $this->getProductUrl($_item) ?>" class="ctn">Shop Now</a>
+	            </div>
+	         </div>
+	      </li>
+		<?php endforeach; ?> 
+	</ul>
+</div>
+<?php endif; ?>                     

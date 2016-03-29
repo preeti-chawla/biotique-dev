@@ -1,0 +1,20 @@
+
+<section class="innerBanner productlisting-banner">
+    <div class="innerbannerImg"><figure>
+	<?php $_category = Mage::getModel('catalog/layer')->getCurrentCategory();
+$_catImgUrl = $_category->getImageUrl()	  //Get the file name of the Image stored for the category ?>
+<?php if($_catImgUrl) {?>
+<img src="<?php echo $_catImgUrl;  ?>" />
+<?php } else { ?>
+<img src="<?php echo $this->getSkinUrl('images/pro-listing-banner.jpg') ?>" />
+<?php } ?>
+	</figure> 
+  </div>
+    <div class="innerbannerContent">
+      <div class="layout">        
+        <h1><?php echo $_category->getName(); ?></h1>
+        <span><?php echo $_category->getDescription(); ?></span>
+        
+      </div>
+    </div>
+  </section>

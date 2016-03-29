@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config>
+<tabs>
+	<settings translate="label" module="settings">
+		<label> Contact Form </label>
+		<sort_order>100</sort_order>
+		<class>settings</class>
+	</settings>
+</tabs>
+<sections>
+	<settings translate="label" module="settings">
+
+		<class>separator-top</class>
+		<label>Contact Form Configuration</label>
+		<tab>settings</tab> <!-- the important one -->
+		<sort_order>0</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+
+		<groups>
+			<helpline translate="label"> 
+				<label> Contact Form </label>
+				<frontend_type>text</frontend_type>
+				<sort_order>0</sort_order>
+				<show_in_default>1</show_in_default>
+				<show_in_website>1</show_in_website>
+				<show_in_store>1</show_in_store>
+
+				<fields>
+					<contactmail translate="label">
+						<label> Contact First Block Email  </label>
+						<frontend_type>text</frontend_type>
+						<sort_order>0</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</contactmail>
+
+					<contactmailsecond translate="label">
+						<label> Contact Second Block Email  </label>
+						<frontend_type>text</frontend_type>
+						<sort_order>0</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</contactmailsecond>
+
+					<contactmailthird translate="label">
+						<label> Contact Third Block Email  </label>
+						<frontend_type>text</frontend_type>
+						<sort_order>0</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</contactmailthird>				
+
+			   	</fields>
+			</helpline>
+      	</groups>
+	</settings>
+</sections>
+</config>

@@ -1,0 +1,198 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+  <section class="bodyContainer">
+    <div class="layout"> 
+      <!--<span class="shadow"></span>-->
+      <div class="shoppingbagContainer">
+        <ul class="shoppingBag">
+		<!--  <li><span class="sCircle">1</span><span class="shoppingText">Shopping Bag</span></li>
+          <li><span class="sCircle">2</span><span class="shoppingText">Gift and sample</span></li>
+          <li><span class="sCircle ">3</span><span class="shoppingText ">Shipping and Payment</span></li>
+          <li><span class="sCircle active">4</span><span class="shoppingText activeText">Order review</span></li>-->
+		
+      <li><a href="<?php echo Mage::getUrl("checkout/cart"); ?>"><span class="sCircle ">1</span><span class="shoppingText ">Shopping Bag</span></a></li>
+	  <li><a href="<?php echo Mage::getUrl("checkout/onepage"); ?>"><span class="sCircle ">2</span><span class="shoppingText ">Onepage checkout</span></li>
+<!--      <li><span class="sCircle">3</span><span class="shoppingText">Payment Details </span></li> -->
+      <li><span class="sCircle active">3</span><span class="shoppingText activeText">Place  Order</span></li>
+	 
+        </ul>
+         <span class="shoppingShadow"></span>
+      </div>
+
+      <div class="shoppingdetailsArea">
+        <div class="shoppingareaLeft">
+          <div class="shadowtop">
+            <div class="shadowBottom">
+              
+              <div class="orderPlace">
+                <h3><?php echo $this->__('Order Successfully Placed!') ?></h3>
+				<?php echo $this->getMessagesBlock()->toHtml() ?>
+				<!--<h2 class="sub-title"><?php echo $this->__('Thank you for your purchase!') ?></h2>-->
+			                
+				<?php if ($this->getOrderId()):?>
+				<?php if ($this->getCanViewOrder()) :?>
+					<h4><?php echo $this->__('Your order #: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></h4>
+				<?php  else :?>
+					<h4><?php echo $this->__('Your order #: %s.', $this->escapeHtml($this->getOrderId())) ?></h4>
+				<?php endif;?>
+					<p class="confirmation"><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
+				<?php if ($this->getCanViewOrder() && $this->getCanPrintOrder()) :?>
+					<p class="confirmation">
+						<?php echo $this->__('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
+						<?php echo $this->getChildHtml() ?>
+					</p>
+				<?php endif;?>
+				<?php endif;?>
+				<?php if ($this->getAgreementRefId()): ?>
+					<p class="confirmation"><?php echo $this->__('Your billing agreement # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getAgreementUrl()), $this->escapeHtml($this->getAgreementRefId())))?></p>
+				<?php endif;?>
+
+				<?php if ($profiles = $this->getRecurringProfiles()):?>
+				<p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+				<ul class="disc">
+				<?php foreach($profiles as $profile):?>
+				<?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
+					<li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
+				<?php endforeach;?>
+				</ul>
+				<?php endif;?>
+
+				<div class="buttons-set">
+					<button type="button" class="button" title="<?php echo $this->__('Continue Shopping') ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+				</div>
+				</div>
+				<div class="offer">
+					<figure>
+					  <a href="#"><img src="<?php echo Mage::getBaseUrl(); ?>skin/frontend/bioNew/default/images/offer.png" alt="" /></a>
+					</figure>
+				</div>
+				
+				</div>
+				</div>
+				</div>
+				
+				 <div class="shoppingareaRight">
+						
+						<?php  
+							
+							$count = $this->helper('checkout/cart')->getSummaryCount();  //get total items in cart
+							$total = $this->helper('checkout/cart')->getQuote()->getGrandTotal();
+							$subtotal = Mage::helper('checkout/cart')->getQuote()->getSubtotal();
+							$shippingCharge = Mage::getSingleton('checkout/cart')->getQuote()->getGroupedAllShippingRates();
+							$countryCode = Mage::app()->getStore()->getCurrentCurrencyCode();
+                                                        
+                                                        print_r($count,$total,$shippingCharge);
+						 ?>
+						  <div class="chooseMethodHd">
+							<h3>order summAry</h3>
+						  </div>
+						
+
+							<!--order info Atul-->
+							<div class="order-opt">
+						<?php						 
+																 
+								  /* First, let's load some Load order details */
+								  $order_id = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+								  $order_details = Mage::getModel('sales/order')->loadByIncrementId($order_id);
+                                                                                                                                                                                          
+								  /* Get shipping method  */
+								  $shipping_method = $order_details->_data["shipping_description"];
+								  $total_qty_ordered = $order_details->_data["total_qty_ordered"];
+									echo "<h5>".(int)$total_qty_ordered." ITEM</h5>";
+									echo '<p class="subtotal"><span class="spgtxt">Subtotal before Shipping:</span><span class="amount">' . Mage::helper("core")->currency($order_details->subtotal)  . "</span></p>";
+									echo '<p class="tax"><span class="spgtxt">Tax:</span><span class="amount">' . Mage::helper("core")->currency($order_details->tax_amount)  . "</span></p>";
+									echo '<p class="discount"><span class="spgtxt">Discount:</span><span class="amount">' . Mage::helper("core")->currency($order_details->discount_amount) . "</span></p>";
+									echo '<p class="discount"><span class="spgtxt">Shipping Amount:</span><span class="amount">' . Mage::helper("core")->currency($order_details->shipping_amount) . "</span></p>";
+									//echo '<p class="paid">Amount Paid:<span class="amount">' . Mage::helper("core")->currency($order_details->total_paid) . "</span></p>";
+									echo '<p class="paid"><span class="spgtxt">Payable Amount:</span><span class="amount">' . Mage::helper("core")->currency($order_details->grand_total) . "</span></p>";
+									//grand_total
+								  /* Get ship-to address information  */
+								  
+								  $shipping_address_data = $order_details->getShippingAddress();
+								  //print_r($shipping_address_data);
+								  //total_qty_ordered
+								  ?>
+								  </div>
+								  <div class="success-opt"> 
+								  <?php echo " " . $shipping_address_data['total_qty_ordered'];
+								   echo "<h3>DELIVER TO:</h3><p>" . $shipping_address_data['firstname'];
+								   echo " " . $shipping_address_data['lastname']."</p>";
+								   echo " <p> Mobile No:" . $shipping_address_data['telephone']."</p>";
+								   echo "<p>" . $shipping_address_data['street']."</p>";
+								   echo "<p>" . $shipping_address_data['city'];
+								   echo ", " . $shipping_address_data['region']."</p>";
+								   echo "<p>Postcode: " . $shipping_address_data['postcode']."</p>";
+								   echo "<p>" . $shipping_address_data['country_id']."</p>";
+								   echo "<h3>SHIPPING METHOD:</h3><p>" .$shipping_method."</p>";
+								   
+								   
+						?>
+						</div>
+					<!--end of order info-->
+
+						  
+						  
+							<ul class="payable">
+							<?php echo $this->getChildHtml('totals'); ?>
+							<?php echo $this->getChildHtml('methods'); ?>
+							</ul> 
+							<fieldset id="checkout-payment-method-load">
+								<?php echo $this->getChildHtml('methods') ?>
+							</fieldset>
+							
+														
+						<div class="secure">
+							<ul class="risk">
+							  <li class="riskIcon">                
+								<span class="shop">Zero</span>
+								<span class="buy">Risk Buy</span>
+							  </li>
+							  <li class="shopIcon">                
+								<span class="shop">Shop</span>
+								<span class="buy">Safe & Secure</span>
+							  </li>
+							  <li class="shopwithIcon">                
+								<span class="shop">Shop with</span>
+								<span class="buy">confidence</span>
+							  </li>
+							</ul>
+						  </div>
+        </div>
+          
+          
+          
+          
+          
+   </div>
+				
+                           
+				</div>
+				
+
+  </section>

@@ -1,0 +1,10 @@
+<section class="heroBanner">
+    <ul id="heroSlider">
+	<?php 
+	$bannerSlides=Mage::helper('banner')->slider();
+	for($i=0;$i<sizeof($bannerSlides);$i++){
+	?>
+      <li><a href="<?php echo $bannerSlides[$i]['slider_link'] ?>" target="_blank"><img src="<?php echo Mage::getBaseUrl('media') . 'banners/' . $bannerSlides[$i]['image']?>" alt="" /></a></li>
+	<?php } ?> 
+	</ul>
+  </section>

@@ -1,0 +1,86 @@
+table.grid {
+background-color: white;
+color: black;
+font: normal 80% Verdana;
+margin-top: 1em;
+margin-left: 3px;
+padding: 0;
+margin-right: 5px;
+width: 95%;
+border-collapse: collapse;
+}
+
+table.grid td {
+	vertical-align: top;
+	margin: 0;
+	padding: 6px;
+	border-width: 2px;
+}
+table.grid td.heading {
+	background-color: #D8EA99;
+}
+table.grid td.first {
+	width: 20%;
+}
+table.grid td.second {
+	width: 15%;
+}
+table.grid td.third {
+	width: 65%;
+}
+
+pre, .codehighlight{
+background-color: #EFEFEF;
+font-size: 13px;
+width: 98%;
+border: 1px dashed gray;
+/*background-color: #FFFFD7;*/
+padding: 5px;
+}
+
+code{
+background-color: #EFEFEF;
+font-size: 13px;
+}
+
+.codebg{
+background-color: #EFEFEF;
+}
+
+.cc{ /*code comment*/
+color: #868686;
+}
+
+.codehighlight{
+font-family: Arial;
+}
+
+.rightit{
+float: right;
+}
+
+.codecontainer{
+height: 150px;
+border: 1px solid gray;
+width: 98%;
+}
+
+.selectall{
+padding: 3px 6px 4px 6px;
+text-decoration: none;
+font: bold 13px Verdana;
+color: navy;
+background-color: #FFFFAA;
+border: 1px solid gray;
+border-bottom-width: 0;
+}
+
+.selectall:hover{
+border-color: black;
+color: black;
+background-color: #ffef97;
+}
+
+span.red {
+	color: red;
+}

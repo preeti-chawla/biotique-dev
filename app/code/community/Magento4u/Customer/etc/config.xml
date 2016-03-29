@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magento4u_Customer>
+            <version>1.0.1</version>
+        </Magento4u_Customer>
+    </modules>
+    <global>
+        <resources>
+            <magento4u_customer_setup>
+                <setup>
+                    <module>Magento4u_Customer</module>
+                    <class>Mage_Customer_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </magento4u_customer_setup>
+        </resources>         
+    </global>
+    <frontend>
+        <!--Procedure 1 to overwrite controller -->
+        <routers>
+            <customer>
+                <use>standard</use>
+                <args>
+                    <modules>
+                        <Magento4u_Customer before="Mage_Customer">Magento4u_Customer</Magento4u_Customer>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+        <!--Procedure 1 to overwrite controller -->
+        <layout>
+            <updates>
+                <magento4u_customer>
+                    <file>magento4u_customer.xml</file>
+                </magento4u_customer>                    
+            </updates>
+        </layout>
+    </frontend> 
+</config>
+
+<!--Procedure 2 to overwrite controller -->
+<!--
+<frontend>
+    <routers>
+        <my_customer>
+            <use>standard</use>
+            <args>
+                <module>My_Customer</module>
+                <frontName>customer</frontName>
+            </args>
+        </my_customer>
+    </routers>
+</frontend>
+        
+<global>
+    <rewrite>
+        <my_customer_account>
+            <from><![CDATA[#^/account/#]]>
+            </from>
+            <to>/customer/account/</to>
+        </my_customer_account>
+
+        <my_customer_address>
+            <from><![CDATA[#^/address/#]]>
+            </from>
+            <to>/customer/address/</to>
+        </my_customer_address>
+    </rewrite>
+</global> -->
+<!--Procedure 2 to overwrite controller -->

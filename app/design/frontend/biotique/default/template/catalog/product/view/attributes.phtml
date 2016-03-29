@@ -1,0 +1,28 @@
+<?php
+    $_helper = $this->helper('catalog/output');
+    $_product = $this->getProduct()
+?>
+   <div class="tabContainer">
+      <?php if($_additional = $this->getAdditionalData()): 
+            foreach ($_additional as $_data){
+                $lbl = $this->escapeHtml($this->__($_data['label']));
+                $detail[$lbl] = $_helper->productAttribute($_product, $_data['value'], $_data['code']);
+            }
+        ?>
+
+      <ul class="tabs">
+         <li><a href="#des"><span></span>Description</a></li>
+         <li><a href="#ingr"><span></span>Ingredients</a></li>
+         <li><a href="#how"><span></span>How to use</a></li>
+      </ul>
+      <div id="des" class="tabCont">
+         <p><?php echo $detail['Description']; ?></p>
+      </div>
+      <div id="ingr" class="tabCont">
+        <p><?php echo $detail['Ingredient']; ?></p>
+      </div>
+      <div id="how" class="tabCont">
+        <p><?php echo $detail['How To Use']; ?></p>
+      </div>
+      <?php endif;?>
+    </div>

@@ -1,0 +1,28 @@
+<?php
+//$category_id = 3;
+//$products = Mage::getModel('catalog/category')->load($category_id)
+$products = Mage::getModel('catalog/product')->getCollection()
+ ->addAttributeToSelect('*') // add all attributes - optional
+ ->addAttributeToFilter('status', 1) // enabled
+ ->addAttributeToFilter('product_special_offer', 1) //visibility in catalog,search
+ ->setOrder('price', 'ASC'); //sets the order by price
+
+$currency_symbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol();
+?>
+<?php foreach($products as $product) { ?>
+  <li>
+    <div class="bs-offerbox">
+      <figure>
+        <a href="<?php echo $product->getProductUrl(); ?>" title="<?php echo $this->htmlEscape($product->getName()); ?>"><img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(265); ?>"/></a>
+      </figure>
+      <div class="bs-offer-text">
+        <h5><a href="<?php echo $product->getProductUrl(); ?>" title="<?php echo $this->htmlEscape($product->getName()); ?>"><?php echo $product->getName(); ?></a></h5>
+        <small><?php echo $this->htmlEscape($product->getShortDescription()); ?></small>
+        <!--<p>Set of 6 Product for Radiant Fair Glow</p>-->
+        <strong><?php echo $currency_symbol.number_format($product->getPrice(), '2', '.', ','); ?></strong>
+        <a href="<?php echo $product->getProductUrl(); ?>"  class="ctn" title="<?php echo $this->htmlEscape($product->getName()); ?>">Shop Now</a>
+      </div>
+    </div>
+  </li>
+<?php } ?>
+

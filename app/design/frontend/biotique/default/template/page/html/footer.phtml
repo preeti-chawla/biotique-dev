@@ -1,0 +1,57 @@
+      <footer id="footer">
+         <section class="footersection1">
+            <div class="wrapper">
+               <?php echo $this->getChildHtml('footer_toplinks') ?>
+            </div>
+         </section>
+         <section class="footersection2">
+            <div class="wrapper">
+               <div class="block">
+                  <div class="f-colm">
+                     <?php echo $this->getChildHtml('footer_about_us') ?>
+                  </div>
+                  <div class="f-colm">
+                     <?php echo $this->getChildHtml('footer_customer') ?>
+                  </div>
+                  <div class="f-colm">
+                     <?php echo $this->getChildHtml('footer_account') ?>
+                  </div>
+                  <div class="f-colm">
+                     <?php echo $this->getChildHtml('footer_products') ?>
+                  </div>
+                  <div class="f-colm">
+                     <?php echo $this->getChildHtml('footer_corporate') ?>
+                  </div>
+                  <div class="f-colm social-colm">
+                     <?php echo $this->getChildHtml('footer_social') ?>
+                  </div>
+               </div>
+               <p><?php echo $this->getCopyright() ?></p>
+            </div>
+         </section>
+         <section class="secureSec">
+            <div class="wrapper">
+               <div class="block">
+                  <div class="secureShop">
+                     <h4>Secure shopping :</h4>
+                     <figure><img src="<?php echo $this->getSkinUrl('images/secure_Img.jpg'); ?>" alt="" /></figure>
+                  </div>
+                  <div class="paymentSec">
+                     <h4>Payment options :</h4>
+                     <figure><img src="<?php echo $this->getSkinUrl('images/payimg.png'); ?>" alt="" /></figure>
+                  </div>
+                  <div class="shippingSec">
+                     <h4>Shipping Partners :</h4>
+                     <figure><img src="<?php echo $this->getSkinUrl('images/shipping.png'); ?>" alt="" /></figure>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="productSec">
+            <div class="wrapper">
+               <?php echo $this->getChildHtml('footer_products_info') ?>
+            </div>
+         </section>
+      </footer>
+      <?php echo $this->getChildHtml('footerstrip');
+	  	    echo $this->getChildHtml('newsletter') ?>

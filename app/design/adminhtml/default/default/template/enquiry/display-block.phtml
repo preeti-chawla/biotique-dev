@@ -1,0 +1,53 @@
+<div class="content-header">
+	<table cellspacing="0">
+			<tr>
+				<td style="width:50%;"><h3 class="icon-head head-products"><?php echo "Enquiries" ?></h3></td>
+			</tr>
+	</table>
+</div>
+<div class="grid">
+	<div class="hor-scroll">
+		<table cellspacing="0" class="data" id="customerGrid_table">
+				<thead>
+					<tr class="headings">
+					<th><span class="nobr"><a href="#" name="entity_id" title="asc" class="sort-arrow-desc"><span class="sort-title">ID</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="name" title="asc" class="not-sort"><span class="sort-title">Hotel Name</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="hotels_no" title="asc" class="not-sort"><span class="sort-title">No. of Hotels</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="guests_no" title="asc" class="not-sort"><span class="sort-title">No. of Guest Rooms</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="brand_amenties" title="asc" class="not-sort"><span class="sort-title">Current Brand for Room Amenties</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="room_occupany" itle="asc" class="not-sort"><span class="sort-title">Average Room Occupany/Year(in %)</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="query" title="asc" class="not-sort"><span class="sort-title">Query</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="contact_name" title="asc" class="not-sort"><span class="sort-title">Contact Person Name</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="designation" title="asc" class="not-sort"><span class="sort-title">Designation</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="contact_no" title="asc" class="not-sort"><span class="sort-title">Contact No.</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="email" title="asc" class="not-sort"><span class="sort-title">Email Address</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="website" title="asc" class="not-sort"><span class="sort-title">Website</span></a></span></th>
+					<th><span class="nobr"><a href="#" name="address" title="asc" class="not-sort"><span class="sort-title">Address</span></a></span></th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php
+                $numColumns = sizeof($this->getColumns());
+				for($i=0;$i<count($data);$i++){
+				$j=$i+1;
+				?>
+					<tr>
+					<td class=" a-right "><?php echo $j ?></td>
+					<td class=" "><?php echo $data[$i]['hotel_name'] ?></td>
+					<td class=" "><?php echo $data[$i]['hotels_no'] ?></td>
+					<td class=" "><?php echo $data[$i]['guests_no'] ?></td>
+					<td class=" "><?php echo $data[$i]['brand_amenties'] ?></td>
+					<td class=" "><?php echo $data[$i]['room_occupany'] ?></td>
+					<td class=" "><?php echo $data[$i]['query'] ?></td>
+					<td class=" "><?php echo $data[$i]['contact_name'] ?></td>
+					<td class=""><?php echo $data[$i]['designation'] ?></td>
+					<td class=" "><?php echo $data[$i]['contact_no'] ?></td>
+					<td class=" "><?php echo $data[$i]['email'] ?></td>
+					<td class=" "><?php echo $data[$i]['website'] ?></td>
+					<td class="last"><?php echo $data[$i]['address'] ?></td>
+					</tr>
+				<?php } ?>
+				</tbody>
+		</table>
+	</div>
+</div>

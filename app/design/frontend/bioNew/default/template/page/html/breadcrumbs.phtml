@@ -1,0 +1,37 @@
+<section id="breadcrumbBar">
+    <div class="layout">      
+      <ul class="breadcrumb">
+	<?php  if ((!$crumbs || !is_array($crumbs)) && $this->getUrl('') != $this->getUrl('*/*/*', array('_current'=>true, '_use_rewrite'=>true))) {
+ 
+    $breadcrumb = $this->getLayout()->getBlock('breadcrumbs');
+ 
+    $breadcrumb->addCrumb('home', array('label' => Mage::helper('cms')->__('Home'), 'title' => Mage::helper('cms')->__('Home Page'), 'link' => Mage::getBaseUrl()));
+ 
+    $breadcrumb->addCrumb('my_account activeBreadcrumb', array('label' => $this->getLayout()->getBlock('head')->getTitle(), 'title' => $this->getLayout()->getBlock('head')->getTitle(), 'last' => 1));
+ 
+    $crumbs = $breadcrumb->_crumbs;
+ 
+} 
+if(count($crumbs)>0){
+foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
+            <li <?php if($_crumbInfo['last']) echo 'class="last"' ?>>
+            <?php if($_crumbInfo['link']): ?>
+                <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></a>
+            <?php elseif($_crumbInfo['last']): ?>
+                <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
+            <?php else: ?>
+                <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
+            <?php endif; ?>
+            </li>
+       <?php endforeach;
+}	   ?>
+      </ul>
+	  <?php //if($crumbs && is_array($crumbs)): ?>
+
+      <ul class="contactInfo">
+        <li>CALL : 18001039825</li>
+        <li class="emailImg"><a href="mailto:contact@biotique.com">Email Anytime</a></li>
+      </ul>  
+<?php //endif; ?>      
+    </div>
+  </section>

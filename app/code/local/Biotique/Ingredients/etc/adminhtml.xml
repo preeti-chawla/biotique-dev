@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<config>
+    <menu>
+        <biotique>
+            <children>
+                <biotique_ingredients translate="title" module="biotique_ingredients">
+                    <title>Ingredients</title>
+                    <sort_order>3</sort_order>
+                    <action>adminhtml/ingredients_banner</action>
+                </biotique_ingredients>
+            </children>
+        </biotique>
+    </menu>
+    <!-- clean cache everytime -->
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <tab1>
+                                        <title>Biotique_Ingredients</title> <!-- Used in resources tree -->
+                                    </tab1>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

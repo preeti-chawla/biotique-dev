@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <settings>
+                                        <title> Settings </title> <!-- Used in resources tree -->
+                                    </settings>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+        <settings> 
+        <title> Manage table </title>
+        <sort_order>100</sort_order>           
+            <children>
+                <Abserve_Settings>
+                    <title>Manage Data</title>
+                    <sort_order>0</sort_order>
+                    <action>settings/adminhtml_index</action>
+                </Abserve_Settings>
+            </children>
+        </custom>
+    </menu>
+</config>   

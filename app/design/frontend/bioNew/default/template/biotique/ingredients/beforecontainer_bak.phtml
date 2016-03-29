@@ -1,0 +1,30 @@
+<section class="innerBanner ingredeints-banner">
+ <div class="innerbannerImg">
+    <figure><img src="<?php echo $this->getSkinUrl('images/ingredients.jpg') ?>" alt="" /></figure>
+ </div>
+ <div class="innerbannerContent">
+    <div class="layout">
+       <h1>Ingredients</h1>
+       <p>Biotique products are made of 100% organically-pure, preservative-free ingredients and renewable resources—cultivated, gathered, blended and manufactured in the foothills of the Himalayas. No animal testing.</p>
+    </div>
+ </div>
+</section>
+
+<?php $range = $this->getRequest()->getParam('range',''); ?>
+
+<section class="filterBlock">
+ <div class="layout">
+    <span class="filterIcon"></span>
+    <ul class="filtertab">
+       <li <?php $cur_url = Mage::getUrl('ingredients'); echo $range == '' ? 'class="active"':''; ?>><a href="<?php echo $cur_url; ?>">All<span></span></a></li>
+       <li <?php $cur_url = Mage::getUrl('', array('_current' => true, '_use_rewrite' => true, '_query' => array('range' => 'a_c'))); echo $range == 'a_c' ? 'class="active"':''; ?>><a href="<?php echo $cur_url; ?>">A - C<span></span></a></li>
+       <li <?php $cur_url = Mage::getUrl('', array('_current' => true, '_use_rewrite' => true, '_query' => array('range' => 'd_f'))); echo $range == 'd_f' ? 'class="active"':''; ?>><a href="<?php echo $cur_url; ?>">D - F<span></span></a></li>
+       <li <?php $cur_url = Mage::getUrl('', array('_current' => true, '_use_rewrite' => true, '_query' => array('range' => 'g_i'))); echo $range == 'g_i' ? 'class="active"':''; ?>><a href="<?php echo $cur_url; ?>">G - I<span></span></a></li>
+       <li <?php $cur_url = Mage::getUrl('', array('_current' => true, '_use_rewrite' => true, '_query' => array('range' => 'j_l'))); echo $range == 'j_l' ? 'class="active"':''; ?>><a href="<?php echo $cur_url; ?>">J - L<span></span></a></li>
+       <li <?php $cur_url = Mage::getUrl('', array('_current' => true, '_use_rewrite' => true, '_query' => array('range' => 'm_o'))); echo $range == 'm_o' ? 'class="active"':''; ?>><a href="<?php echo $cur_url; ?>">M - O<span></span></a></li>
+       <li <?php $cur_url = Mage::getUrl('', array('_current' => true, '_use_rewrite' => true, '_query' => array('range' => 'p_r'))); echo $range == 'p_r' ? 'class="active"':''; ?>><a href="<?php echo $cur_url; ?>">P - R<span></span></a></li>
+       <li <?php $cur_url = Mage::getUrl('', array('_current' => true, '_use_rewrite' => true, '_query' => array('range' => 's_u'))); echo $range == 's_u' ? 'class="active"':''; ?>><a href="<?php echo $cur_url; ?>">S - U<span></span></a></li>
+       <li <?php $cur_url = Mage::getUrl('', array('_current' => true, '_use_rewrite' => true, '_query' => array('range' => 'v_z'))); echo $range == 'v_z' ? 'class="active"':''; ?>><a href="<?php echo $cur_url; ?>">V - Z<span></span></a></li>
+    </ul>
+ </div>
+</section>

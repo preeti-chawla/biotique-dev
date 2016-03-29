@@ -1,0 +1,50 @@
+<?php echo $this->getChildHtml('customer_form_register2') ?>
+
+<div id="emailSignup">
+   <div class="customPopup">
+      <a href="#" class="closeCtn"><i class="fa fa-times"></i></a>
+      <div class="emailSignupwrap">
+         <h5>Email Signup</h5>
+         <p>Discover our offers and beauty tips...</p>
+         <input type="text" name="" value="Email ID">
+         <input type="submit" name="" value="Sign up">
+      </div>
+   </div>
+</div>
+<div id="loginPopup">
+   <div class="customPopup">
+      <a href="#" class="closeCtn"><i class="fa fa-times"></i></a>
+      <div class="popupTop">
+         <h5>Login to your account</h5>
+      </div>
+      <div class="popupMiddle">
+         <div class="popupLeft">
+            <ul class="popupinputRow">
+               <li><input type="text" name="" value="User Name*"></li>
+               <li><input type="text" name="" value="Password"></li>
+               <li>
+                  <input type="checkbox" class="styled" name="" value="" id="logged">
+                  <label for="logged">Keep me logged In</label>
+               </li>
+               <li><input type="submit" name="" value="Log In"></li>
+               <li><a href="#">Forgot your password?</a></li>
+            </ul>
+         </div>
+         <div class="popupRight">
+            <ul class="popupSocial">
+               <li class="fb"><a href="#"><i class="fa fa-facebook"></i>Connect with Facebook</a></li>
+               <li class="twitter"><a href="#"><i class="fa fa-twitter"></i>Connect with Twitter</a></li>
+               <li class="gplus"><a href="#"><i class="fa fa-google-plus"></i>Connect with Google</a></li>
+            </ul>
+         </div>
+      </div>
+      <div class="popupBottom">
+         <h3>New to Biotique? <a href="#" id="show_register">Create a new account</a></h3>
+
+      </div>
+   </div>
+</div>
+
+<?php echo $this->getChildHtml('customer_form_login3') ?>
+
+<div class="overlay"></div>

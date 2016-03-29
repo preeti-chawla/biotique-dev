@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<config>
+    <menu>
+        <biotique>
+            <children>
+                <biotique_concerns translate="title" module="biotique_concerns">
+                    <title>Concerns</title>
+                    <sort_order>4</sort_order>
+                    <action>adminhtml/concerns_match</action>
+                </biotique_concerns>
+            </children>
+        </biotique>
+    </menu>
+    <!-- clean cache everytime -->
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <tab1>
+                                        <title>Biotique_Concerns</title> <!-- Used in resources tree -->
+                                    </tab1>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

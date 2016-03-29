@@ -1,0 +1,173 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+  <script>
+  $(document).ready(function(){
+    var show; // declare variable to hold show/hide state
+
+    $(".extra").hide(); // hide articles at first
+     
+    $(".view-hide a").click(function(event){ // show/hide articles
+
+      if (!show) { showhide($(this),"View Less",true); } // show, change label
+      else { showhide($(this),"View More",false); } // or hide, change label
+
+      return false; // u know: disable usual link click function
+
+      function showhide(what,swaptext,swapstate){
+        $(what).parents(".view-hide").prev(".extra").toggle('fast');
+        $(what).text(swaptext);
+        show = swapstate; // pass the current state to... oops! Fails if > 1 article showing...
+      }
+    });
+
+  });
+  </script>
+<div class="bodyContainer">
+<div class="sitemapBanner">
+<div class="layout">
+<div class="page-sitemap">
+    <div class="page-title">
+        <h1>Sitemap</h1>
+    </div>
+    <div id="sitemap_top_links">
+        <?php //echo $this->getChildHtml('links') ?>
+    </div>
+    <?php echo $this->getChildHtml('pager_top') ?>
+    <?php //echo $this->getChildHtml('sitemap') ?>
+    <?php echo $this->getChildHtml('links') ?>
+    <?php echo $this->getChildHtml('pager_bottom') ?>
+    
+    <div class="categories">
+   
+ <?php $_helper = Mage::helper('catalog/category');
+    $_categories = Mage::getModel('catalog/category')->getCollection()
+    ->addAttributeToSelect('*')
+    ->addAttributeToFilter('level', 2)
+    ->addAttributeToFilter('is_active', 1);
+ ?>
+
+
+        <?php foreach ($_categories as $_category): ?>
+        <?php if($_category->getName()!='Gift Sets' && $_category->getName()!='Biotique Advanced' && $_category->getName()!="What's New"  && $_category->getName()!='Biotique Botanical') { ?>
+         <div class="col lft">
+   <h3> <a href="<?php echo $_helper->getCategoryUrl($_category) ?>">
+                    <?php echo $_category->getName() ?>
+                </a></h3>
+                <?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+                    <?php $_subcategories = $_category->getChildrenCategories() ?>
+                     <?php if (count($_subcategories) > 0): $sr=1; $largesr=1; ?>
+                      
+                      
+                                
+   <div class="subcategory btn1">
+  <ul>
+  <?php foreach ($_subcategories as $_subcategory): $srno=$sr++; ?>
+  <?php if($srno<=3) { ?>
+<li><a href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>"><?php echo $_subcategory->getName() ?> </a></li>
+<?php } ?>
+
+ <?php endforeach; ?>
+</ul>
+</div><!-- subcategory -->
+
+<div class="subcategory extra" style="display:none;">
+  <ul>
+    <?php foreach ($_subcategories as $_subcategory): $largesrno=$largesr++; ?>
+      <?php if($largesrno>3) { ?>
+<li><a href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>"><?php echo $_subcategory->getName() ?> </a></li>
+<?php } ?>
+ <?php endforeach; ?>
+
+</ul>
+</div><!-- subcategory extra -->
+ <?php endif; ?>
+
+<?php if (count($_subcategories) > 3): ?>
+ <div class="view-hide">
+      <a href="">View More</a>
+    </div>
+    
+     <?php endif; ?>
+     
+</div> <!-- /col  -->
+<?php } ?>
+      <?php endforeach; ?>    
+    
+<div class="about-section sitemap-about">
+<h3><a href="#">About Us</a></h3>
+<ul>
+<li><a href="<?php echo Mage::getBaseUrl(); ?>about-us/#aboutTab1/">Our Mission</a></li>
+<li><a href="<?php echo Mage::getBaseUrl(); ?>about-us/#aboutTab2/">Our Heritage</a></li>
+<li><a href="<?php echo Mage::getBaseUrl(); ?>about-us/#aboutTab3/">Birth of Brand</a></li>
+<li><a href="<?php echo Mage::getBaseUrl(); ?>about-us/#aboutTab4/">Cultivating Experience</a></li>
+<li><a href="<?php echo Mage::getBaseUrl(); ?>about-us/#aboutTab5/">Our Ingredients</a></li>
+<li><a href="<?php echo Mage::getBaseUrl(); ?>shipping_locations">Shipping locations</a></li>
+</ul>
+</div> 
+            
+    </div><!-- /categories -->
+ 
+
+<!--<script src="//code.jquery.com/jquery-1.10.1.js" type="text/javascript"></script>
+<style type="text/css">
+    .toggletag { display:none; }
+.open { display:block; }
+  </style>
+  <script type="text/javascript">
+$(function(){
+var removeClass = true;
+$(".clickme").click(function () {
+    $(".toggletag").toggleClass('open');
+    removeClass = false;
+});
+
+$(".toggletag").click(function() {
+    removeClass = false;
+});
+
+$("html").click(function () {
+    if (removeClass) {
+        $(".toggletag").removeClass('open');
+    }
+    removeClass = true;
+});
+});
+
+</script>
+ <button class="clickme">Click Me!</button>
+<p class="toggletag">Peek a boo!</p>-->
+
+
+
+    
+</div>
+</div>
+</div>
+</div>
+

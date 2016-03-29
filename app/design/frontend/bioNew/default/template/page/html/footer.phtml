@@ -1,0 +1,211 @@
+<footer id="footer">
+    <section class="footersection1">
+      <div class="layout">
+       <?php echo $this->getChildHtml('footer_toplinks') ?>
+      </div>
+    </section>
+    <section class="footersection2">
+      <div class="layout">
+        <div class="f-colm">      
+        <?php echo $this->getChildHtml('footer_about_us') ?>
+		</div>
+        <div class="f-colm">
+         <?php echo $this->getChildHtml('footer_customer') ?>
+        </div>
+        <div class="f-colm">
+         <?php echo $this->getChildHtml('footer_account') ?> 
+        </div>
+        <div class="f-colm">
+		 <?php echo $this->getChildHtml('footer_products') ?> 
+        </div>
+        <div class="f-colm">
+          <?php echo $this->getChildHtml('footer_corporate') ?> 
+		 </div>
+        <div class="f-colm social-colm">
+          <?php echo $this->getChildHtml('footer_social') ?> 
+        </div>        
+        <p><?php echo $this->getCopyright() ?></p>
+      </div>
+    </section>
+    <section class="secureSec">
+      <div class="layout">      
+        <div class="secureShop">
+          <h4>Secure shopping :</h4>
+          <figure><img src="<?php echo $this->getSkinUrl('images/secure_Img.jpg') ?>" alt="" /></figure>
+        </div>
+        <div class="paymentSec">
+          <h4>Payment options :</h4>
+          <figure><img src="<?php echo $this->getSkinUrl('images/payimg.png') ?>" alt="" /></figure>
+        </div>
+        <div class="shippingSec">
+          <h4>Shipping Partners :</h4>
+          <figure><img src="<?php echo $this->getSkinUrl('images/shipping.png') ?>" alt="" /></figure>
+        </div>        
+      </div>
+    </section>
+    <section class="productSec">
+      <div class="layout">
+	        <?php echo $this->getChildHtml('footer_products_info') ?>
+
+              </div>
+    </section>
+  </footer>
+ <script>
+jQuery(document).ready(function(){	
+
+jQuery("#loginSignup .popupBottom a").on('click', function(){
+		
+		jQuery("#loginSignup").css("display", "none");
+		jQuery("#registerPopup").css("display", "block");
+		
+});
+
+jQuery("#e-forgot").on('click', function(){
+		
+		jQuery("#loginSignup").css("display", "none");
+		jQuery("#forgotpassword").css("display", "block");
+		
+});
+
+jQuery("#registerPopup #show_login").on('click', function(){ 
+		jQuery("#registerPopup").css("display", "none");
+		jQuery("#loginSignup").css("display", "block");
+});
+jQuery("#show_login").on('click', function(){ 
+		jQuery("#registerPopup").css("display", "none");
+		jQuery("#loginSignup").css("display", "block");
+});
+jQuery("#e-forgot").on('click', function(){
+		
+		jQuery("#loginSignup").css("display", "none");
+		jQuery("#forgotpassword").css("display", "block");
+		
+});
+
+
+
+
+})
+</script>
+<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+<script type='text/javascript'>//<![CDATA[
+var $u = jQuery.noConflict();
+$u(window).load(function(){
+$u(".countires").change(function() { 
+if($u(this).data('options') == undefined){
+    $u(this).data('options',$u('.regions option').clone());
+    } 
+var id = $u(this).val();
+var options = $u(this).data('options').filter('[id=sub_' + id + ']');
+$u('.regions').html('<option value="">Please select region, state or province</option>');
+$u('.regions').append(options);
+$u('.regions').removeAttr('disabled');
+$u('.cities').attr('disabled','disabled');
+$u('.cities option:first-child').attr("selected", "selected");
+});
+$u(".regions").change(function() { 
+
+if($u(this).data('options') == undefined){
+    $u(this).data('options',$u('.cities option').clone());
+    } 
+var id = $u(this).val();
+var options = $u(this).data('options').filter('[class=sub_' + id.replace(/ /g,"_") + ']');
+$u('.cities').html('<option value="">Select city</option>');
+$u('.cities').append(options);
+$u('.cities').removeAttr('disabled');
+});
+
+
+$u(".shippingcountires").change(function() { 
+if($u(this).data('options') == undefined){
+    $u(this).data('options',$u('.shippingregions option').clone());
+    } 
+var id = $u(this).val();
+var options = $u(this).data('options').filter('[id=sub_' + id + ']');
+$u('.shippingregions').html('<option value="">Please select region, state or province</option>');
+$u('.shippingregions').append(options);
+$u('.shippingregions').removeAttr('disabled');
+$u('.shippingregions').removeAttr('style');
+$u('.shippingcities').attr('disabled','disabled');
+$u('.shippingcities option:first-child').attr("selected", "selected");
+});
+
+$u(".shippingregions").change(function() { 
+
+if($u(this).data('options') == undefined){
+    $u(this).data('options',$u('.shippingcities option').clone());
+    } 
+var id = $u(this).val();
+var options = $u(this).data('options').filter('[class=sub_' + id.replace(/ /g,"_") + ']');
+$u('.shippingcities').html('<option value="">Select city</option>');
+$u('.shippingcities').append(options);
+$u('.shippingcities').removeAttr('disabled');
+});
+
+});//]]> 
+
+</script>
+
+<script type="text/javascript">
+var $a = jQuery.noConflict();
+$a(window).load(function(){      
+            $a(".toggleclickedd").click(function () {
+           
+            if($a(this).is(":checked")) {           
+            $a(".ulshipping").hide();
+             $a('.shippingcountires').removeAttr('disabled');
+           $a('.shippingregions').removeAttr('disabled');
+            $a('.shippingcities').removeAttr('disabled');
+           //  shipping.setSameAsBilling(true);
+             
+             }
+             else {
+                $a('.ulshipping').show();
+                /*$a('.input-text').val('');
+		$a('.validate-select option:first-child').attr("selected", "selected");
+		$a('.shippingcities').attr('disabled','disabled');
+		$a('.shippingregions').attr('disabled','disabled'); */
+		
+		
+              /* var rid = $a('.shippingregions').val();
+              var cid = $a('.shippingcities').val();
+                $a('.shippingcountires').data('options',$a('.shippingregions option').clone());
+                $a('.shippingregions').data('options',$a('.shippingcities option').clone());
+                var id = $a('.shippingcountires').val();
+		var options = $a('.shippingcountires').data('options').filter('[id=sub_' + id + ']');
+		$a('.shippingregions').html('<option value="">Please select region, state or province</option>');
+		$a('.shippingregions').append(options);
+		$a('.shippingregions').removeAttr('disabled');
+           
+           var optionss = $a('.shippingregions').data('options').filter('[class=sub_' + rid.replace(/ /g,"_") + ']');
+	   $a('.shippingcities').html('<option value="">Select city</option>');
+	   $a('.shippingcities').append(optionss);
+	   $a('.shippingcities option[value="'+cid+'"]').attr("selected", "selected");
+	   $a('.shippingregions option[value="'+rid+'"]').attr("selected", "selected");*/
+		
+                }
+            
+});   
+        });
+</script>
+
+<script>
+var $b = jQuery.noConflict();
+$b(".billingcontinue").click(function(){
+
+if($b(".countrycode").val()!='' && $b(".mobileno").val()!='' && $b(".required-entry").val()!='' && $b(".validate-select").val()!=''){
+        newphone = $b(".countrycode").val() + $b(".mobileno").val();               
+         $b(".mobileno").val(newphone);
+        $b(".countrycode").hide(); 
+          $b(".countrycode option:first-child").attr("selected", "selected");    
+          }   
+      
+      $b('.usebilladd').attr('checked', true);
+       $b('.shippingcountires').removeAttr('disabled');
+           $b('.shippingregions').removeAttr('disabled');
+            $b('.shippingcities').removeAttr('disabled');
+   shipping.setSameAsBilling(true);
+   
+              
+ });
+</script>

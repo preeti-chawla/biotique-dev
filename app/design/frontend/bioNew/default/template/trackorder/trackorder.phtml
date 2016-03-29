@@ -1,0 +1,81 @@
+<?php
+    if(Mage::getStoreConfig('trackorder/trackorder_general/enabled')):
+    ?>
+    
+    <div class="form-list trackOrder">
+        
+            
+			<h4>Please enter your order number below.</h4>
+            <p>To check your order number, refer to your email confirmation or the order history in your account.</p>
+            <div class="trackField">
+			<form name="track_order" id="track_order" action="" method="post" onsubmit="sendAjax('track_order','<?php  echo Mage::getUrl('*/*/track');?>'); return false;">
+        <!--<form name="track_order" method="post" id="track_order" action="<?php echo Mage::getUrl('*/*/view');?>">-->
+                        <input type="text" name="order_id" placeholder="Order Id *" id="order_id" value="" title="" class="input-text" required="required" />
+                    
+					
+                        <input type="text" name="email" placeholder="Email Id *" id="email_address" value="" title="<?php echo $this->__('Email Address') ?>" class="input-text" required="required" />
+                    
+            
+               <button type="submit" class="button" title="<?php echo $this->__('Track Order') ?>" name="track" id="track" style="margin-top:0;" >
+                    <span><span><?php echo $this->__('Track Order') ?></span></span>
+                </button>
+				</form>
+				
+            </div>
+<p>In case any further queries, please call us on xxxx xxx xxxx, International Users: +91-20-46608100 (From 10AM to 7PM India Time)</p>
+        
+        <div id="loading-details" class="loading-details" style="display:none">
+            <div id="loading-mask" >
+                <p class="loader" id="loading_mask_loader"><img src="<?php echo $this->getSkinUrl('trackorder/images/ajax-loader-tr.gif') ?>" alt="<?php echo Mage::helper('adminhtml')->__('Loading...') ?>"/><br/><?php echo $this->__('Please wait...') ?></p>
+            </div>
+        </div>
+		<div id="oderinfo" class="order-info-message"></div>
+    </div> 
+
+
+
+    
+
+
+
+    <script type="text/javascript">
+        var validateForm = new VarienForm('track_order', true);
+    </script>           
+    <script type="text/javascript">
+
+        function sendAjax(frmId,url){
+            if (!validateForm.validator.validate()) {
+                return;
+            }
+            var data = $(frmId).serialize(this);
+            $("loading-details").show();
+            
+      
+        new Ajax.Updater(
+                {
+                    success:"oderinfo"
+                },
+                
+                url,
+                {
+                    asynchronous:true,
+                    evalScripts:false,
+                    onComplete:function(request, json){
+                        $("loading-details").hide();
+                        return false;
+                    }, 
+                    onLoading:function(request, json){},
+                    parameters:data
+                }
+            ); 
+            return false;
+        }
+
+    </script>
+    <?php else: ?>
+    <?php
+        $url = Mage::getBaseUrl();
+        Mage::app()->getFrontController()->getResponse()->setRedirect($url);
+    ?>
+    <?php endif; ?>
+ 

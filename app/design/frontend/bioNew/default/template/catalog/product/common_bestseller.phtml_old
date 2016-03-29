@@ -1,0 +1,48 @@
+<?php
+$collection = Mage::getModel('catalog/product')->getCollection()
+ ->addAttributeToSelect('*') // add all attributes - optional
+ ->addAttributeToFilter('status', 1) // enabled
+ ->addAttributeToFilter('visibility', 4) // enabled
+ ->addAttributeToFilter('common_best_seller_product', 1); //visibility in catalog,search
+ $storeId = Mage::app()->getStore()->getStoreId();
+?>
+
+<div class="sellersSlider">
+          <div id="bestseller" class="sky-carousel">
+            <div class="sky-carousel-wrapper">
+              <ul class="sky-carousel-container">
+
+<?php
+foreach($collection as $product)
+{ ?>
+  
+  <?php //print_r($product->getData()); ?>
+      <li>
+        <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($product->getName()) ?>">
+          <img src="<?php echo $this->helper('catalog/image')->init($product, 'image')->resize(185) ?>"/>
+        </a>
+        <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($product->getName()) ?>" class="bigImg"></a>
+        <div class="sc-content">
+          <h2><a class="product-name" href="<?php echo $product->getUrlInStore(); ?>" title="<?php echo $this->htmlEscape($product->getName()) ?>)"><?php echo $product->getName(); ?> <?php //echo $product->getId(); ?></a></h2>
+          <p>
+          <?php 
+            $price_international = Mage::getResourceModel('catalog/product')->getAttributeRawValue($product->getId(), 'international_price', $storeId);
+            $special_price_international = Mage::getResourceModel('catalog/product')->getAttributeRawValue($product->getId(), 'international_sprice', $storeId);
+            if($special_price_international > 0){
+                //echo $special_price_international;
+            }else{
+              if($price_international > 0){
+                //echo $price_international;
+              }else{
+                //echo $product->getFinalPrice();
+              }
+            }
+          ?></p>
+        </div>
+      </li>
+  		
+<?php } ?>
+				</ul>
+            </div>
+          </div>
+        </div>

@@ -1,0 +1,26 @@
+<?php $curr_coupon =  $this->escapeHtml($this->getCouponCode()) ?>
+
+<!--<span class="dCode">Apply Biotique discount Code</span>
+
+<form id="discount-coupon-form" action="<?php echo $this->getUrl('checkout/cart/couponPost') ?>" method="post">
+<input type="hidden" name="remove" id="remove-coupone" value="0" />
+<div class="codeApply">
+    <input class="input-text" id="coupon_code" name="coupon_code" placeholder="Enter Your Code" value="" />
+    <a class="applyBtn" href="#" onclick="$(this).closest('form').submit();">apply</a>
+</div>
+</form>-->
+<script type="text/javascript">
+//<![CDATA[
+var discountForm = new VarienForm('discount-coupon-form');
+discountForm.submit = function (isRemove) {
+    if (isRemove) {
+        $('coupon_code').removeClassName('required-entry');
+        $('remove-coupone').value = "1";
+    } else {
+        $('coupon_code').addClassName('required-entry');
+        $('remove-coupone').value = "0";
+    }
+    return VarienForm.prototype.submit.bind(discountForm)();
+}
+//]]>
+</script>

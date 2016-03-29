@@ -1,0 +1,27 @@
+		<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+		<?php foreach ($_products as $_item): ?>
+		<div class="item">
+                <div class="probox">
+                  <div class="proImg">
+                    <figure><img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(200, 290) ?>" alt=""></figure>
+                  </div>
+                  <div class="proContent">
+                    <!-- <span class="top-hd">Top Seller</span> -->
+                    <h4><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></h4>
+                    <p>Hydrating Foaming Face Wash</p>                      
+                    <div class="review">
+                      <div class="star">
+                        <span style="width:60%;"></span>
+                      </div>
+                      <span class="review-text">(13 reviews)</span>
+                    </div>
+                    <h5><?php 
+					echo Mage::helper('core')->currency($this->helper('catalog/output')->productAttribute($_item, $_item->getPrice() , 'price')); ?></h5>
+                    <a href="<?php echo $this->getProductUrl($_item) ?>" class="ctn">shop now</a> 
+                  </div>
+                </div>
+              </div>
+		 <?php endforeach; ?>
+    <?php else: ?>
+      <div><?php echo "No Items Viewed"; ?></div>
+		<?php endif; ?>                     

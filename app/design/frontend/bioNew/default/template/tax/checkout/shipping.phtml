@@ -1,0 +1,28 @@
+<?php $countryCode = Mage::app()->getStore()->getCurrentCurrencyCode(); ?>
+<?php $currency_symbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?>
+<?php if ($this->displayBoth()):?>
+<li>
+    <span class="titleDetails"><?php echo $this->getExcludeTaxLabel() ?></span>
+    <span class="inr"></span>
+    <span class="mrp"><?php echo $this->helper('checkout')->formatPrice($this->getShippingExcludeTax()) ?></span>
+</li>
+<li>
+    <span class="titleDetails"><?php echo $this->getIncludeTaxLabel() ?></span>
+    <span class="inr"></span>
+    <span class="mrp"><?php echo $this->helper('checkout')->formatPrice($this->getShippingIncludeTax()) ?></span>
+</li>
+<?php elseif($this->displayIncludeTax()) : ?>
+
+<li>
+    <span class="titleDetails"><?php //echo $this->getTotal()->getTitle() ?>Shipping Charges</span>
+    <span class="inr"></span>
+    <span class="mrp"><?php echo $this->helper('checkout')->formatPrice($this->getShippingIncludeTax()) ?></span>
+</li>
+<?php else:?>
+<li>
+    <span class="titleDetails"><?php //echo $this->escapeHtml($this->getTotal()->getTitle()) ?>Shipping Charges</span>
+    <span class="inr"><?php echo $currency_symbol; ?></span>
+
+    <span class="mrp"><?php echo number_format($this->getShippingExcludeTax(),2,'.',','); ?></span>
+</li>
+<?php endif;?>

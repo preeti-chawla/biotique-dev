@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <display_displaymodule>
+            <version>1.0.0</version>
+            <depends>
+                <!-- no dependencies -->
+            </depends>
+        </display_displaymodule>
+    </modules>
+    <global>
+        <models />
+        <blocks />
+        <resources />
+        <extraconfig />
+        <helpers>
+            <displaymodule>
+                <class>Display_Displaymodule_Helper</class>
+            </displaymodule>
+        </helpers>
+    </global>
+    <admin>
+        <routers>
+            <display_displaymodule>
+                <use>admin</use>
+                <args>
+                    <module>Display_Displaymodule</module>
+                    <frontName>displaymodule</frontName>
+                </args>
+            </display_displaymodule>
+        </routers>
+    </admin>
+</config>

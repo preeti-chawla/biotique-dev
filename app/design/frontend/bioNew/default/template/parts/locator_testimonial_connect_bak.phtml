@@ -1,0 +1,73 @@
+<div class="site_info">
+    <div class="layout">
+      <section class="locator">
+        <h4>STORE LOCATOR</h4>
+        <p>Search Stores using the options below:</p>
+        <div class="drop">
+          <select class="stylish-drop">
+            <option value="">Select City</option>
+            <option value="">Delhi</option>
+            <option value="">Indore</option>
+            <option value="">Mumbai</option>
+            <option value="">Bhopal</option>
+          </select>
+        </div>
+      </section>
+      <section class="testimonials">
+        <h4>TESTIMONIALS</h4>
+		<?php 
+			$review = Mage::getModel('review/review');
+			$collection = $review->getProductCollection();
+			$collection
+			->addAttributeToSelect('*')
+			->getSelect()
+			->limit(2)
+			->Order('created_at', 'DESC');
+			$review->appendSummary($collection); 
+            ?>
+        <section class="item">
+            <ul class="productSlider">
+             <?php foreach($collection as $product) {
+			 ?>
+					<li>
+                <figure class="item_img">
+                  <img src="<?php echo $this->getSkinUrl('images/prod_test.png') ?>" alt="" title="">
+                </figure>
+                <section class="item_desc">
+                  <h5><?php echo $product['name'] ?></h5>
+                  <h6><?php echo $product['title']?></h6>
+				  <p><?php echo $product['detail']?></p>
+                  <strong>- <?php echo $product['nickname'] ?></strong> <a href="#">- View All</a>
+                </section>
+              </li>		  
+				<?php
+				}
+				?>	
+            </ul>          
+        </section>
+      </section>
+      <section class="social_connect">
+        <h4>CONNECT WITH US</h4>
+        <section class="social_icons">
+          <section class="social_icon_left">
+            <section class="social_icon_right">
+              <section class="social_icon_mid">
+                <ul class="socialTab">
+                  <li><a class="twitter" href="javascript:void(0)"></a> </li>
+                  <li><a class="fb" href="javascript:void(0)"></a> </li>
+                  <li><a class="yt" href="javascript:void(0)"></a> </li>
+                  <li><a class="pin" href="javascript:void(0)"></a> </li>
+                </ul>
+              </section>
+            </section>
+          </section>
+          <section class="social_content">
+            <section class="socialTabContent">
+              <h6></h6>
+              <p></p>
+            </section>
+          </section>
+        </section>
+      </section>
+    </div>
+  </div>

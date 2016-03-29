@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Form_SimpleContact>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Form_SimpleContact>
+    </modules>    
+</config>

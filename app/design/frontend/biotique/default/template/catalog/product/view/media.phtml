@@ -1,0 +1,9 @@
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+?>
+<?php if (count($this->getGalleryImages()) > 0): ?>
+        <?php foreach ($this->getGalleryImages() as $_image): ?>
+    		   <li class="slide"><figure><a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small_image', $_image->getFile())->resize(156); ?>" data-large="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(156); ?>" data-title="Saleen S7 Twin Turbo"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(56); ?>" width="56" height="56" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" /></a></figure></li>  
+<?php endforeach; ?>
+<?php endif; ?>

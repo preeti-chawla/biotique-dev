@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+   <biotique_ingredients_index_index>
+      <update handle="page_one_column" />
+      <block type="core/template" name="beforecontainer" template="biotique/ingredients/beforecontainer.phtml" />
+
+      <reference name="content">
+         <block type="core/template" template="biotique/ingredients/core.phtml" />
+      </reference>
+   </biotique_ingredients_index_index>
+</layout>

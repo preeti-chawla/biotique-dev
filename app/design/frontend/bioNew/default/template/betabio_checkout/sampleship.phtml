@@ -1,0 +1,39 @@
+<?php
+  $total = Mage::getSingleton('checkout/cart')->getQuote()->getSubtotal();
+  $freeShippingSubtotal = Mage::getStoreConfig('carriers/freeshipping/free_shipping_subtotal');
+  
+  if($freeShippingSubtotal && $freeShippingSubtotal>$total){
+  	$prcc = $this->helper('checkout')->formatPrice($freeShippingSubtotal - $total);
+  }
+
+  $free_samps = array();
+  if(($samp1 = (float) Mage::getStoreConfig('tab1/rules/giftrule_1')) > $total){
+  	$free_samps = array(
+  		'giveawys' => 'ONE',
+  		'more_sp' => ($samp1 - $total)
+  	);
+  }
+  else if(($samp2 = (float) Mage::getStoreConfig('tab1/rules/giftrule_2')) > $total){
+  	$free_samps = array(
+  		'giveawys' => 'TWO',
+  		'more_sp' => ($samp2 - $total)
+  	);
+  }
+  else if(($samp3 = (float) Mage::getStoreConfig('tab1/rules/giftrule_3')) > $total){
+  	$free_samps = array(
+  		'giveawys' => 'THREE',
+  		'more_sp' => ($samp3 - $total)
+  	);
+  }
+
+?>
+<?php $sff = 1500 - $total; ?>
+<ul class="shipping">
+	<?php if($freeShippingSubtotal>$total):	?>
+		<li><span>Shop for INR <?php echo $sff; ?> more and Get FREE Shipping</span></li>
+	<?php else: ?>
+		<li><span>You Get FREE Shipping</span></li>
+	<?php endif; ?>	
+		<li class="last"><span>Shop for INR 345 amount more and get ONE FREE Sample</span></li>
+	<?php //endif; ?>
+</ul>

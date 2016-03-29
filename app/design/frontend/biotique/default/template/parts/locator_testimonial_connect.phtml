@@ -1,0 +1,90 @@
+<!-- end product-feature -->
+<div class="site_info">
+   <div class="wrapper">
+      <section class="locator">
+         <h4>STORE LOCATOR</h4>
+         <p>Search Stores using the options below:</p>
+         <div class="drop">
+            <select class="stylish-drop">
+               <option value="">Select City</option>
+               <option value="">Delhi</option>
+               <option value="">Indore</option>
+               <option value="">Mumbai</option>
+               <option value="">Bhopal</option>
+            </select>
+         </div>
+      </section>
+      <section class="testimonials">
+         <h4>TESTIMONIALS</h4>
+         <section class="item">
+            <div class="flexslider" id="flexslider3">
+			<?php 
+			$review = Mage::getModel('review/review');
+			$collection = $review->getProductCollection();
+			$collection
+			->addAttributeToSelect('*')
+			->getSelect()
+			->limit(2)
+			->Order('created_at', 'DESC');
+			$review->appendSummary($collection); 
+            ?>
+				<ul class="slides">
+				<?php foreach($collection as $product) { ?>
+					<li>
+					<figure class="item_img"> <img src="<?php echo $this->getSkinUrl('images/prod_test.png'); ?>" alt="" title=""> </figure>
+					<section class="item_desc">
+					<h5><?php echo $product['name'] ?></h5>
+					<h6><?php echo $product['detail']?></h6>
+					<strong>- <?php echo $product['nickname'] ?> | Skincare Expert</strong> <a href="#">- View All</a> 
+					</section>
+					</li>				  
+				<?php
+				}
+				?>	
+				</ul>
+               </ul>
+            </div>
+         </section>
+      </section>
+      <section class="social_connect">
+         <h4>CONNECT WITH US</h4>
+         <section class="social_icons">
+            <section class="social_icon_left">
+               <section class="social_icon_right">
+                  <section class="social_icon_mid">
+                     <ul>
+                        <li class="twit"> <a class="twitter" href="javascript:void(0)"></a> </li>
+                        <li class="faceb"> <a class="fb" href="javascript:void(0)"></a> </li>
+                        <li class="yout"> <a class="yt" href="javascript:void(0)"></a> </li>
+                        <li class="blog_"> <a class="blog" href="javascript:void(0)"></a> </li>
+                        <li class="pin_"> <a class="pin" href="javascript:void(0)"></a> </li>
+                     </ul>
+                  </section>
+               </section>
+            </section>
+            <section class="social_content">
+               <section id="twit">
+                  <h6>Biotique @Biotique_World </h6>
+                  <p>#TipOfTheDay If your eyes look red or tired, your skin will look drab as well. Wake up your peepers with some eye... <a href"">http://fb.me/2CGrPXHqo</a></p>
+               </section>
+               <section id="faceb">
+                  <h6>Facebook @Biotique_World </h6>
+                  <p>#TipOfTheDay If your eyes look red or tired, your skin will look drab as well. Wake up your peepers with some eye... <a href"">http://fb.me/2CGrPXHqo</a></p>
+               </section>
+               <section id="yout">
+                  <h6>YouTube @Biotique_World </h6>
+                  <p>#TipOfTheDay If your eyes look red or tired, your skin will look drab as well. Wake up your peepers with some eye... <a href"">http://fb.me/2CGrPXHqo</a></p>
+               </section>
+               <section id="blog_">
+                  <h6>Blog @Biotique_World </h6>
+                  <p>#TipOfTheDay If your eyes look red or tired, your skin will look drab as well. Wake up your peepers with some eye... <a href"">http://fb.me/2CGrPXHqo</a></p>
+               </section>
+               <section id="pin_">
+                  <h6>Pin @Biotique_World </h6>
+                  <p>#TipOfTheDay If your eyes look red or tired, your skin will look drab as well. Wake up your peepers with some eye... <a href"">http://fb.me/2CGrPXHqo</a></p>
+               </section>
+            </section>
+         </section>
+      </section>
+   </div>
+</div>

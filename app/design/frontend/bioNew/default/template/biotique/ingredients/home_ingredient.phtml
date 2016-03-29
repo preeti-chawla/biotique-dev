@@ -1,0 +1,21 @@
+<?php
+$ingredients = Mage::helper('biotique_ingredients')->fetch_ingredients( $this->getRequest()->getParam('range',''));
+?>
+<ul class="productSlider"> 
+<?php foreach($ingredients as $ingredient): 
+         		$prod_name = $ingredient->getAlias();
+         		$exlcuded_words = array( 'that','have','with','this','your','will','they','from','when','then','than','into','and','&','is');
+$replace = array_fill_keys($exlcuded_words,'');
+
+         		$serachname=str_replace(array_keys($replace),$replace,$prod_name);
+         		$serachname=trim($serachname);
+         		$serachname=str_replace(' ','+',$serachname);
+         		$serachname=str_replace('++','+',$serachname);
+         		$serachname=strtolower($serachname);
+         		
+         	?>
+			<!--<li> <img src="<?php echo Mage::getBaseUrl('media') .  'ingredients/'. $ingredient->getData('small_image'); ?>" width="216px" height="180px" alt="" title=""> <strong><?php echo $prod_name; ?></strong></li>-->
+			<li> <a href='<?php echo Mage::getBaseUrl()."products/?item_ingregident=".$ingredient->getData("ingredient_id")."&limit=all"; ?>'><img src="<?php echo Mage::getBaseUrl('media') .  'ingredients/'. $ingredient->getData('small_image'); ?>" width="216px" height="180px" alt="" title=""> <strong><?php echo $prod_name; ?></strong></a></li>
+			<!--<li> <a href='<?php echo Mage::getBaseUrl()."catalogsearch/result/?q=b+".$serachname; ?>'><img src="<?php echo Mage::getBaseUrl('media') .  'ingredients/'. $ingredient->getData('small_image'); ?>" width="216px" height="180px" alt="" title=""> <strong><?php echo $prod_name; ?></strong></a></li>-->
+			<?php endforeach; ?>
+			</ul>

@@ -1,0 +1,45 @@
+<?php $testimonial=$this->getTestimonial(); ?>
+
+
+        <h4>TESTIMONIALS</h4>
+        <section class="item">
+            <ul class="productSlider">
+			<?php //echo $this->getPagerHtml();?>
+	<?php if ($testimonial->getSize()): ?>
+		<?php foreach ($testimonial as $obj):?>
+			<?php if($obj->getStatus()==1): ?>
+              <li style="margin-left:5px;">
+                <!--<figure class="item_img">
+                    <?php
+									if($obj->getAvatarName() != ''){
+										$avatarLink = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'magebuzz/avatar/'.$obj->getAvatarName();
+										?><img src="<?php echo $avatarLink ?>" alt="test" height="120" width="120" /><?php
+									}else{ ?>
+										<img src="<?php echo $this->getSkinUrl('images/commentImg1.jpg') ?>" alt="test" height="120" width="120" />
+									<?php }
+								?>
+								
+                </figure>-->
+                <section class="item_desc" style="padding-right: 10px; float:left; width:96%;">
+                  <h5><?php echo $obj->getName(); ?></h5>
+                  <h6>REVITALIZING ANTI-FATIGUE EYE GEL</h6>
+                  <p><?php echo $obj->getTestimonial();?></p>
+                  <strong><?php if($obj->getTestimonialLoc()){?>- <?php echo $obj->getTestimonialLoc(); ?><?php } ?></strong> <a href="<?php echo Mage::getUrl("testimonial")?>">- View All</a>
+                </section>
+              </li>
+			  <?php endif ?>
+			
+		<?php endforeach;?>
+		<?php //echo $this->getPagerHtml(); ?>
+	<?php else: ?>
+		<p class="note-msg"><?php echo $this->__('There is no testimonial submitted.'); ?></p>
+	<?php endif ?>
+            </ul>          
+        </section>
+      
+
+
+
+
+              
+        

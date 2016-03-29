@@ -1,0 +1,46 @@
+<?php
+/**
+ * Storelocator template for stores list
+ *
+ * @author Magento
+ */
+
+/**
+ * @var $this Clarion_Storelocator_Block_List
+ * @see Clarion_Storelocator_Block_List
+ */
+?>
+<form action="<?php echo $this->getPostActionUrl() ?>storelocator" method="get" id="addressSearch">
+<select name="city" class="store_drop" oninvalid="setCustomValidity('Please select a city from the list')" required>
+  <option value="">Select City</option>
+  <option value="AHMEDABAD">AHMEDABAD</option>
+  <option value="ALLAHABAD">ALLAHABAD</option>
+  <option value="AMRITSAR">AMRITSAR</option>
+  <option value="BANGALORE">BANGALORE</option>
+  <option value="CHANDIGARH">CHANDIGARH</option>
+  <option value="CHENNAI">CHENNAI</option>
+  <option value="COIMBATORE">COIMBATORE</option>
+  <option value="ERNAKULAM">ERNAKULAM</option>
+  <option value="GHAZIABAD">GHAZIABAD</option>
+  <option value="GOA">GOA</option>
+  <option value="GURGAON">GURGAON</option>
+  <option value="GUWAHATI">GUWAHATI</option>
+  <option value="HYDERABAD">HYDERABAD</option>
+  <option value="INDORE">INDORE</option>
+  <option value="KANPUR">KANPUR</option>
+  <option value="KOLKATA">KOLKATA</option>
+  <option value="LUCKNOW">LUCKNOW</option>
+  <option value="MEERUT">MEERUT</option>
+  <option value="MIZORAM">MIZORAM</option>
+  <option value="MUMBAI">MUMBAI</option>
+  <option value="NAGPUR">NAGPUR</option>
+  <option value="NEW DELHI">NEW DELHI</option>
+  <option value="NOIDA">NOIDA</option>
+  <option value="SECUNDERABAD">SECUNDERABAD</option>
+  <option value="TRICHUR">TRICHUR</option>
+  <option value="TRIVANDRUM">TRIVANDRUM</option>
+  <option value="ZIRAKPUR">ZIRAKPUR</option>
+</select><br/>
+<input type="hidden" name="country" id="country" value="IN" />
+<button class="ctn" type="submit" style="border:0px"> Find Our Store </button>
+</form>

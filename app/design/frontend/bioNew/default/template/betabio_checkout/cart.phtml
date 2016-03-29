@@ -1,0 +1,89 @@
+<div class="layout">
+<span class="shadow"><?php echo $this->getMessagesBlock()->toHtml(); ?></span>
+<?php   echo $this->getChildHtml('form_before');
+   echo $this->getChildHtml('shoppingbagcontainer');
+   ?>
+
+   <div class="shoppingdetailsArea">
+   <div class="shoppingareaLeft">
+      <div class="shadowtop">
+         <div class="shadowBottom">
+            <?php 
+               echo $this->getBlockHtml('sampleship');
+               ?>
+            <div class="productHead">
+               <ul class="unit">
+                  <li class="pro">product</li>
+                  <li class="size">size</li>
+                  <li class="quantity">quantity</li>
+                  <li class="mrp">mrp</li>
+               </ul>
+            </div>
+            <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post" id="cart-form">
+               <?php echo $this->getBlockHtml('formkey'); ?>
+			   <!--<button type="submit" name="update_cart_action" value="empty_cart" title="<?php echo $this->__('Clear Shopping Cart'); ?>" class="button btn-empty" id="empty_cart_button"><span><span><?php echo $this->__('Clear Shopping Cart'); ?></span></span></button>-->
+               <div class="productunitMain">
+                  <?php foreach($this->getItems() as $_item): ?>
+                  <?php echo $this->getItemHtml($_item) ?>
+                  <?php endforeach ?>
+                  <div class="wishList">
+                    <?php if(Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+					<span><a href="<?php echo $this->getUrl('wishlist');?>">Add more from Wishlist</a></span>
+					<?php else: ?>
+                    <span><a class="e-login2" href="#">Add more from Wishlist</a></span> 
+					<?php endif; ?>
+                  </div>
+                  <?php if($this->getContinueShoppingUrl()): ?>
+                  <div><a href="<?php echo $this->getContinueShoppingUrl() ?>" class="continueShopping"><i class="fa fa-backward"></i><?php echo $this->__('Continue Shopping') ?></a></div>
+                  <?php endif; ?>
+				  	<p style="margin:0 0 0 36%; display:block"><a href="<?php echo Mage::getBaseUrl(); ?>checkout/onepage" class="continue-checkout"><i class="fa fa-chevron-right"></i>Continue checkout</a></p>
+
+               </div>
+
+            </form>
+            <?php echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('checkout/recent.phtml')->toHtml(); ?>
+         </div>
+      </div>
+   </div>
+   <div class="shoppingareaRight">
+      <div class="applyCupon">
+      <?php echo $this->getChildHtml('checkout.cart.extra') ?>
+      
+         <?php echo $this->getChildHtml('coupon') ?>
+         <!--<span class="shippingTax">Estimate Shipping and Tax</span>
+         <span class="destination">Enter your destination to get a shipping estimate.</span>-->
+         <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
+         <!--<div class="codeApply">
+            <input type="text" value="Enter your Zip/Postal Code*" name="code1"/>
+            <a href="#" class="applyBtn">apply</a>
+         </div>-->
+      </div>
+      <div class="bagSummary">
+         <h4>shopping bag summary</h4>
+      </div>
+      <div class="sINR">
+         <?php echo $this->getChildHtml('totals'); ?>
+         <?php if(!$this->hasError()): ?>
+            <!--<a href="<?php echo Mage::getBaseUrl(); ?>checkout/onepage/giftandsample" class="checkout"><i class="fa fa-chevron-right"></i>choose sample and checkout</a>-->
+			<a href="<?php echo Mage::getBaseUrl(); ?>checkout/onepage" class="checkout"><i class="fa fa-chevron-right"></i>Continue checkout</a>
+         <?php endif; ?>
+      </div>
+      <div class="secure">
+         <ul class="risk">
+            <li class="riskIcon">                
+               <span class="shop">Zero</span>
+               <span class="buy">Risk Buy</span>
+            </li>
+            <li class="shopIcon">                
+               <span class="shop">Shop</span>
+               <span class="buy">Safe & Secure</span>
+            </li>
+            <li class="shopwithIcon">                
+               <span class="shop">Shop with</span>
+               <span class="buy">confidence</span>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
+</div>

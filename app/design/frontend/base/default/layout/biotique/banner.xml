@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+
+<layout version="0.1.0">
+	<banner_index_index>
+		<update handle="page_two_columns_right" />
+
+		<reference name="content">
+			<block type="core/template" template="biotique/banner/welcome.phtml" />
+			<block type="banner/welcome" />
+		</reference>
+	</banner_index_index>
+</layout>

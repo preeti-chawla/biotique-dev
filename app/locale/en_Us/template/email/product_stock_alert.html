@@ -1,0 +1,22 @@
+<!--@subject Products back in stock alert @-->
+<!--@vars
+{"var customerName":"Customer Name",
+"var alertGrid":"Alert Data Grid"}
+@-->
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+
+<table cellpadding="0" cellspacing="0" border="0">
+<!--<tr><img src="http://beta2.pro-digi.co.in/html12/skin/frontend/bioNew/default/images/logo.png" style="width:182px;height:77px;"></tr>-->
+
+
+    <tr>
+        <td class="action-content">
+            <h1>{{var customerName}},</h1>
+
+            {{var alertGrid}}
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}

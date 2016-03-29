@@ -1,0 +1,13 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()): ?>
+        <?php if(!$_product->isGrouped()): ?>
+        <li><strong><?php echo $this->__('Size:') ?></strong><strong><?php echo $this->__('Price:') ?></strong><strong><?php echo $this->__('Qty:') ?></strong></li>
+<li><?php
+echo number_format($_product->getResource()->getAttribute('weight')->getFrontend()->getValue($_product),0)." ".$_product->getResource()->getAttribute('unit')->getFrontend()->getValue($_product);
+ echo $this->getPriceHtml($_product, true) ?>
+        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        </li><?php endif; ?>
+        <a class="shop-ctn" title="<?php echo $buttonTitle ?>" id="product-addtocart-button" class="button btn-cart" onclick="productAddToCartForm.submit(this)" href="#"><i class="fa fa-lock"></i>add to bag</a> 
+        <?php echo $this->getChildHtml('', true, true) ?>
+<?php endif; ?>

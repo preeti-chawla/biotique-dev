@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ameex_Cancelorder>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Ameex_Cancelorder>
+    </modules>
+</config>

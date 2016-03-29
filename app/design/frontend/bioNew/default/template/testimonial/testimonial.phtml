@@ -1,0 +1,64 @@
+<?php $testimonial=$this->getTestimonial(); ?>
+<div class="pressWrap">
+	<div class="pressTop">
+	  <h2>Testimonials</h2>
+	  </div>
+	  
+	<!--<li class="tw">  <a href="javascript:popWin('http://twitter.com/share','twitter','width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" class="twitter-share-button" data-count="none" data-via="biotique"><i class="fa fa-twitter"></i></a>
+          <!--  <li class="tw"><a href="javascript:popWin('http://twitter.com/home/?status=<?php //echo urlencode($productName . ' (' . $productUrl . ')'); ?>', 'twitter', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php// echo $this->__('Tweet') ?>"><i class="fa fa-twitter"></i></a></li>
+            <a class="fb" href="javascript:popWin('https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($productUrl); ?>&t=<?php echo urlencode($productName); ?>', 'facebook', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Facebook') ?>"><i class="fa fa-facebook"></i></a>
+           <a href="javascript:popWin('https://pinterest.com/pin/create/button/?url=<?php echo urlencode($productUrl); ?>&media=<?php echo urlencode($productImage); ?>&description=<?php echo urlencode($productName); ?>', 'pinterest', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Pin it') ?>"><i class="fa fa-pinterest-p"></i></a>
+	</li> -->
+	
+	 <ul class="commentBlock">
+	<?php //echo $this->getPagerHtml();?>
+	<?php if ($testimonial->getSize()): ?>
+		<?php $i==0; foreach ($testimonial as $obj):?>
+			<?php if($obj->getStatus()==1): ?>
+			
+			 <li>
+                    <div class="commentImg">
+                        <figure>
+								<div class="testimonial-content">
+							<!--<div class="testimonial-content-avatar">
+								<?php
+									if($obj->getAvatarName() != ''){
+										$avatarLink = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'magebuzz/avatar/'.$obj->getAvatarName();
+										?><img src="<?php echo $avatarLink ?>" alt="test" height="120" width="120" /><?php
+									}else{ ?>
+										<img src="<?php echo $this->getSkinUrl('images/commentImg1.jpg') ?>" alt="test" height="120" width="120" />
+									<?php }
+									print_r($avatarLink);
+								?>
+							</div> -->
+							
+							<!--<p class="share-sect">Share With </p>-->
+							
+							<li class="tw" style="text-align:center;">  <a href="javascript:popWin('http://twitter.com/share','twitter','width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" class="twitter-share-button" data-count="none" data-via="biotique"><i class="fa fa-twitter"></i></a>
+								  <!--  <li class="tw"><a href="javascript:popWin('http://twitter.com/home/?status=<?php //echo urlencode($productName . ' (' . $productUrl . ')'); ?>', 'twitter', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php// echo $this->__('Tweet') ?>"><i class="fa fa-twitter"></i></a></li>-->
+									<a class="fb" href="javascript:popWin('https://www.facebook.com/sharer/sharer.php?u=<?php// echo urlencode($productUrl); ?>&t=<?php //echo urlencode($productName); ?>', 'facebook', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Facebook') ?>"><i class="fa fa-facebook"></i></a>
+								  <!-- <a href="javascript:popWin('https://pinterest.com/pin/create/button/?url=<?php echo urlencode($productUrl); ?>&media=<?php echo urlencode($productImage); ?>&description=<?php echo urlencode($productName); ?>', 'pinterest', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Pin it') ?>"><i class="fa fa-pinterest-p"></i></a>-->
+							</li>
+							
+						</div>
+						</figure>
+                    </div>
+                    <div class="commentBox">
+                        <h4><?php echo $obj->getName(); ?>, <?php echo $obj->getTestimonialLoc(); ?></h4>
+                        <p><?php echo $obj->getTestimonial();?></p>
+
+                    </div>
+                  </li>
+				  
+			<?php endif ?>
+			<?php $i++; ?>
+		<?php endforeach;?>
+		
+	<?php else: ?>
+		<p class="note-msg"><?php echo $this->__('There is no testimonial submitted.'); ?></p>
+	<?php endif ?>
+	</ul>
+	<?php echo $this->getPagerHtml(); ?>
+</div>
+              
+        

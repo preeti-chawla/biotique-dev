@@ -1,0 +1,23 @@
+<div class="dashboardContainer">
+                <div class="pressWrap">
+                  <div class="pressTop">
+        <h2><?php echo $this->__('My Dashboard') ?></h2>
+		</div>
+    </div>
+    <?php echo $this->getMessagesBlock()->toHtml() ?>
+	
+    <?php echo $this->getChildHtml('hello') ?>
+	
+    <?php echo $this->getChildHtml('top') ?>
+    <div class="accountInformation">
+                    <h4><?php echo $this->__('Account Information') ?></h4>
+                  </div>
+                  <div class="informationDetails">
+                    <div class="contactInformation">
+					<?php echo $this->getChildHtml('info') ?>
+					<?php echo $this->getChildHtml('address') ?>
+        
+                    </div>
+                </div>                
+              
+</div>
