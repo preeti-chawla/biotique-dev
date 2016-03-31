@@ -9449,7 +9449,6 @@ option:first-child{ color:#555!important;}
 #wishlist-view-form .btn-add, 
 #wishlist-view-form .btn-update{ display: inline-block; margin-bottom: 10px;}
 /*.wishlist-index-index #sidebar{ display: none;}*/
-#wishlist-table{ width: 50%;}
 .wishlist-page .add-to-cart-alt span{ font: 14px/18px "Calibri-Bold",Arial,sans-serif; float: left;}
 .wishlist-page .add-to-cart-alt input[type=text]{ border: none; vertical-align: top; width: 50%; height: inherit; background: none; color: #555;}
 
@@ -12564,9 +12563,7 @@ option:first-child{ color:#555!important;}
     }
 /* additional address on dashboard*/
 .my-account .title-buttons button[type=button]{ margin-bottom: 10px;}
-      
-    /* wishlist page*/
-    #wishlist-table{ width: 100%;}
+   
 }
 @media only screen and (max-width: 568px){
     /* home page starts*/
