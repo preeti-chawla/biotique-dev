@@ -9451,7 +9451,7 @@ option:first-child{ color:#555!important;}
 /*.wishlist-index-index #sidebar{ display: none;}*/
 #wishlist-table{ width: 50%;}
 .wishlist-page .add-to-cart-alt span{ font: 14px/18px "Calibri-Bold",Arial,sans-serif; float: left;}
-.wishlist-page .add-to-cart-alt input[type=text]{ border: none; margin-bottom: 10px; width: 50%; height: inherit; background: none; color: #555;}
+.wishlist-page .add-to-cart-alt input[type=text]{ border: none; vertical-align: top; width: 50%; height: inherit; background: none; color: #555;}
 
 /* additional address on dashboard*/ 
 .my-account .pressTop{ margin-bottom: 10px;}
