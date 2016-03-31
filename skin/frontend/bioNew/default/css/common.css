@@ -9449,7 +9449,7 @@ option:first-child{ color:#555!important;}
 #wishlist-view-form .btn-add, 
 #wishlist-view-form .btn-update{ display: inline-block; margin-bottom: 10px;}
 /*.wishlist-index-index #sidebar{ display: none;}*/
-.wishlist-page .add-to-cart-alt .qty-list input[type=text]{ border: none; margin-bottom: 10px;}
+.wishlist-page .add-to-cart-alt input[type=text]{ border: none; margin-bottom: 10px; width: 50%;}
 
 /* additional address on dashboard*/ 
 .my-account .pressTop{ margin-bottom: 10px;}
