@@ -11108,9 +11108,9 @@ option:first-child{ color:#555!important;}
         background-position: 30% 0;
         background-size: auto 50%
     }
-    .newCollection .collectionImg {
+/*    .newCollection .collectionImg {
         display: none
-    }
+    }*/
     .newCollection .collectionTop {
         padding: 20px 0 0 0
     }
@@ -12439,7 +12439,7 @@ option:first-child{ color:#555!important;}
 
     /* home page starts*/
     .newCollection .collectionBottom{    background: url(../images/collection-img.jpg) no-repeat 30% 0/100% auto;}
-    .newCollection .collectionBottom .collectionImg{ display: none;}
+/*    .newCollection .collectionBottom .collectionImg{ display: none;}*/
     .stylish-select .newCollection .collectionContent .collectionCon .collectionRight{ width: 54%; margin-top:29px;}
     .stylish-select .newCollection .collectionContent .collectionCon .collectionRight .ctnBtn{ margin-right: 10px; padding: 0 10px; font-size: 12px;}
     .stylish-select .newCollection .collectionContent .collectionCon .collectionRight h2,
