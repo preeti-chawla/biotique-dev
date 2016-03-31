@@ -37,10 +37,30 @@
     </thead>
     <tbody>
         <?php if (count($this->getItems())): ?>
-            <?php foreach ($this->getItems() as $item): ?>
+            <?php foreach ($this->getItems() as $item): 
+					//echo '<pre>';
+					//print_r($item);
+					//echo $item->getId();
+					$i=1;
+			?>
                 <tr id="item_<?php echo $item->getId();?>">
-                    <?php foreach ($columns as $column): ?>
+                    <?php foreach ($columns as $column): 
+							$i;
+							if($i==1){
+					?>
                         <td><?php $column->setItem($item); echo $column->toHtml($item);?></td>
+					<?php 
+						}else{
+							if($i==2){
+							  echo '<td>';	
+							}
+							$column->setItem($item); echo $column->toHtml($item);
+							if($i==count($columns)){
+								echo '</td>';
+							}
+						}
+						$i++;
+					?>
                     <?php endforeach; ?>
                 </tr>
             <?php endforeach ?>
