@@ -36,7 +36,7 @@
                   <?php if($this->getContinueShoppingUrl()): ?>
                   <div><a href="<?php echo $this->getContinueShoppingUrl() ?>" class="continueShopping"><i class="fa fa-chevron-left"></i><?php echo $this->__('Continue Shopping') ?></a></div>
                   <?php endif; ?>
-				  	<p class="checkout-button"><a href="<?php echo Mage::getBaseUrl(); ?>checkout/onepage" class="continue-checkout"><i class="fa fa-chevron-right"></i>Continue checkout</a></p>
+				  	<p class="checkout-button"><a href="<?php echo Mage::getBaseUrl(); ?>onestepcheckout/" class="continue-checkout"><i class="fa fa-chevron-right"></i>Continue checkout</a></p>
 
                </div>
 
@@ -65,7 +65,7 @@
          <?php echo $this->getChildHtml('totals'); ?>
          <?php if(!$this->hasError()): ?>
             <!--<a href="<?php echo Mage::getBaseUrl(); ?>checkout/onepage/giftandsample" class="checkout"><i class="fa fa-chevron-right"></i>choose sample and checkout</a>-->
-			<a href="<?php echo Mage::getBaseUrl(); ?>checkout/onepage" class="checkout"><i class="fa fa-chevron-right"></i>Continue checkout</a>
+			<a href="<?php echo Mage::getBaseUrl(); ?>onestepcheckout/" class="checkout"><i class="fa fa-chevron-right"></i>Continue checkout</a>
          <?php endif; ?>
       </div>
       <div class="secure">
