@@ -8891,7 +8891,7 @@ body.category-oil-dandruff .layout h1, body.category-biotique-advance .layout h1
 #wishlist-table h3{ color: #1b5633; font: 18px/22px "Calibri-Bold",Arial,sans-serif; text-transform: uppercase;}
 #wishlist-table .description{ font: 14px/18px "Calibri", Arial, sans-serif; color: #434343}
 #wishlist-table .price-box{ font: 18px/22px "Calibri-Bold",Arial,sans-serif;}
-#wishlist-table .add-to-cart-alt button{ background: #b4ca89; color: #fff; font: 14px/35px "AvenirBlack",Arial,sans-serif; margin: 10px 0 0; dipslay: inline-block; padding: 0 10px; text-transform: uppercase;}
+#wishlist-table .add-to-cart-alt button{ background: #b4ca89; color: #fff; font: 14px/35px "AvenirBlack",Arial,sans-serif; margin: 0px 0 0; display: inline-block; padding: 0 10px; text-transform: uppercase;}
 .error-msg ul li span{ font: 14px/18px "Calibri", Arial, sans-serif; color: #434343; background:#ffe3e3; padding:8px;}
 .page-sitemap{ width:80%; margin:0 auto}
 
@@ -9451,7 +9451,7 @@ option:first-child{ color:#555!important;}
 /*.wishlist-index-index #sidebar{ display: none;}*/
 #wishlist-table{ width: 50%;}
 .wishlist-page .add-to-cart-alt span{ font: 14px/18px "Calibri-Bold",Arial,sans-serif; float: left;}
-.wishlist-page .add-to-cart-alt input[type=text]{ border: none; margin-bottom: 10px; width: 90%; height: inherit; background: none;}
+.wishlist-page .add-to-cart-alt input[type=text]{ border: none; margin-bottom: 10px; width: 50%; height: inherit; background: none; color: #555;}
 
 /* additional address on dashboard*/ 
 .my-account .pressTop{ margin-bottom: 10px;}

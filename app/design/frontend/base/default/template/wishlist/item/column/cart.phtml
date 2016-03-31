@@ -37,12 +37,14 @@ $options = $this->getChild('customer.wishlist.item.options')
 <?php echo $this->getPriceHtml($product, empty($options));?>
 <div class="add-to-cart-alt">
 <?php if ($item->canHaveQty() && $item->getProduct()->isVisibleInSiteVisibility()): ?>
-    <span>Qty:&nbsp;</span><input type="text" name="qty[<?php echo $item->getId() ?>]" value="<?php echo $this->getAddToCartQty($item) * 1 ?>" readonly="readonly" disabled="disabled" />
+    <span>Qty:&nbsp;</span><input type="text" name="qty[<?php echo $item->getId() ?>]" value="<?php echo $this->getAddToCartQty($item) * 1 ?>" readonly="readonly" />
     
 <?php endif; ?>
+    <div>
 <?php if ($product->isSaleable()): ?>
     <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add to Cart')) ?>" onclick="addWItemToCart(<?php echo $item->getId()?>);" class="button btn-cart"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
 <?php else: ?>
+    </div>
     <?php if ($product->getIsSalable()): ?>
         <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
     <?php else: ?>
