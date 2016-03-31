@@ -8891,7 +8891,7 @@ body.category-oil-dandruff .layout h1, body.category-biotique-advance .layout h1
 #wishlist-table h3{ color: #1b5633; font: 18px/22px "Calibri-Bold",Arial,sans-serif; text-transform: uppercase;}
 #wishlist-table .description{ font: 14px/18px "Calibri", Arial, sans-serif; color: #434343}
 #wishlist-table .price-box{ font: 18px/22px "Calibri-Bold",Arial,sans-serif;}
-#wishlist-table .add-to-cart-alt button{ background: #b4ca89; color: #fff; font: 14px/35px "AvenirBlack",Arial,sans-serif; margin: 0px 0 0; display: inline-block; padding: 0 10px; text-transform: uppercase;}
+#wishlist-table .add-to-cart-alt button{ background: #b4ca89; color: #fff; font: 14px/35px "AvenirBlack",Arial,sans-serif; margin: 10px 0 0; display: inline-block; padding: 0 10px; text-transform: uppercase;}
 .error-msg ul li span{ font: 14px/18px "Calibri", Arial, sans-serif; color: #434343; background:#ffe3e3; padding:8px;}
 .page-sitemap{ width:80%; margin:0 auto}
 
@@ -9449,6 +9449,7 @@ option:first-child{ color:#555!important;}
 #wishlist-view-form .btn-add, 
 #wishlist-view-form .btn-update{ display: inline-block; margin-bottom: 10px;}
 /*.wishlist-index-index #sidebar{ display: none;}*/
+#wishlist-table{ width: inherit;}
 .wishlist-page .add-to-cart-alt span{ font: 14px/18px "Calibri-Bold",Arial,sans-serif; float: left;}
 .wishlist-page .add-to-cart-alt input[type=text]{ border: none; vertical-align: top; width: 50%; height: inherit; background: none; color: #555;}
 
@@ -12563,7 +12564,7 @@ option:first-child{ color:#555!important;}
     }
 /* additional address on dashboard*/
 .my-account .title-buttons button[type=button]{ margin-bottom: 10px;}
-   
+    
 }
 @media only screen and (max-width: 568px){
     /* home page starts*/
@@ -12676,4 +12677,4 @@ option:first-child{ color:#555!important;}
 .foursteps{ color:#b4ca89; font: 15px/44px "avenirmedium",Arial,sans-serif; text-transform: uppercase;}
 .foursteps span{ width:37px; height:37px; line-height:41px; color:#FFF; font-size:20px; margin-right:5px; background:#b4ca89; border-radius: 50%; display: inline-block; text-align: center;}
 /*.sp-methods{ margin-left: 19%;}*/
-.discount-form{ margin-left: 6%;}
+/*.discount-form{ margin-left: 6%;}*/
