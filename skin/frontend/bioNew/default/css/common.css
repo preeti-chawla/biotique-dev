@@ -9449,7 +9449,8 @@ option:first-child{ color:#555!important;}
 #wishlist-view-form .btn-add, 
 #wishlist-view-form .btn-update{ display: inline-block; margin-bottom: 10px;}
 /*.wishlist-index-index #sidebar{ display: none;}*/
-.wishlist-page .add-to-cart-alt input[type=text]{ border: none; margin-bottom: 10px; width: 50%;}
+.wishlist-page .add-to-cart-alt span{ font: 14px/18px "Calibri-Bold",Arial,sans-serif; float: left;}
+.wishlist-page .add-to-cart-alt input[type=text]{ border: none; margin-bottom: 10px; width: 90%;}
 
 /* additional address on dashboard*/ 
 .my-account .pressTop{ margin-bottom: 10px;}

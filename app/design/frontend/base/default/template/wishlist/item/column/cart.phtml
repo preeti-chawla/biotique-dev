@@ -37,7 +37,7 @@ $options = $this->getChild('customer.wishlist.item.options')
 <?php echo $this->getPriceHtml($product, empty($options));?>
 <div class="add-to-cart-alt">
 <?php if ($item->canHaveQty() && $item->getProduct()->isVisibleInSiteVisibility()): ?>
-    <span>Qty: </span><input type="text" class="input-text qty validate-not-negative-number" name="qty[<?php echo $item->getId() ?>]" value="<?php echo $this->getAddToCartQty($item) * 1 ?>" />
+    <span>Qty:&nbsp;</span><input type="text" class="input-text qty validate-not-negative-number" name="qty[<?php echo $item->getId() ?>]" value="<?php echo $this->getAddToCartQty($item) * 1 ?>" />
     
 <?php endif; ?>
 <?php if ($product->isSaleable()): ?>
