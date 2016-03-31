@@ -9454,7 +9454,7 @@ option:first-child{ color:#555!important;}
 .my-account .pressTop{ margin-bottom: 10px;}
 .additionalAddress{ margin-bottom: 10px;}
 .additionalAddress .addresbook-sect .ctn{ float: none ; display: inline-block;}
-
+.newsletter-manage-index .shop-category{ display: none;}
 
 /* Media Query start*/
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
