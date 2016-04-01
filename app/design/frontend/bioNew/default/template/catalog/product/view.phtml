@@ -19,8 +19,9 @@ $category_id = '';
 $category_id = Mage::getModel('catalog/layer')->getCurrentCategory()->getId();
 ?>
 
+<?php $storeId = Mage::app()->getStore()->getId(); ?>
 <section class="shopContainer">
-<?php $_isActive = Mage::getStoreConfig('outofstocksubscription/mail/active', $_storeId); ?>
+<?php $_isActive = Mage::getStoreConfig('outofstocksubscription/mail/active', $storeId); ?>
 <?php if(!$_product->isSaleable() && $_isActive): ?>
 <?php	$_url = $this->getUrl('outofstocksubscription') ?>
 <?php else: ?>
@@ -297,13 +298,13 @@ $category_id = Mage::getModel('catalog/layer')->getCurrentCategory()->getId();
 		<div class="reviewContent">
 		  <h3>Ratings & Reviews</h3>
 		  <h5>Summary of Customer Ratings & Reviews</h5>
-		  <?php $line=explode('<p>',$parts[0]);
+		  <?php /*$line=explode('<p>',$parts[0]);
 				$p= str_replace('</p>','','<p>'.$line[1]);
-				echo $p.' to a friend.</p>'	
+				echo $p.' to a friend.</p>'	*/
 		  ?>
 		  <a class="ctnBtn" href="javascript:void(0)">Read Reviews</a>
 		  <span class="right-review reviewblock"> <a class="ctnBtn secondBtn" href="<?php echo Mage::getUrl('review/product/list', array('id'=> $_product->getId())); ?>#review-form" rel="nofollow"> <?php echo $this->__('Write Review') ?></a></span>
-		  <div class="overallRate"><strong>Overall Ratings</strong> <?php echo $line[0]; ?></div> <!-- /overallRate -->
+		  <div class="overallRate"><strong>Overall Ratings</strong> <?php //echo $line[0]; ?></div> <!-- /overallRate -->
 		</div> <!-- /reviewContent -->
 	  </div> <!-- /reviewBlock -->
 	  <span class="shadow"></span>

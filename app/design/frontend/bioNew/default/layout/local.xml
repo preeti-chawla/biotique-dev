@@ -197,6 +197,8 @@
 			</block>
          </block>
       </reference>
+	  
+	  <remove name="wishlist_sidebar"/>
    </default>
 
    <catalog_category_default>
