@@ -27,14 +27,8 @@ $isAllowComment = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allo
 
 <div class="shoppingbagContainer">
   <ul class="shoppingBag">
-	<!--<li><span class="sCircle">1</span><span class="shoppingText">Shopping Bag</span></li>
-	<li><span class="sCircle">2</span><span class="shoppingText">Gift and sample</span></li>
-	<li><span class="sCircle ">3</span><span class="shoppingText ">Shipping and Payment</span></li>
-	<li><span class="sCircle active">4</span><span class="shoppingText activeText">Order review</span></li>-->
-
 	<li><a href="<?php echo Mage::getUrl("checkout/cart"); ?>"><span class="sCircle ">1</span><span class="shoppingText ">Shopping Bag</span></a></li>
 	<li><a href="<?php echo Mage::getUrl("onestepcheckout"); ?>"><span class="sCircle active">2</span><span class="shoppingText activeText">Onepage checkout</span></li>
-	<!--<li><span class="sCircle">3</span><span class="shoppingText">Payment Details </span></li> -->
 	<li><span class="sCircle ">3</span><span class="shoppingText ">Place  Order</span></li>
   </ul>
   <span class="shoppingShadow"></span>
@@ -52,8 +46,11 @@ $isAllowComment = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allo
                 <p class="page-description"><?php echo $pageDescription;?></p>
             <?php endif;?>
             <?php if (!Mage::helper('customer')->isLoggedIn()) : ?>
-                <p><?php echo $this->__("Already registered? Please");?>
-                    <a class="login_link" href="javascript:void(0);" id="loginFrmDlgO"> <?php echo $this->__("log in");?> </a></p>
+                <p class="alredy_reg"><?php echo $this->__("Already registered? Please");?>
+                    <!--<a class="login_link" href="javascript:void(0);" id="loginFrmDlgO"> <?php echo $this->__("log in");?> </a>-->
+					<a href="#" class="e-login2"><i class="fa fa-plus"></i><u><?php echo $this->__("log in");?> </u></a>
+				</p>
+					
             <?php endif; ?>
             <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/content/display_bottom_static_block')): ?>
                 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('onestepcheckout_top_block')->toHtml(); ?>
@@ -153,9 +150,9 @@ $isAllowComment = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allo
 
                         </h3>
                         <div id="review_partial">
-                            <?php echo $this->getData("reviewHtml"); ?>
                             <?php echo $this->getChildHtml('review'); ?>
-                        </div>
+                            <?php echo $this->getData("reviewHtml"); ?>
+						</div>
 
 
                     </div>

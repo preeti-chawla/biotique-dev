@@ -36,6 +36,16 @@ $commentpos = Mage::getStoreConfig('lotusbreath_onestepcheckout/layout/commentpo
         loaderText: '<?php echo $this->__("Please wait...");?>'
     };
 </script>
+
+<div class="shoppingbagContainer">
+  <ul class="shoppingBag">
+	<li><a href="<?php echo Mage::getUrl("checkout/cart"); ?>"><span class="sCircle ">1</span><span class="shoppingText ">Shopping Bag</span></a></li>
+	<li><a href="<?php echo Mage::getUrl("onestepcheckout"); ?>"><span class="sCircle active">2</span><span class="shoppingText activeText">Onepage checkout</span></li>
+	<li><span class="sCircle ">3</span><span class="shoppingText ">Place  Order</span></li>
+  </ul>
+  <span class="shoppingShadow"></span>
+</div>
+
 <div class="lt-checkoutpage" id="checkoutSteps">
     <?php echo $this->getChildHtml("loginform");?>
 

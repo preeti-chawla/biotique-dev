@@ -291,7 +291,7 @@
 			<?php //echo $this->helper('catalog/image')->init($_product, 'image'); echo '<br />'; ?>
             
 		<?php //echo $_product->getImageUrl(); ?>	
-		<?php /*<section class="reviewContainer">
+<section class="reviewContainer">
   <section class="reviewContainer-inner">
   <?php 
 $parts=explode('<ul class="reviewLink">',$this->getReviewsSummaryHtml($_product, false, true));
@@ -305,25 +305,26 @@ $parts=explode('<ul class="reviewLink">',$this->getReviewsSummaryHtml($_product,
 	//$product_image_url = $full_product->getImageUrl();
   ?>
   <div class="reviewImg"><figure>
+    <?php $_product = $this->getProduct(); ?>
 	<img src="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>">
   </figure></div> <!-- /reviewImg --> </div> <!-- /reviewImg -->
   <div class="reviewContent">
   <h3>Ratings & Reviews</h3>
   <h5>Summary of Customer Ratings & Reviews</h5>
-    <?php
+    <?php /*
 $line=explode('<p>',$parts[0]);
 $text_cont = '<p>'.$line[1];
 $p= str_replace('</p>','',$text_cont);
-echo $p.' to a friend.</p>';	?>
+echo $p.' to a friend.</p>';	*/?>
 	<a class="ctnBtn" href="javascript:void(0)">Read Reviews</a>
  <span class="right-review reviewblock"> <a class="ctnBtn secondBtn" href="<?php echo Mage::getUrl('review/product/list', array('id'=> $_product->getId())); ?>#review-form" rel="nofollow"> <?php echo $this->__('Write Review') ?></a></span>
  
- <div class="overallRate"><strong>Overall Ratings</strong> <?php echo $line[0]; ?></div> <!-- /overallRate -->
+ <div class="overallRate"><strong>Overall Ratings</strong> <?php //echo $line[0]; ?></div> <!-- /overallRate -->
  </div> <!-- /reviewContent -->
   </div> <!-- /reviewBlock -->
   <span class="shadow"></span>
 </section>
-</section> */?>
+</section> 
 			
 			
 			

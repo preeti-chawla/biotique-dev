@@ -41,9 +41,9 @@
             <default_setup>
                 <connection>
                     <host><![CDATA[localhost]]></host>
-                    <username><![CDATA[biottique_user]]></username>
-                    <password><![CDATA[lx[3SE9VV4j/)3G]]></password>
-                    <dbname><![CDATA[biotiquedb]]></dbname>
+                    <username><![CDATA[root]]></username>
+                    <password><![CDATA[]]></password>
+                    <dbname><![CDATA[biotique_dev]]></dbname>
                     <initStatements><![CDATA[SET NAMES utf8]]></initStatements>
                     <model><![CDATA[mysql4]]></model>
                     <type><![CDATA[pdo_mysql]]></type>
@@ -74,7 +74,7 @@
             <max_lifetime>2592000</max_lifetime>                 <!-- Set the maximum session lifetime -->
         </redis_session>
 
-	<cache>
+	<!--<cache>
     	<backend>Cm_Cache_Backend_Redis</backend>
 		<backend_options>
 		    <server>127.0.0.1</server> 
@@ -92,7 +92,7 @@
 		    <compression_lib>gzip</compression_lib> 
 		    <use_lua>0</use_lua> 
 		</backend_options>
-	</cache>
+	</cache>-->
     </global>
     <admin>
         <routers>

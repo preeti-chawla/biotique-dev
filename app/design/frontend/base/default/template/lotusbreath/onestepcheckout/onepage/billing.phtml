@@ -35,7 +35,8 @@
                 <input type="hidden" name="billing[address_id]" value="<?php echo $this->getAddress()->getId() ?>"
                        id="billing:address_id"/>
                 <ul>
-                    <li class="fields">
+                    <li class="fields"><?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress()->getFirstname() ? $this->getAddress() : $this->getQuote()->getCustomer())->setForceUseCustomerRequiredAttributes(!$this->isCustomerLoggedIn())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?></li>
+					<li class="fields">
                         <?php if (!$this->isCustomerLoggedIn()): ?>
 
                             <label for="billing:email"
@@ -51,7 +52,6 @@
 
                         <?php endif; ?>
                     </li>
-                    <li class="fields"><?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress()->getFirstname() ? $this->getAddress() : $this->getQuote()->getCustomer())->setForceUseCustomerRequiredAttributes(!$this->isCustomerLoggedIn())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?></li>
                     <li class="fields">
 
                         <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/billingaddress/allowshowcompanyfield')): ?>
@@ -267,7 +267,7 @@
                         <?php endif ?>
                         <?php if ($isAllowGuest):?>
                         <li class="fields">
-                            <input type="checkbox" name="billing[create_new_account]"
+                            <input class="reg_newUser" type="checkbox" name="billing[create_new_account]"
                                    value=1/> <?php echo $this->__("Register new account"); ?>?
                         </li>
                         <?php else: ?>

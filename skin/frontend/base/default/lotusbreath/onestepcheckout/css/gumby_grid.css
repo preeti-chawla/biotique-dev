@@ -42,7 +42,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* To fix the grid into a different size, set max-width to your desired width */
 .column, .columns { margin-left: 2.12766%; float: left; min-height: 1px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-.column:first-child, .columns:first-child, .alpha { margin-left: 0; }
+.column:first-child, .columns:first-child, .alpha { margin-left: 9%; }
 
 .column.omega, .columns.omega { float: right; }
 
@@ -51,7 +51,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .row .one.columns { width: 6.38298%; }
 .row .two.columns { width: 14.89362%; }
 .row .three.columns { width: 23.40426%; }
-.row .four.columns { width: 31.91489%; }
+.row .four.columns { width: 25.91489%; }
 .row .five.columns { width: 40.42553%; }
 .row .six.columns { width: 48.93617%; }
 .row .seven.columns { width: 57.44681%; }

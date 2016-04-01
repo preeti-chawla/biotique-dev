@@ -143,6 +143,7 @@ div.mage-error, p.mage-error , .error {color : red;}
     /*color : #e87403;*/
     border-bottom: 1px solid ; /*#e87403*/
     margin : 15px 0 15px 0;
+	font: 19px/35px "avenirmedium",Arial,sans-serif;
 }
 .form-list .fields {
     display: block;
@@ -158,24 +159,28 @@ div.mage-error, p.mage-error , .error {color : red;}
     width : 100%;
 }
 .form-list .fields .field .input-box {
-    width: 80%;
+    width: 99%;
 }
 .form-list .input-box-wide {
-    width: 90%;
+    width: 100%;
 }
 .form-list li {
-    margin: 0 0 8px;
+    /*margin: 0 0 8px;*/
     width: auto;
     display: block;
     height: auto;
 }
 
 
-
-.form-list input.input-text  {
+.form-list input.input-text {
+    box-sizing: border-box;
+    padding: 0 0 0 6px;
+    width: 100%;
+}
+/*.form-list input.input-text  {
     width : 100%;
     box-sizing: border-box;
-}
+}*/
 
 .form-list #billing-new-address-form  select, .form-list #shipping-new-address-form select {
 
@@ -212,12 +217,29 @@ div.mage-error, p.mage-error , .error {color : red;}
 #comment-patial .form-list .input-box {
     width : 100%;
 }
-
 .lt-checkoutpage .page-title {
-    /*color : #e87403;*/
+    font: 28px/20px "avenirmedium",Arial,sans-serif;
+    margin: 0 0 10px 140px;
+}
+#cancel_coupon_btn {
+    margin: -23px 0 0;
+}
+.alredy_reg {
+    margin: 0 0 0 9%;
+}
+.reg_newUser {
+    margin: -3px -190px 0 -182px;
+}
+#edit_cart_action {
+    float: right;
+     margin: 10px 0 0 0;
+}
+
+/*.lt-checkoutpage .page-title {
+    color : #e87403;
     margin : 0 0 10px 0px;
     font-size: 2em;
-}
+}*/
 .lt-checkoutpage .page-description {
     font-size: 1.1em;
     font-weight: bold;
@@ -299,6 +321,10 @@ div.mage-error, p.mage-error , .error {color : red;}
     padding : 0 10px;
 }
 .lt-buttons-set {margin: 10px 0 0 0;}
+.lt-buttons-set #apply_coupon_btn {
+    float: left;
+    margin-right: 20px;
+}
 .row { max-width: 100% !important; }
 .review-qty-input {
     width : 15px;
@@ -340,27 +366,28 @@ p.newsletter {
     display: none !important;
 }
 
-#lbonepage-place-order-btn {
+/*#lbonepage-place-order-btn {
 
     padding: 0 10px 0 0;
     min-height: 60px;
-
-
-}
+}*/
 .layout-2col #lbonepage-place-order-btn{
     width: 50%;
 }
-button#lbonepage-place-order-btn span span{
-    /*width : 100%*/
-
-    text-align: center;
-    /*width: 100%;*/
+button#lbonepage-place-order-btn span span {
     float: none;
-
-    font-size: 18px;
-
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 35px;
 }
+/*button#lbonepage-place-order-btn span span{
+    width : 100%
+    text-align: center;
+    float: none;
+    font-size: 18px;
+    font-weight: 700;
+}*/
 button#lbonepage-place-order-btn > span {
 
     width: 100%;
