@@ -334,9 +334,9 @@ echo $output;
     {
         //Fetch submited params
         $params = $this->getRequest()->getParams();
-        print_r($params);
+        //print_r($params);
         echo $tomail_third = Mage::getStoreConfig('settings/helpline/contactmailthird'); 
-        exit();
+        //exit();
 
 
         /*
