@@ -25,20 +25,23 @@
  */
 ?>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
-                    <ul class="contactQueryrow">
-                    <form action="<?php echo Mage::getUrl(); ?>settings/index/formsubmit/" id="contactForm" method="post">
-					<?php echo $this->getBlockHtml('formkey'); ?>
-					<input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
-                      <li><input name="name" placeholder="Name*" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>"  class="input-text required-entry" type="text" required /></li>
-                      <li><input name="email" placeholder="Email*" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="email" required /></li>
-                     <!-- <li><input name="telephone" placeholder="Mobile No." id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="number" /></li> -->
-                      <li><input name="telephone" placeholder="Mobile No." id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" title="Enter valid phone number with 10 digits" type="text" pattern="^\d{10}$"  oninvalid="setCustomValidity('Please enter 10 digit Mobile number ')"
-    onchange="try{setCustomValidity('')}catch(e){}"  /></li>
-                      <li><textarea name="comment" placeholder="Query*" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3" required></textarea></li>
-                      <li>
-					  <button type="submit" title="Submit" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button></li>
-                      </form>
-                    </ul>
+
+<ul class="contactQueryrow">
+  <form action="<?php echo Mage::getUrl(); ?>settings/index/formsubmit/" id="contactForm" method="post">
+  <?php echo $this->getBlockHtml('formkey'); ?>
+  <li><input name="name" placeholder="Name*" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>"  class="input-text required-entry" type="text" required /></li>
+  <li><input name="email" placeholder="Email*" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="email" required /></li>
+  <!--<li><input name="telephone" placeholder="Mobile No." id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="number" /></li> -->
+  <li><input name="telephone" placeholder="Mobile No." id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" title="Enter valid phone number with 10 digits" type="text" pattern="^\d{10}$" oninvalid="setCustomValidity('Please enter 10 digit Mobile number ')"
+    onchange="try{setCustomValidity('')}catch(e){}" /></li>
+  <li><textarea name="comment" placeholder="Query*" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3" required></textarea></li>
+  <li>
+	<input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+	<button type="submit" title="Submit" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+  </li>
+  </form>
+</ul>
+
 <script type="text/javascript">
 //<![CDATA[
     var contactForm = new VarienForm('contactForm', true);
